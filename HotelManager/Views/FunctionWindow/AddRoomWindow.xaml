@@ -1,0 +1,67 @@
+﻿<Window x:Class="HotelManager.Views.FunctionWindow.AddRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelManager.Views.FunctionWindow"
+        xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+        xmlns:vm="clr-namespace:HotelManager.ViewModels.Function"
+        mc:Ignorable="d" Height="500" Width="350"
+         WindowStyle="None" ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border  CornerRadius="15,15,15,15">
+        <Border.Background>
+            <ImageBrush ImageSource="pack://application:,,,/AppData/testbg5.jpg"/>
+        </Border.Background>
+        <DockPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border  CornerRadius="15,15,0,0"  Width="auto" Height="auto" Grid.Row="0" Name="titlebar" Opacity="0.9">
+                    <DockPanel>
+                        <Label  Name="TitleText" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="30,0,0,0" Content="添加房间" Width="auto" Foreground="Black"></Label>
+                        <Grid Name="closeicongrid" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50">
+                            <Image Name="closeicon" Source="/AppData/icon/black_exit_favicon.ico" Height="25" Width="25" RenderTransformOrigin="0.5,0.5"></Image>
+
+                        </Grid>
+
+                    </DockPanel>
+                </Border>
+                <StackPanel Grid.Row="1">
+                    <DockPanel Margin="0,30,0,0">
+                        <Label Content="房间类型" Margin="40,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                        <panuon:PUComboBox Name="roomtype" Width="200" Height="30" BorderCornerRadius="5,5,5,5" Margin="-30,0,0,0" BindingItems="{Binding ComboBoxItemsList}">
+                        </panuon:PUComboBox>
+                    </DockPanel>
+                    <DockPanel  Margin="0,15,0,0">
+                        <Label Content="所在楼层" Margin="40,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                        <panuon:PUTextBox Name="roomnrow" PreviewTextInput="number_PreviewTextInput"  Width="200" Height="30" BorderCornerRadius="5,5,5,5" Margin="-30,0,0,0"></panuon:PUTextBox>
+                    </DockPanel>
+                    <DockPanel  Margin="0,15,0,0">
+                        <Label Content="起始房间号/房间名" Margin="40,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                        <panuon:PUTextBox Name="roomname1" Watermark="" Width="140" Height="30" BorderCornerRadius="5,5,5,5" Margin="-30,0,0,0"></panuon:PUTextBox>
+                    </DockPanel>
+                    <DockPanel  Margin="0,15,0,0">
+                        <Label Content="结束房间号/房间名" Margin="40,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                        <panuon:PUTextBox Name="roomname2" Watermark="添加多个连续房间" Width="140" Height="30" BorderCornerRadius="5,5,5,5" Margin="-30,0,0,0"></panuon:PUTextBox>
+                    </DockPanel>
+                    <Label MaxWidth="250">
+                        <TextBlock TextWrapping="Wrap" Foreground="IndianRed" FontSize="12" Text="ps:不输入结束房间号时默认添加起始房号，若输入结束房间号需保证起始房号与结束房号连续且为数字" />
+                    </Label>
+                    <DockPanel  Margin="0,15,0,0">
+                        <Label Content="每天单价" Margin="40,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                        <panuon:PUTextBox Name="dayprice" PreviewTextInput="number_PreviewTextInput"  Width="180" Height="30" BorderCornerRadius="5,5,5,5" Margin="-20,0,0,0"></panuon:PUTextBox>
+                    </DockPanel>
+                    <DockPanel  Margin="0,15,0,0">
+                        <Label Content="每小时单价" Margin="40,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                        <panuon:PUTextBox Name="hourprice" PreviewTextInput="number_PreviewTextInput"  Width="180" Height="30" BorderCornerRadius="5,5,5,5" Margin="-30,0,0,0"></panuon:PUTextBox>
+                    </DockPanel>
+                    <panuon:PUButton Command="{Binding Path=AddRoomCommand}" Margin="0,30,0,0"  Width="170" Height="30" BorderCornerRadius="8,8,8,8" Content="确认添加"></panuon:PUButton>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Border>
+</Window>

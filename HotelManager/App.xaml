@@ -1,0 +1,15 @@
+﻿<Application x:Class="HotelManager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HotelManager"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Panuon.UI;component/Themes/Control.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="楷书">../AppData/FontFamily/#华康楷体简W5-A</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

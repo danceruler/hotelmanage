@@ -1,0 +1,65 @@
+﻿<Page x:Class="HotelManager.Views.MainMenu.Pages.BsManage.Pages.RoomInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HotelManager.Views.MainMenu.Pages.BsManage.Pages"
+      xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+      mc:Ignorable="d" 
+      Title="RoomInfoPage"
+      >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ScrollViewer Name="scrollview" Width="1080" Height="800" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" >
+            <Grid Name="roomcardgrid"  HorizontalAlignment="Left"  VerticalAlignment="Top" >
+                
+            </Grid>
+        </ScrollViewer>
+        <Grid Name="roominfobtgrid" Grid.Column="1"  Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <panuon:PUButton Command="{Binding Path=ReFlashRoomInfoCommand}"  Content="刷新" BorderCornerRadius="8" ButtonStyle="General" ClickStyle="Sink" Width="120" Height="30"></panuon:PUButton>
+            <Label Grid.Row="1" Height="30"  Content="排列规则" HorizontalAlignment="Center"></Label>
+            <panuon:PUComboBox Name="rankrule" BindingItems="{Binding RankRuleItemsList}" Grid.Row="2" BorderCornerRadius="8" Width="120" Height="30"></panuon:PUComboBox>
+            <Label Grid.Row="3" Height="30"  Content="筛选规则" HorizontalAlignment="Center"></Label>
+            <panuon:PUComboBox Name="filterule_row" BindingItems="{Binding RowsItemsList}" Grid.Row="4" BorderCornerRadius="8" Width="120" Height="30">
+                
+            </panuon:PUComboBox>
+            <panuon:PUComboBox Name="filterule_type"  BindingItems="{Binding TypesItemsList}" Grid.Row="5" BorderCornerRadius="8" Width="120" Height="30">
+                
+            </panuon:PUComboBox>
+            <panuon:PUComboBox Name="filterule_state" BindingItems="{Binding StatesItemsList}" Grid.Row="6" BorderCornerRadius="8" Width="120" Height="30">
+                
+            </panuon:PUComboBox>
+            <panuon:PUTextBox Name="filerule_rmingtime" Grid.Row="7" BorderCornerRadius="8" Width="120" Height="30" Watermark="剩余小时数"></panuon:PUTextBox>
+            <panuon:PUButton Grid.Row="8" Content="筛选" Command="{Binding Path=FilterCommand}" BorderCornerRadius="8" ButtonStyle="General" ClickStyle="Sink" Width="120" Height="30"></panuon:PUButton>
+
+            <panuon:PUButton Grid.Row="9" Command="{Binding Path=OpenAddRoomWindowCommand}" Content="添加房间" BorderCornerRadius="8" ButtonStyle="General" ClickStyle="Sink" Width="120" Height="30"></panuon:PUButton>
+            <panuon:PUButton Grid.Row="10" Command="{Binding Path=OpenEditRoomTypeWindowCommand}" Content="编辑房间类型" BorderCornerRadius="8" ButtonStyle="General" ClickStyle="Sink" Width="120" Height="30"></panuon:PUButton>
+            <panuon:PUButton Name="IsEdit" Command="{Binding Path=ReFlashEditRoomInfoCommand}" Grid.Row="13"  Content="进入编辑模式" BorderCornerRadius="8" ButtonStyle="General" ClickStyle="Sink" Width="120" Height="30"></panuon:PUButton>
+        </Grid>
+    </Grid>
+</Page>

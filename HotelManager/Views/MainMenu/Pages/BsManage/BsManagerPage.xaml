@@ -1,0 +1,17 @@
+﻿<Page x:Class="HotelManager.Views.MainMenu.Pages.BsManage.BsManagerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HotelManager.Views.MainMenu.Pages.BsManage"
+       xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+      mc:Ignorable="d" 
+      Title="BsManagerPage"
+      >
+
+    <Grid>
+        <panuon:PUTabControl TabControlStyle="Classic" Width="1280" Height="830"
+                        BindingItems="{Binding Path=thisputabitems,Mode=TwoWay}">
+        </panuon:PUTabControl>
+    </Grid>
+</Page>
