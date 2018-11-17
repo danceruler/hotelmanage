@@ -37,10 +37,15 @@ namespace HotelManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //new RoomHelper().LoadRoomInfoByRow(new Grid());
-            //RetailContext context = new RetailContext();
-            //var list = context.RoomTypes.ToList();
-            //context.RoomTypes.Remove(list[0]);
+            //double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
+            //double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
+            RetailContext context = new RetailContext();
+            List<Room> list = context.Rooms.ToList();
+            Guid test = list[0].roomID;
+            string t = ConvertGuid(test);
+            Room room = context.Rooms.Where(r => ConvertGuid(r.roomID) == t).ToList()[0];
+
+            MessageBox.Show(room.roomname);
             //context.RoomTypes.Add(new RoomType() { Cap = 1, Name = "单人间",ID=Guid.NewGuid(), CanChange=false, IsChecked=false });
             //context.RoomTypes.Add(new RoomType() { Cap = 2, Name = "双人间", ID = Guid.NewGuid(), CanChange = false, IsChecked = false });
             //context.RoomTypes.Add(new RoomType() { Cap = 3, Name = "三人间", ID = Guid.NewGuid(), CanChange = false, IsChecked = false });
@@ -77,6 +82,45 @@ namespace HotelManager
         private void ToEditRoomType(object sender, RoutedEventArgs e)
         {
             new EditRoomTypeWindow(this, out EditRoomTypeViewModel viewModel).ShowDialog();
+        }
+
+        private void testcombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            var test = comboBox.Items[0];
+            MessageBox.Show(test.GetType().ToString());
+            //ComboBoxItem textBlock = comboBox.SelectedItem as ComboBoxItem;
+            //TextBlock textBlock2 = textBlock.Content as TextBlock;
+            //MessageBox.Show(textBlock2.Text.ToString());
+        }
+
+        private void ToOpenRoom(object sender, RoutedEventArgs e)
+        {
+            new OpenRoomWindow(this).ShowDialog();
+        }
+
+        private string ConvertGuid(Guid gd)
+        {
+            string sgd = gd.ToString().ToUpper();
+            string sVar = "";
+            int i;
+
+            foreach (string sv in new string[] {
+        sgd.Substring(0, 8), sgd.Substring(9, 4), sgd.Substring(14, 4) })
+            {
+                for (i = sv.Length - 2; i >= 0; i -= 2)
+                {
+                    sVar += sv.Substring(i, 2);
+                }
+            }
+
+            sgd = sgd.Substring(19).Replace("-", "");
+            for (i = 0; i < 8; i++)
+            {
+                sVar += sgd.Substring(2 * i, 2);
+            }
+
+            return sVar;
         }
     }
 }

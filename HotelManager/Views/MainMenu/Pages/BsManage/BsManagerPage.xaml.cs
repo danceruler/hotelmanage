@@ -40,8 +40,8 @@ namespace HotelManager.Views.MainMenu.Pages.BsManage
         {
             InitializeComponent();
             fatherwindow = window;
-            RoomInfoFrame.Height = 800;
-            RoomInfoFrame.Width = 1280;
+            RoomInfoFrame.Height = fatherwindow.Height-60;
+            RoomInfoFrame.Width = fatherwindow.Width-100;
             RoomInfoFrame.Content = new RoomInfoPage(this,out Pg_RoomInfoViewModel vm);
             bsmanageritems.Add(new PUTabItemModel()
             {

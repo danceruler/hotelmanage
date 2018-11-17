@@ -6,7 +6,7 @@
         xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
         xmlns:local="clr-namespace:HotelManager.Views"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="400"
+        Title="LoginWindow"
         WindowStyle="None" ResizeMode="NoResize"
         Background="Transparent">
     <Border  CornerRadius="15,15,15,15">

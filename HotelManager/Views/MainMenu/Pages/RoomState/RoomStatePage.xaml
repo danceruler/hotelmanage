@@ -18,7 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer Name="scrollview" Width="1030" Height="830"  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" >
+        <ScrollViewer Name="scrollview"  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" >
             <Grid Name="roomcardgrid"  HorizontalAlignment="Left"  VerticalAlignment="Top" >
                 
             </Grid>

@@ -54,3 +54,5 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\HotelManager.applicat
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.exe.manifest
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.application
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.csprojAssemblyReference.cache
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\OpenRoomWindow.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\OpenRoomWindow.baml

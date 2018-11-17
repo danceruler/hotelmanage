@@ -37,6 +37,8 @@ namespace HotelManager.Views.MainMenu
             InitializeComponent(); isclosetrans = 0;
             mmbuttons.Add(ToBsManagerButton);
             mmbuttons.Add(ToRoomState);
+            double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
+            double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
         }
 
         public MainMenuWindow(Window window,out MainMenuViewModel viewmodel)
@@ -48,10 +50,11 @@ namespace HotelManager.Views.MainMenu
             this.DataContext = viewmodel;
             mmbuttons.Add(ToBsManagerButton);
             mmbuttons.Add(ToRoomState);
-            //sonpage1 = new BsManagerPage(this, out Pg_BsManagerViewModel sonviewmodel1);
-            //sonpages.Add(sonpage1);
+            double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
+            double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
+            this.Height = y;
+            this.Width = x;
 
-            
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

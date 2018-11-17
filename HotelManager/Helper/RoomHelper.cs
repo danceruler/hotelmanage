@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -159,33 +159,20 @@ namespace HotelManager.Helper
                     roomsbywhat[i].Sort(new IcpColumn());
                     for (int j = 0; j < roomsbywhat[i].Count(); j++)
                     {
+                        roomtypes = context.RoomTypes.ToList();
                         if (edittype == 0)
                         {
-                            FrameworkElement roominfogrid = MakeRoomInfoBasicCard(roomsbywhat[i][j], i - 1, j);
+                            FrameworkElement roominfogrid = MakeRoomInfoBasicCard(roomsbywhat[i][j], i - 1, j,roomtypes);
                             grid.Children.Add(roominfogrid);
                         }
                         else if(edittype == 1)
                         {
-                            BindableCollection<PUComboBoxItemModel> RoomTypes;
-                            List<PUComboBoxItemModel> rtypeitems = new List<PUComboBoxItemModel>();
-                            roomtypes = context.RoomTypes.ToList();
-
-                            foreach (RoomType rt in roomtypes)
-                            {
-                                PUComboBoxItemModel item = new PUComboBoxItemModel()
-                                {
-                                    Header = rt.Name,
-                                    CanDelete = false,
-                                    Value = rt.Name,
-                                };
-                                rtypeitems.Add(item);
-                            }
-                            RoomTypes = new BindableCollection<PUComboBoxItemModel>(rtypeitems);
-                            FrameworkElement roominfogrid = MakeRoomInfoEditCard(roomsbywhat[i][j], i - 1, j, RoomTypes);
+                            
+                            FrameworkElement roominfogrid = MakeRoomInfoEditCard(roomsbywhat[i][j], i - 1, j, roomtypes);
                             grid.Children.Add(roominfogrid);
                         }else if(edittype == 3)
                         {
-                            FrameworkElement roominfogrid = MakeRoomInfoMainCard(roomsbywhat[i][j], i - 1, j);
+                            FrameworkElement roominfogrid = MakeRoomInfoMainCard(roomsbywhat[i][j], i - 1, j,roomtypes);
                             grid.Children.Add(roominfogrid);
                         }
                     }
@@ -203,7 +190,7 @@ namespace HotelManager.Helper
         }
 
 
-        public FrameworkElement MakeRoomInfoMainCard(Room room, int row, int column)
+        public FrameworkElement MakeRoomInfoMainCard(Room room, int row, int column,List<RoomType> roomTypes)
         {
             Border border = new Border();
             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
@@ -246,16 +233,21 @@ namespace HotelManager.Helper
             roomtypelabel.VerticalContentAlignment = VerticalAlignment.Center;
             roomtypelabel.Content = room.roomtype;
             roomtypelabel.BorderThickness = new Thickness(2);
-            using (RetailContext context = new RetailContext())
+            string color = "";
+            foreach (RoomType rt in roomTypes)
             {
-                string color = context.RoomTypes.Where(rt => rt.Name == room.roomtype).ToList()[0].Color;
-                roomtypelabel.Background = ColorsConfig[color];
-                //roomtypelabel.BorderBrush = ColorsConfig[color];
-                //roomtypelabel.Foreground = ColorsConfig[color];
-                if (color == "黑色" || color == "紫色" || color == "棕色" || color == "蓝色")
+                if (rt.Name == room.roomtype)
                 {
-                    roomtypelabel.Foreground = Brushes.White;
+                    color = rt.Color;
+                    break;
                 }
+            }
+            roomtypelabel.Background = ColorsConfig[color];
+            //roomtypelabel.BorderBrush = ColorsConfig[color];
+            //roomtypelabel.Foreground = ColorsConfig[color];
+            if (color == "黑色" || color == "紫色" || color == "棕色" || color == "蓝色")
+            {
+                roomtypelabel.Foreground = Brushes.White;
             }
             grid.Children.Add(roomtypelabel);
 
@@ -313,6 +305,21 @@ namespace HotelManager.Helper
                 hourpricetextbox.Content = room.roomhourprice;
                 hourpricetextbox.HorizontalContentAlignment = HorizontalAlignment.Right;
                 grid.Children.Add(hourpricetextbox);
+
+                PUButton openroombutton = new PUButton();
+                openroombutton.SetValue(Grid.RowProperty, 4);
+                openroombutton.Width = 80;
+                openroombutton.Height = 25;
+                openroombutton.BorderCornerRadius = new CornerRadius(5, 5, 5, 5);
+                openroombutton.Background = Brushes.Gray;
+                openroombutton.Margin = new Thickness(0, 0, 0, 10);
+                openroombutton.VerticalContentAlignment = VerticalAlignment.Center;
+                openroombutton.HorizontalContentAlignment = HorizontalAlignment.Center;
+                openroombutton.Content = "Open";
+                openroombutton.Click += ToOpenRoom;
+                grid.Children.Add(openroombutton);
+                
+
             }
 
             dockPanel.Children.Add(grid);
@@ -320,7 +327,7 @@ namespace HotelManager.Helper
             grid.DataContext = room;
             return border;
         }
-        public FrameworkElement MakeRoomInfoBasicCard(Room room,int row,int column)
+        public FrameworkElement MakeRoomInfoBasicCard(Room room,int row,int column, List<RoomType> roomTypes)
         {
             Border border = new Border();
             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
@@ -363,16 +370,19 @@ namespace HotelManager.Helper
             roomtypelabel.VerticalContentAlignment = VerticalAlignment.Center;
             roomtypelabel.Content = room.roomtype;
             roomtypelabel.BorderThickness = new Thickness(2);
-            using (RetailContext context = new RetailContext())
+            string color = "";
+            foreach (RoomType rt in roomTypes)
             {
-                string color = context.RoomTypes.Where(rt => rt.Name == room.roomtype).ToList()[0].Color;
-                roomtypelabel.Background = ColorsConfig[color];
-                //roomtypelabel.BorderBrush = ColorsConfig[color];
-                //roomtypelabel.Foreground = ColorsConfig[color];
-                if (color == "黑色" || color == "紫色" || color == "棕色" || color == "蓝色")
+                if (rt.Name == room.roomtype)
                 {
-                    roomtypelabel.Foreground = Brushes.White;
+                    color = rt.Color;
+                    break;
                 }
+            }
+            roomtypelabel.Background = ColorsConfig[color];
+            if (color == "黑色" || color == "紫色" || color == "棕色" || color == "蓝色")
+            {
+                roomtypelabel.Foreground = Brushes.White;
             }
             grid.Children.Add(roomtypelabel);
 
@@ -394,9 +404,10 @@ namespace HotelManager.Helper
 
             dockPanel.Children.Add(grid);
             border.Child = dockPanel;
+            grid.DataContext = room;
             return border;
         }
-        public FrameworkElement MakeRoomInfoEditCard(Room room, int row, int column, BindableCollection<PUComboBoxItemModel> RoomTypes)
+        public FrameworkElement MakeRoomInfoEditCard(Room room, int row, int column, List<RoomType> RoomTypes)
         {
             Border border = new Border();
             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
@@ -418,10 +429,9 @@ namespace HotelManager.Helper
             }
 
             //房间号
-            PUTextBox roomnametextbox = new PUTextBox();
+            TextBox roomnametextbox = new TextBox();
             roomnametextbox.SetValue(Grid.RowProperty, 0);
             roomnametextbox.FontSize = 12;
-            roomnametextbox.BorderCornerRadius = new CornerRadius(5, 5, 5, 5);
             roomnametextbox.Width = 90;
             roomnametextbox.Height = 25;
             roomnametextbox.VerticalAlignment = VerticalAlignment.Center;
@@ -429,6 +439,8 @@ namespace HotelManager.Helper
             roomnametextbox.Text = room.roomname;
             roomnametextbox.TextChanged += namechange;
             grid.Children.Add(roomnametextbox);
+
+
             //删除
             Image closethis = new Image();
             closethis.MouseDown += CloseThis;
@@ -438,44 +450,32 @@ namespace HotelManager.Helper
             closethis.Height = 20;
             closethis.Source = new BitmapImage(new Uri("/AppData/icon/black_exit_favicon.ico", UriKind.RelativeOrAbsolute));
             grid.Children.Add(closethis);
-            
+
             //房间类型
-            PUComboBox roomtypecombotext = new PUComboBox();
+
+            ComboBox roomtypecombotext = new ComboBox();
             roomtypecombotext.SetValue(Grid.RowProperty, 1);
             roomtypecombotext.FontSize = 14;
-            roomtypecombotext.FontFamily= new FontFamily("楷书");
+            roomtypecombotext.FontFamily = new FontFamily("楷书");
             int selectposition = 0;
             for (int i = 0; i < RoomTypes.Count(); i++)
             {
-                if(RoomTypes[i].Value.ToString() == room.roomtype)
+                ComboBoxItem comboBoxItem = new ComboBoxItem();
+                TextBlock textBlock = new TextBlock();
+                textBlock.Text = RoomTypes[i].Name;
+                //comboBoxItem.Background = ColorsConfig[RoomTypes[i].Color];
+                comboBoxItem.Content = textBlock;
+                roomtypecombotext.Items.Add(comboBoxItem);
+                //if (RoomTypes[i].Color == "黑色" || RoomTypes[i].Color == "紫色" || RoomTypes[i].Color == "棕色" || RoomTypes[i].Color == "蓝色")
+                //{
+                //    comboBoxItem.Foreground = Brushes.White;
+                //}
+                if (RoomTypes[i].Name.ToString() == room.roomtype)
                 {
                     selectposition = i;
-                    break;
                 }
             }
-            using (RetailContext context = new RetailContext())
-            {
-                roomtypes = context.RoomTypes.ToList();
-            }
-            foreach(RoomType rt in roomtypes)
-            {
-                if(rt.Name == room.roomtype)
-                {
-                    roomtypecombotext.Background = ColorsConfig[rt.Color];
-                    if (rt.Color == "黑色" || rt.Color == "紫色" || rt.Color == "棕色" || rt.Color == "蓝色")
-                    {
-                        roomtypecombotext.Foreground = Brushes.White;
-                    }
-                    else
-                    {
-                        roomtypecombotext.Foreground = Brushes.Black;
-                    }
-                    break;
-                }
-                
-            }
-            roomtypecombotext.BindingItems = RoomTypes;
-            roomtypecombotext.SelectedIndex = selectposition;
+            roomtypecombotext.Text = room.roomtype;
             roomtypecombotext.SelectionChanged += typechange;
             grid.Children.Add(roomtypecombotext);
 
@@ -504,10 +504,9 @@ namespace HotelManager.Helper
             daypricelabel.Content = "日单价";
             grid.Children.Add(daypricelabel);
 
-            PUTextBox daypricetextbox = new PUTextBox();
+            TextBox daypricetextbox = new TextBox();
             daypricetextbox.SetValue(Grid.RowProperty, 3);
             daypricetextbox.FontSize = 12;
-            daypricetextbox.BorderCornerRadius = new CornerRadius(5, 5, 5, 5);
             daypricetextbox.Width = 60;
             daypricetextbox.Height = 25;
             daypricetextbox.HorizontalAlignment = HorizontalAlignment.Left;
@@ -524,10 +523,10 @@ namespace HotelManager.Helper
             hourpricelabel.Content = "时单价";
             grid.Children.Add(hourpricelabel);
 
-            PUTextBox hourpricetextbox = new PUTextBox();
+
+            TextBox hourpricetextbox = new TextBox();
             hourpricetextbox.SetValue(Grid.RowProperty, 3);
             hourpricetextbox.FontSize = 12;
-            hourpricetextbox.BorderCornerRadius = new CornerRadius(5, 5, 5, 5);
             hourpricetextbox.Width = 60;
             hourpricetextbox.Height = 25;
             hourpricetextbox.HorizontalAlignment = HorizontalAlignment.Right;
@@ -535,30 +534,31 @@ namespace HotelManager.Helper
             hourpricetextbox.TextChanged += hourpricechange;
             hourpricetextbox.PreviewTextInput += numbertextbox;
             grid.Children.Add(hourpricetextbox);
-
             dockPanel.Children.Add(grid);
             border.Child = dockPanel;
-            
+
             grid.DataContext = room;
             return border;
         }
+
+
         private void namechange(object sender, TextChangedEventArgs e)
         {
-            PUTextBox nmtb = sender as PUTextBox;
+            TextBox nmtb = sender as TextBox;
             Grid gd = nmtb.Parent as Grid;
             ((Room)gd.DataContext).roomname = nmtb.Text;
             //new MessageWindow(((Room)gd.DataContext).roomname).Show();
         }
         private void daypricechange(object sender, TextChangedEventArgs e)
         {
-            PUTextBox dptb = sender as PUTextBox;
+            TextBox dptb = sender as TextBox;
             Grid gd = dptb.Parent as Grid;
             ((Room)gd.DataContext).roomdayprice = dptb.Text;
             //new MessageWindow(((Room)gd.DataContext).roomname).Show();
         }
         private void hourpricechange(object sender, TextChangedEventArgs e)
         {
-            PUTextBox hptb = sender as PUTextBox;
+            TextBox hptb = sender as TextBox;
             Grid gd = hptb.Parent as Grid;
             ((Room)gd.DataContext).roomhourprice = hptb.Text;
             //new MessageWindow(((Room)gd.DataContext).roomname).Show();
@@ -571,26 +571,28 @@ namespace HotelManager.Helper
         private void typechange(object sender, SelectionChangedEventArgs e)
         {
             
-            PUComboBox tpcb = sender as PUComboBox;
+            ComboBox tpcb = sender as ComboBox;
             Grid gd = tpcb.Parent as Grid;
-            ((Room)gd.DataContext).roomtype = tpcb.SelectedValue.ToString();
-            foreach (RoomType rt in roomtypes)
-            {
-                if (rt.Name == (gd.DataContext as Room).roomtype)
-                {
-                    tpcb.Background = ColorsConfig[rt.Color];
-                    if (rt.Color == "黑色" || rt.Color == "紫色" || rt.Color == "棕色" || rt.Color == "蓝色")
-                    {
-                        tpcb.Foreground = Brushes.White;
-                    }
-                    else
-                    {
-                        tpcb.Foreground = Brushes.Black;
-                    }
-                    break;
-                }
+            ComboBoxItem cbbi = tpcb.Items[tpcb.SelectedIndex] as ComboBoxItem;
+            TextBlock TB = cbbi.Content as TextBlock;
+            ((Room)gd.DataContext).roomtype = TB.Text;
+            //foreach (RoomType rt in roomtypes)
+            //{
+            //    if (rt.Name == (gd.DataContext as Room).roomtype)
+            //    {
+            //        tpcb.Background = ColorsConfig[rt.Color];
+            //        if (rt.Color == "黑色" || rt.Color == "紫色" || rt.Color == "棕色" || rt.Color == "蓝色")
+            //        {
+            //            tpcb.Foreground = Brushes.White;
+            //        }
+            //        else
+            //        {
+            //            tpcb.Foreground = Brushes.Black;
+            //        }
+            //        break;
+            //    }
 
-            }
+            //}
             //new MessageWindow(((Room)gd.DataContext).roomtype).Show();
         }
         private void CloseThis(object sender, RoutedEventArgs e)
@@ -604,6 +606,14 @@ namespace HotelManager.Helper
             e.Handled = true;
             //new MessageWindow((gd.DataContext as Room).roomtype).Show(); 
         }
+
+        private void ToOpenRoom(object sender, RoutedEventArgs e)
+        {
+            PUButton pUButton = sender as PUButton;
+            Grid gd = pUButton.Parent as Grid;
+            MessageBox.Show((gd.DataContext as Room).roomID+"");
+        }
+
         public void SaveChanges(Grid grid)
         {
             using (RetailContext context = new RetailContext())
@@ -617,7 +627,7 @@ namespace HotelManager.Helper
                 {
                     DockPanel dp = bd.Child as DockPanel;
                     Grid needgrid = dp.Children[0] as Grid;
-                    (needgrid.DataContext as Room).roomID = Guid.NewGuid();
+                    //(needgrid.DataContext as Room).roomID = Guid.NewGuid();
                     context.Rooms.Add((needgrid.DataContext as Room));
                 }
                 context.SaveChanges();

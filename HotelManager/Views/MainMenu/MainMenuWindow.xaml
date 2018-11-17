@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelManager.Views.MainMenu"
         mc:Ignorable="d"
-        Title="MainMenuWindow" Height="900" Width="1400"
-        WindowStyle="None" ResizeMode="NoResize" Background="Gray">
+        Title="MainMenuWindow" 
+        WindowStyle="None" ResizeMode="NoResize" Background="Transparent">
     <Window.Resources>
         <Style x:Key="MainMenuButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
@@ -140,16 +140,15 @@
         </Style>
     </Window.Resources>
     <Grid>
-        
         <Border  CornerRadius="15,15,15,15">
             <Border.Background>
                 <ImageBrush ImageSource="pack://application:,,,/AppData/testbg6.jpg" Opacity="0.99"/>
             </Border.Background>
             <DockPanel>
                 <Grid>
-                    
+
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -164,7 +163,7 @@
 
 
                     <DockPanel Width="auto" Height="auto" Grid.Row="1" Background="Transparent" >
-                        <Grid Background="Transparent"  Width="120" >
+                        <Grid Background="Transparent"  Width="100" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
@@ -173,12 +172,12 @@
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
                             </Grid.RowDefinitions>
-                            <Button Name="ToBsManagerButton" Command="{Binding Path=ToBsManagerCommand}" Grid.Row="0" Margin="0" Height="80" Width="120" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="后台管理"/>
-                            <Button Name="ToRoomState" Command="{Binding Path=ToRoomStateCommand}" Grid.Row="1" Margin="0" Height="80" Width="120" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="房态" />
-                            <Button Name="mainmenubutton3" Grid.Row="2" Margin="0" Height="80" Width="120" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面三" />
-                            <Button Name="mainmenubutton4" Grid.Row="3" Margin="0" Height="80" Width="120" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面四" />
-                            <Button Name="mainmenubutton5" Grid.Row="4" Margin="0" Height="80" Width="120" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面五" />
-                            <Button Name="mainmenubutton6" Grid.Row="5" Margin="0" Height="80" Width="120" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面六" />
+                            <Button Name="ToBsManagerButton" Command="{Binding Path=ToBsManagerCommand}" Grid.Row="0" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="后台管理"/>
+                            <Button Name="ToRoomState" Command="{Binding Path=ToRoomStateCommand}" Grid.Row="1" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="房态" />
+                            <Button Name="mainmenubutton3" Grid.Row="2" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面三" />
+                            <Button Name="mainmenubutton4" Grid.Row="3" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面四" />
+                            <Button Name="mainmenubutton5" Grid.Row="4" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面五" />
+                            <Button Name="mainmenubutton6" Grid.Row="5" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面六" />
                         </Grid>
                         <Grid>
                             <Frame Name="mainframe" NavigationUIVisibility="Hidden" Background="#EDEDEF" Opacity="0.8" ></Frame>

@@ -36,6 +36,10 @@ namespace HotelManager.Views.Login
             this.fatherwindow = window;
             viewModel = new LoginViewModel(this);
             this.DataContext = viewModel;
+            double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
+            double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
+            this.Height = 500;
+            this.Width = 350;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

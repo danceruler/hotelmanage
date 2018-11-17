@@ -31,7 +31,11 @@ namespace HotelManager.Views.MainMenu.Pages.BsManage.Pages
         {
             InitializeComponent();
             fatherpage = page;
+            
+            scrollview.Width = fatherpage.RoomInfoFrame.Width - 200;
+            scrollview.Height = fatherpage.RoomInfoFrame.Height - 30;
             viewmodel = new Pg_RoomInfoViewModel(this);
+            var t = this.Height;
             this.DataContext = viewmodel;
         }
 

@@ -9,8 +9,7 @@
         mc:Ignorable="d"
         Title="EditRoomType" Height="500" Width="350"
         WindowStyle="None" ResizeMode="NoResize"
-        Background="Transparent"
-        AllowsTransparency="True">
+        Background="Transparent">
     <Border  CornerRadius="15,15,15,15">
         <Border.Background>
             <ImageBrush ImageSource="pack://application:,,,/AppData/testbg5.jpg"/>

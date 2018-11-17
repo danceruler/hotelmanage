@@ -32,6 +32,10 @@ namespace HotelManager.Views.MainMenu.Pages.RoomState
             fatherwindow = window;
             viewmodel = new Pg_RoomStateViewModel(this);
             this.DataContext = viewmodel;
+            this.Height = window.Height - 60;
+            this.Width = window.Width - 100;
+            this.scrollview.Height = window.Height - 60;
+            this.scrollview.Width = window.Width - 350;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

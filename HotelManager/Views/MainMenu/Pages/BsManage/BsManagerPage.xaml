@@ -10,7 +10,7 @@
       >
 
     <Grid>
-        <panuon:PUTabControl TabControlStyle="Classic" Width="1280" Height="830"
+        <panuon:PUTabControl TabControlStyle="Classic" 
                         BindingItems="{Binding Path=thisputabitems,Mode=TwoWay}">
         </panuon:PUTabControl>
     </Grid>
