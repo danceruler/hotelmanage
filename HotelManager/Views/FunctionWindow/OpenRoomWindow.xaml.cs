@@ -1,4 +1,5 @@
-﻿using HotelManager.ViewModels.Function;
+﻿using HotelManager.Models;
+using HotelManager.ViewModels.Function;
 using Panuon.UI;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HotelManager.Helper;
+using System.Text.RegularExpressions;
 
 namespace HotelManager.Views.FunctionWindow
 {
@@ -23,13 +26,14 @@ namespace HotelManager.Views.FunctionWindow
     {
         private int isclosetrans;
         private Guid roomid;
+        private Room thisroom;
         public OpenRoomWindow()
         {
             InitializeComponent();
             isclosetrans = 0;
         }
 
-        public OpenRoomWindow(Guid roomid)
+        public OpenRoomWindow(Guid roomid,out OpenRoomViewModel viewModel)
         {
             InitializeComponent();
             //viewmodel = new AddRoomViewModel(this);
@@ -37,7 +41,17 @@ namespace HotelManager.Views.FunctionWindow
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.roomid = roomid;
             this.normaltype.IsChecked = true;
-            
+            viewModel = new OpenRoomViewModel(this);
+            this.DataContext = viewModel;
+            using (RetailContext context = new RetailContext())
+            {
+                string t = roomid.ConvertGuid();
+                Room room = context.Database.SqlQuery<Room>(string.Format("SELECT * FROM Rooms WHERE UPPER(HEX([roomID]))='{0}'", t)).ToList()[0];
+                this.thisroom = room;
+            }
+            this.roomname.Text = thisroom.roomname;
+            this.roomtype.Content = thisroom.roomtype;
+
             isclosetrans = 0;
         }
 
@@ -50,6 +64,7 @@ namespace HotelManager.Views.FunctionWindow
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             this.roomid = roomid;
             this.normaltype.IsChecked = true;
+            
             isclosetrans = 0;
         }
 
@@ -130,6 +145,12 @@ namespace HotelManager.Views.FunctionWindow
         private void SetOutTime(object sender, RoutedEventArgs e)
         {
             new DataPickerWindow(this, this.OutTime, out DataPickerViewModel viewmodel).ShowDialog();
+        }
+
+        private void numbertextbox(object sender, TextCompositionEventArgs e)
+        {
+            Regex re = new Regex("[^0-9.-]+");
+            e.Handled = re.IsMatch(e.Text);
         }
     }
 }

@@ -54,3 +54,4 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\OpenRoomWindow.baml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\DataPickerWindow.g.cs
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\DataPickerWindow.baml
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.csprojAssemblyReference.cache

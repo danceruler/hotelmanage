@@ -22,5 +22,7 @@ namespace HotelManager.Models
         public string balance { get; set; }
         public string remarks { get; set; }
         public string paytype { get; set; }
+        public string opentype { get; set; }
+        public int money { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace HotelManager.ViewModels.Function
 {
     public class DataPickerViewModel
     {
-        DataPickerWindow thiswindow;
+        DataPickerWindow thiswindow; 
         public DataPickerViewModel(DataPickerWindow window)
         {
             this.thiswindow = window;

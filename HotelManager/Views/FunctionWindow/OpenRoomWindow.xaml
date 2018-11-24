@@ -61,7 +61,7 @@
                         <panuon:PUTextBox 
                                           Name="InTime"  
                                           Padding="10,1,30,1"
-                                          Text="入住时间"
+                                          Watermark="入住时间"
                                           Width="260"
                                           Height="40"
                                           HorizontalAlignment="Left"
@@ -86,7 +86,7 @@
                         <panuon:PUTextBox 
                                           Name="OutTime"  
                                           Padding="10,1,30,1"
-                                          Text="预计离店时间"
+                                          Watermark="预计离店时间"
                                           Width="260"
                                           Height="40"
                                           HorizontalAlignment="Left"
@@ -107,9 +107,9 @@
                             </panuon:PUButton.Background>
                         </panuon:PUButton>
                     </Grid>
-                    
-                    
-                    <panuon:PUTextBox Name="money" BorderCornerRadius="5,5,5,5" Watermark="预付金额" Margin="0,20,0,0" Width="260" Height="40"></panuon:PUTextBox>
+
+
+                    <panuon:PUTextBox Name="money" BorderCornerRadius="5,5,5,5" PreviewTextInput="numbertextbox" Watermark="预付金额" Margin="0,20,0,0" Width="260" Height="40"></panuon:PUTextBox>
                     <StackPanel Orientation="Horizontal" Margin="-10,30,0,0">
                         <panuon:PURadioButton Name="alipay" Content="支付宝"
                                           RadioButtonStyle="Classic"
@@ -128,7 +128,7 @@
                                           Margin="10,0,0,0">
                         </panuon:PURadioButton>
                     </StackPanel>
-                    <panuon:PUButton BorderCornerRadius="5" Content="确定" Margin="0,20,0,0" Width="150" Height="30"></panuon:PUButton>
+                    <panuon:PUButton BorderCornerRadius="5" Content="确定" Margin="0,20,0,0" Width="150" Height="30" Command="{Binding Path=OpenRoomCommand}"></panuon:PUButton>
                 </StackPanel>
             </Grid>
         </DockPanel>

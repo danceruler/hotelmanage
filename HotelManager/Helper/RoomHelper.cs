@@ -17,6 +17,7 @@ using System.Windows.Controls.Primitives;
 using HotelManager.Views.FunctionWindow;
 using System.Windows.Media.Imaging;
 using System.Threading.Tasks;
+using HotelManager.ViewModels.Function;
 
 namespace HotelManager.Helper
 {
@@ -606,12 +607,11 @@ namespace HotelManager.Helper
             e.Handled = true;
             //new MessageWindow((gd.DataContext as Room).roomtype).Show(); 
         }
-
         private void ToOpenRoom(object sender, RoutedEventArgs e)
         {
             PUButton pUButton = sender as PUButton;
             Grid gd = pUButton.Parent as Grid;
-            new OpenRoomWindow((gd.DataContext as Room).roomID).ShowDialog();
+            new OpenRoomWindow((gd.DataContext as Room).roomID, out OpenRoomViewModel viewModel).ShowDialog();
         }
 
         public void SaveChanges(Grid grid)

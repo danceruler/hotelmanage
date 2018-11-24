@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HotelManager.exe" size="22565296">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HotelManager.exe" size="22567856">
       <assemblyIdentity name="HotelManager" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>IrCOJ54Nhah7+Pkh0d+lyCXYATQ=</dsig:DigestValue>
+        <dsig:DigestValue>NoMduhvL2eV7540TuBF6rbSYvTI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
