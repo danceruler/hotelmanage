@@ -8,8 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/system.windows.interactivity.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/caliburn.micro.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/caliburn.micro.platform.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/panuon.ui.charts.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/panuon.ui.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/system.configuration.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/system.net.http.dll")]
 
 

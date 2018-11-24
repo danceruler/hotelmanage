@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="HotelManager.exe" version="1.0.0.15" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="HotelManager.exe" version="1.0.0.21" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="HotelManager" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HotelManager.exe" size="22212016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HotelManager.exe" size="22565296">
       <assemblyIdentity name="HotelManager" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ze42hK1HiTS3My6jsTzSKfZEo84=</dsig:DigestValue>
+        <dsig:DigestValue>IrCOJ54Nhah7+Pkh0d+lyCXYATQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -185,6 +185,24 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="dll\Caliburn.Micro.dll" size="60928">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>DbtvYzQ0sQ5+HWhQhljC3Pt0wYA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="dll\Caliburn.Micro.Platform.dll" size="90112">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>SpHOstW0ke2LaOHwmkPps9Lke40=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="dll\Panuon.UI.Charts.dll" size="21504">
     <hash>
       <dsig:Transforms>
@@ -203,6 +221,15 @@
       <dsig:DigestValue>B72B143Z8QTOLSQdHGRmPsi2Xr0=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="dll\System.Configuration.dll" size="416376">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>KvQcFF16dLMDix0qWdy2vh3I71Q=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="dll\System.Net.Http.dll" size="180832">
     <hash>
       <dsig:Transforms>
@@ -210,6 +237,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>vnPECG7jPdg4oYzUFMTu1U4KLqc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="dll\System.Windows.Interactivity.dll" size="39936">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>2rtOz/0MQiqO6/9dTsgRam6Q1+c=</dsig:DigestValue>
     </hash>
   </file>
   <file name="HotelManager.exe.config" size="2014">

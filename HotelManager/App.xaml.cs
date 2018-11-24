@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManager.Helper;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,5 +13,6 @@ namespace HotelManager
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

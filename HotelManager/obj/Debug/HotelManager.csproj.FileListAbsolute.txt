@@ -36,9 +36,6 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\
 F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\Caliburn.Micro.dll
 F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\Caliburn.Micro.Platform.dll
 F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\System.Windows.Interactivity.dll
-F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\Caliburn.Micro.xml
-F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\Caliburn.Micro.Platform.xml
-F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\System.Windows.Interactivity.xml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.g.cs
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.baml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\MessageWindow.g.cs
@@ -53,6 +50,7 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\HotelManager.exe.mani
 F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\HotelManager.application
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.exe.manifest
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.application
-F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.csprojAssemblyReference.cache
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\OpenRoomWindow.g.cs
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\OpenRoomWindow.baml
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\DataPickerWindow.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\DataPickerWindow.baml

@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelManager.Views.FunctionWindow"
+        xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
         mc:Ignorable="d"
-        Title="OpenRoomWindow" Height="600" Width="450"
+        Title="OpenRoomWindow" Height="600" Width="370"
         WindowStyle="None" ResizeMode="NoResize"
         Background="Transparent">
     <Border  CornerRadius="15,15,15,15">
@@ -23,11 +24,112 @@
                         <Label  Name="TitleText" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="30,0,0,0" Content="开房" Width="auto" Foreground="Black"></Label>
                         <Grid Name="closeicongrid" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50">
                             <Image Name="closeicon" Source="/AppData/icon/black_exit_favicon.ico" Height="25" Width="25" RenderTransformOrigin="0.5,0.5"></Image>
-
+ 
                         </Grid>
                     </DockPanel>
                 </Border>
-                
+                <StackPanel Grid.Row="1">
+                    <DockPanel Height="70">
+                        <panuon:PUTextBox Name="roomname" Text="testname" BorderCornerRadius="5,5,5,5" IsEnabled="False" Margin="55,0,0,0" Width="120" Height="40" ShadowColor="Brown" Background="Transparent"></panuon:PUTextBox>
+                        <panuon:PUBubble Name="roomtype" Content="testtype" AnglePosition="Left" BorderCornerRadius="5,5,5,5" Margin="-50,0,0,0" Width="100" Height="35"></panuon:PUBubble>
+                    </DockPanel>
+                    <DockPanel>
+                        <panuon:PUTextBox Name="customname" BorderCornerRadius="5,5,5,5" Watermark="customname" Margin="55,0,0,0" Width="110" Height="30"></panuon:PUTextBox>
+                        <panuon:PUComboBox Name="customsex" BorderCornerRadius="5,5,5,5" Margin="-100,0,0,0"  Width="60" Height="30"></panuon:PUComboBox>
+                    </DockPanel>
+                    
+                    <panuon:PUTextBox Name="customIdentify" BorderCornerRadius="5,5,5,5" Watermark="customIdentify" Margin="0,20,0,0" Width="260" Height="40"></panuon:PUTextBox>
+                    <StackPanel Orientation="Horizontal" Margin="-10,30,0,0">
+                        <panuon:PURadioButton Name="normaltype" Content="普通房"
+                                          RadioButtonStyle="Classic"
+                                          Margin="65,0,0,0">
+                        </panuon:PURadioButton>
+                        <panuon:PURadioButton Name="hourtype" Content="钟点房"
+                                          RadioButtonStyle="Classic"
+                                          Margin="10,0,0,0">
+                        </panuon:PURadioButton>
+                        <panuon:PURadioButton Name="morningtype" Content="凌晨房"
+                                          RadioButtonStyle="Classic"
+                                          Margin="10,0,0,0">
+                        </panuon:PURadioButton>
+                        <panuon:PURadioButton Name="halfdaytype" Content="半天房"
+                                          RadioButtonStyle="Classic"
+                                          Margin="10,0,0,0">
+                        </panuon:PURadioButton>
+                    </StackPanel>
+                    <Grid Margin="0,20,0,0" Width="260" Height="40">
+                        <panuon:PUTextBox 
+                                          Name="InTime"  
+                                          Padding="10,1,30,1"
+                                          Text="入住时间"
+                                          Width="260"
+                                          Height="40"
+                                          HorizontalAlignment="Left"
+                                          BorderCornerRadius="3"
+                                          IsReadOnly="True"></panuon:PUTextBox>
+                        <panuon:PUButton Content=""
+                                         Width="35"
+                                         Height="35"
+                                         Margin="0,0,0,0"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Right"
+                                         BorderBrush="Transparent"
+                                         BorderCornerRadius="0,0,0,0"
+                                         Click="SetInTime"
+                                         >
+                            <panuon:PUButton.Background>
+                                <ImageBrush ImageSource="/AppData/icon/calender_gray.ico" Stretch="Fill"/>
+                            </panuon:PUButton.Background>
+                        </panuon:PUButton>
+                    </Grid>
+                    <Grid Margin="0,20,0,0" Width="260" Height="40">
+                        <panuon:PUTextBox 
+                                          Name="OutTime"  
+                                          Padding="10,1,30,1"
+                                          Text="预计离店时间"
+                                          Width="260"
+                                          Height="40"
+                                          HorizontalAlignment="Left"
+                                          BorderCornerRadius="3"
+                                          IsReadOnly="True"></panuon:PUTextBox>
+                        <panuon:PUButton Content=""
+                                         Width="35"
+                                         Height="35"
+                                         Margin="0,0,0,0"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Right"
+                                         BorderBrush="Transparent"
+                                         BorderCornerRadius="0,0,0,0"
+                                         Click="SetOutTime"
+                                         >
+                            <panuon:PUButton.Background>
+                                <ImageBrush ImageSource="/AppData/icon/calender_gray.ico" Stretch="Fill"/>
+                            </panuon:PUButton.Background>
+                        </panuon:PUButton>
+                    </Grid>
+                    
+                    
+                    <panuon:PUTextBox Name="money" BorderCornerRadius="5,5,5,5" Watermark="预付金额" Margin="0,20,0,0" Width="260" Height="40"></panuon:PUTextBox>
+                    <StackPanel Orientation="Horizontal" Margin="-10,30,0,0">
+                        <panuon:PURadioButton Name="alipay" Content="支付宝"
+                                          RadioButtonStyle="Classic"
+                                          Margin="65,0,0,0">
+                        </panuon:PURadioButton>
+                        <panuon:PURadioButton Name="wechat" Content="微信"
+                                          RadioButtonStyle="Classic"
+                                          Margin="10,0,0,0">
+                        </panuon:PURadioButton>
+                        <panuon:PURadioButton Name="chash" Content="现金"
+                                          RadioButtonStyle="Classic"
+                                          Margin="10,0,0,0">
+                        </panuon:PURadioButton>
+                        <panuon:PURadioButton Name="other" Content="其他"
+                                          RadioButtonStyle="Classic"
+                                          Margin="10,0,0,0">
+                        </panuon:PURadioButton>
+                    </StackPanel>
+                    <panuon:PUButton BorderCornerRadius="5" Content="确定" Margin="0,20,0,0" Width="150" Height="30"></panuon:PUButton>
+                </StackPanel>
             </Grid>
         </DockPanel>
     </Border>

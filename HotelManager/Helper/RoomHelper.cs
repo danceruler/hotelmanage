@@ -611,7 +611,7 @@ namespace HotelManager.Helper
         {
             PUButton pUButton = sender as PUButton;
             Grid gd = pUButton.Parent as Grid;
-            MessageBox.Show((gd.DataContext as Room).roomID+"");
+            new OpenRoomWindow((gd.DataContext as Room).roomID).ShowDialog();
         }
 
         public void SaveChanges(Grid grid)

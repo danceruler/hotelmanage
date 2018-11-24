@@ -31,21 +31,26 @@ namespace HotelManager
         public MainWindow()
         {
             InitializeComponent();
+            //Configs.InitConnection();
             //Version ver = System.Environment.OSVersion.Version;
-            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string rootpath = path.Substring(0, path.LastIndexOf("bin"));
+            rootpath += "AppData\\xml\\XMLFile1.xml";
+            XmlHelper xmlHelper = new XmlHelper();
+            xmlHelper.SelectAttribute(rootpath);
             //double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
             //double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
-            RetailContext context = new RetailContext();
-            List<Room> list = context.Rooms.ToList();
-            Guid test = list[0].roomID;
-            string t = ConvertGuid(test);
-            Room room = context.Rooms.Where(r => ConvertGuid(r.roomID) == t).ToList()[0];
+            //RetailContext context = new RetailContext();
+            //List<Room> list = context.Rooms.ToList();
+            //Guid test = list[0].roomID;
+            //string t = ConvertGuid(test);
+            //Room room = context.Database.SqlQuery<Room>(string.Format("SELECT * FROM Rooms WHERE UPPER(HEX([roomID]))='{0}'", t)).ToList()[0];
 
-            MessageBox.Show(room.roomname);
             //context.RoomTypes.Add(new RoomType() { Cap = 1, Name = "单人间",ID=Guid.NewGuid(), CanChange=false, IsChecked=false });
             //context.RoomTypes.Add(new RoomType() { Cap = 2, Name = "双人间", ID = Guid.NewGuid(), CanChange = false, IsChecked = false });
             //context.RoomTypes.Add(new RoomType() { Cap = 3, Name = "三人间", ID = Guid.NewGuid(), CanChange = false, IsChecked = false });
@@ -56,7 +61,20 @@ namespace HotelManager
 
 
         }
-
+        private void PUButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (RetailContext context = new RetailContext())
+            {
+                var need = context.RoomTypes.Add(new RoomType()
+                {
+                    Name = "test",
+                    Cap = 2,
+                    Color = "sd",
+                    ID = Guid.NewGuid()
+                });
+                context.SaveChanges();
+            }
+        }
         private void ToLogin(object sender, RoutedEventArgs e)
         {
             LoginViewModel viewmodel;
@@ -96,7 +114,7 @@ namespace HotelManager
 
         private void ToOpenRoom(object sender, RoutedEventArgs e)
         {
-            new OpenRoomWindow(this).ShowDialog();
+            new OpenRoomWindow(this,Guid.NewGuid()).ShowDialog();
         }
 
         private string ConvertGuid(Guid gd)
@@ -121,6 +139,12 @@ namespace HotelManager
             }
 
             return sVar;
+        }
+
+        private void ToDataPicker(object sender, RoutedEventArgs e)
+        {
+            DataPickerWindow window = new DataPickerWindow(this,out DataPickerViewModel viewModel);
+            window.ShowDialog();
         }
     }
 }

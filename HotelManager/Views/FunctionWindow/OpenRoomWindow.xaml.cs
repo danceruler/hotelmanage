@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HotelManager.ViewModels.Function;
+using Panuon.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,19 +22,34 @@ namespace HotelManager.Views.FunctionWindow
     public partial class OpenRoomWindow : Window
     {
         private int isclosetrans;
+        private Guid roomid;
         public OpenRoomWindow()
         {
             InitializeComponent();
             isclosetrans = 0;
         }
 
-        public OpenRoomWindow(Window window)
+        public OpenRoomWindow(Guid roomid)
+        {
+            InitializeComponent();
+            //viewmodel = new AddRoomViewModel(this);
+            //this.DataContext = viewmodel;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.roomid = roomid;
+            this.normaltype.IsChecked = true;
+            
+            isclosetrans = 0;
+        }
+
+        public OpenRoomWindow(Window window,Guid roomid)
         {
             InitializeComponent();
             this.Owner = window;
             //viewmodel = new AddRoomViewModel(this);
             //this.DataContext = viewmodel;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            this.roomid = roomid;
+            this.normaltype.IsChecked = true;
             isclosetrans = 0;
         }
 
@@ -51,6 +68,7 @@ namespace HotelManager.Views.FunctionWindow
                 {
                     this.DragMove();
                 }
+                
             }
 
             if (e.LeftButton == MouseButtonState.Released)
@@ -58,6 +76,7 @@ namespace HotelManager.Views.FunctionWindow
                 if (positionToCloseIcon.X >= 0 && positionToCloseIcon.X < closeicon.ActualWidth && positionToCloseIcon.Y >= 0 && positionToCloseIcon.Y < closeicon.ActualHeight)
                 {
                     this.Close();
+
                 }
             }
         }
@@ -102,6 +121,15 @@ namespace HotelManager.Views.FunctionWindow
                 flag = 0;
             }
         }
+        
+        private void SetInTime(object sender, RoutedEventArgs e)
+        {
+            new DataPickerWindow(this, this.InTime, out DataPickerViewModel viewmodel).ShowDialog();
+        }
 
+        private void SetOutTime(object sender, RoutedEventArgs e)
+        {
+            new DataPickerWindow(this, this.OutTime, out DataPickerViewModel viewmodel).ShowDialog();
+        }
     }
 }

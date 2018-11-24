@@ -24,6 +24,7 @@
         <panuon:PUButton Grid.Column="0" Grid.Row="1" Content="ToAddRoom" Click="ToAddRoom"></panuon:PUButton>
         <panuon:PUButton Grid.Column="1" Grid.Row="1" Content="ToEditRoomType" Click="ToEditRoomType"></panuon:PUButton>
         <panuon:PUButton Grid.Column="0" Grid.Row="2" Content="ToOpenRoom" Click="ToOpenRoom"></panuon:PUButton>
+        <panuon:PUButton Grid.Column="1" Grid.Row="2" Content="ToDataPicker" Click="ToDataPicker"></panuon:PUButton>
         <ComboBox Name="testcombobox" Grid.Column="2" Grid.Row="1" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" SelectionChanged="testcombobox_SelectionChanged">
             <ComboBox.Style>
                 <Style>
@@ -42,5 +43,6 @@
                 <TextBlock Text="Manager" />
             </ComboBoxItem>
         </ComboBox>
+        <panuon:PUButton Grid.Column="2" Grid.Row="2" Content="Test2" Click="PUButton_Click"></panuon:PUButton>
     </Grid>
 </Window>

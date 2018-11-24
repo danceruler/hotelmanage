@@ -2,12 +2,13 @@
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\App.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\MainWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\AddRoomWindow.xaml;;
+FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\DataPickerWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\EditRoomTypeWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\MessageWindow.xaml;;
+FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\OpenRoomWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\Login\LoginWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\MainMenuWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\Pages\BsManage\BsManagerPage.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\Pages\RoomState\RoomStatePage.xaml;;
-FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\OpenRoomWindow.xaml;;
 

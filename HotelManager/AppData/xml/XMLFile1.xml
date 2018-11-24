@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BookStore2>
+  <Book Name="test">
+    <Name BookName="C#">C#入门</Name>
+    <Author Name="Martin">Martin</Author>
+    <Adress>上海</Adress>
+    <Date>2018-11-19</Date>
+  </Book>
+  <Book2>
+    <Name BookName="WCF">WCF入门</Name>
+    <Author Name="Mary">Mary</Author>
+    <Adress>北京</Adress>
+    <Date>2018-11-19</Date>
+  </Book2>
+  <NewBook Name="test">sd</NewBook>
+</BookStore2>

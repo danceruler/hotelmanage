@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 F:\demo\HotelManage\HotelManageDemo\HotelManager\App.xaml
-10-1878130232
-3-568455362
-30418387538
-241559559665
-MainWindow.xaml;Views\FunctionWindow\AddRoomWindow.xaml;Views\FunctionWindow\EditRoomTypeWindow.xaml;Views\FunctionWindow\MessageWindow.xaml;Views\FunctionWindow\OpenRoomWindow.xaml;Views\Login\LoginWindow.xaml;Views\MainMenu\MainMenuWindow.xaml;Views\MainMenu\Pages\BsManage\BsManagerPage.xaml;Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.xaml;Views\MainMenu\Pages\RoomState\RoomStatePage.xaml;
+11-170865138
+7-1433581389
+341085329532
+241135564667
+MainWindow.xaml;Views\FunctionWindow\AddRoomWindow.xaml;Views\FunctionWindow\DataPickerWindow.xaml;Views\FunctionWindow\EditRoomTypeWindow.xaml;Views\FunctionWindow\MessageWindow.xaml;Views\FunctionWindow\OpenRoomWindow.xaml;Views\Login\LoginWindow.xaml;Views\MainMenu\MainMenuWindow.xaml;Views\MainMenu\Pages\BsManage\BsManagerPage.xaml;Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.xaml;Views\MainMenu\Pages\RoomState\RoomStatePage.xaml;
 
 False
 
