@@ -38,18 +38,24 @@ namespace HotelManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            string rootpath = path.Substring(0, path.LastIndexOf("bin"));
-            rootpath += "AppData\\xml\\XMLFile1.xml";
-            XmlHelper xmlHelper = new XmlHelper();
-            xmlHelper.SelectAttribute(rootpath);
+            //string path = AppDomain.CurrentDomain.BaseDirectory;
+            //string rootpath = path.Substring(0, path.LastIndexOf("bin"));
+            //rootpath += "AppData\\xml\\XMLFile1.xml";
+            //XmlHelper xmlHelper = new XmlHelper();
+            //xmlHelper.SelectAttribute(rootpath);
             //double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
             //double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
-            //RetailContext context = new RetailContext();
+            RetailContext context = new RetailContext();
             //List<Room> list = context.Rooms.ToList();
             //Guid test = list[0].roomID;
             //string t = ConvertGuid(test);
-            //Room room = context.Database.SqlQuery<Room>(string.Format("SELECT * FROM Rooms WHERE UPPER(HEX([roomID]))='{0}'", t)).ToList()[0];
+            //Room room = context.Database.SqlQuery<Room>(string.Format("SELECT * FROM Rooms WHERE UPPER(HEX([roomID]))='{0}'", "D606C4B8AA28DF4BA6D45E48750853A9")).ToList()[0];
+            //MessageBox.Show(room.roomname);
+            string sql = string.Format("update Rooms  set roomstate = {1} where UPPER(HEX([roomID]))='{0}' ", "D606C4B8AA28DF4BA6D45E48750853A9", "1");
+            context.Database.ExecuteSqlCommand(sql);
+            context.SaveChanges();
+
+
 
             //context.RoomTypes.Add(new RoomType() { Cap = 1, Name = "单人间",ID=Guid.NewGuid(), CanChange=false, IsChecked=false });
             //context.RoomTypes.Add(new RoomType() { Cap = 2, Name = "双人间", ID = Guid.NewGuid(), CanChange = false, IsChecked = false });

@@ -124,12 +124,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\CustomHelper.cs" />
     <Compile Include="Helper\GuidHelper.cs" />
     <Compile Include="Helper\RoomHelper.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
+    <Compile Include="Models\RoomState.cs" />
     <Compile Include="Models\RoomType.cs" />
     <Compile Include="ViewModels\Function\AddRoomViewModel.cs" />
     <Compile Include="ViewModels\Function\DataPickerViewModel.cs" />
+    <Compile Include="ViewModels\Function\EditRoomStateViewModel.cs" />
     <Compile Include="ViewModels\Function\EditRoomTypeViewModel.cs" />
     <Compile Include="ViewModels\Function\OpenRoomViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
@@ -143,6 +146,9 @@
     </Compile>
     <Compile Include="Views\FunctionWindow\DataPickerWindow.xaml.cs">
       <DependentUpon>DataPickerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FunctionWindow\EditRoomStateWindow.xaml.cs">
+      <DependentUpon>EditRoomStateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FunctionWindow\EditRoomTypeWindow.xaml.cs">
       <DependentUpon>EditRoomTypeWindow.xaml</DependentUpon>
@@ -165,7 +171,7 @@
     <Compile Include="Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.xaml.cs">
       <DependentUpon>RoomInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainMenu\Pages\RoomState\RoomStatePage.xaml.cs">
+    <Compile Include="Views\MainMenu\Pages\RoomState_p\RoomStatePage.xaml.cs">
       <DependentUpon>RoomStatePage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -185,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FunctionWindow\DataPickerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FunctionWindow\EditRoomStateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,7 +226,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainMenu\Pages\RoomState\RoomStatePage.xaml">
+    <Page Include="Views\MainMenu\Pages\RoomState_p\RoomStatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

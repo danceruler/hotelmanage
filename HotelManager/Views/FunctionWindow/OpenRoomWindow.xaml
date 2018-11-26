@@ -35,7 +35,7 @@
                     </DockPanel>
                     <DockPanel>
                         <panuon:PUTextBox Name="customname" BorderCornerRadius="5,5,5,5" Watermark="customname" Margin="55,0,0,0" Width="110" Height="30"></panuon:PUTextBox>
-                        <panuon:PUComboBox Name="customsex" BorderCornerRadius="5,5,5,5" Margin="-100,0,0,0"  Width="60" Height="30"></panuon:PUComboBox>
+                        <panuon:PUComboBox Name="customsex" BorderCornerRadius="5,5,5,5" Margin="-100,0,0,0"  Width="60" Height="30" BindingItems="{Binding ComboBoxItemsList}"></panuon:PUComboBox>
                     </DockPanel>
                     
                     <panuon:PUTextBox Name="customIdentify" BorderCornerRadius="5,5,5,5" Watermark="customIdentify" Margin="0,20,0,0" Width="260" Height="40"></panuon:PUTextBox>

@@ -23,6 +23,7 @@ namespace HotelManager.Models
         public string remarks { get; set; }
         public string paytype { get; set; }
         public string opentype { get; set; }
-        public int money { get; set; }
+        public string money { get; set; }
+        public bool IsDoing { get; set; }
     }
 }

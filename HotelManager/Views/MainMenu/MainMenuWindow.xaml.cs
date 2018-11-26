@@ -1,7 +1,7 @@
 ﻿using HotelManager.ViewModels.MainMenu;
 using HotelManager.ViewModels.MainMenu.Pages.BsManager;
 using HotelManager.Views.MainMenu.Pages.BsManage;
-using HotelManager.Views.MainMenu.Pages.RoomState;
+using HotelManager.Views.MainMenu.Pages.RoomState_p;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -44,8 +44,6 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\AddRoomWindow.baml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\EditRoomTypeWindow.g.cs
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\EditRoomTypeWindow.baml
-F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\RoomState\RoomStatePage.g.cs
-F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\RoomState\RoomStatePage.baml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\HotelManager.exe.manifest
 F:\demo\HotelManage\HotelManageDemo\HotelManager\bin\Debug\HotelManager.application
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.exe.manifest
@@ -54,4 +52,8 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\OpenRoomWindow.baml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\DataPickerWindow.g.cs
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\DataPickerWindow.baml
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\EditRoomStateWindow.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\EditRoomStateWindow.baml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.csprojAssemblyReference.cache
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\RoomState_p\RoomStatePage.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\RoomState_p\RoomStatePage.baml

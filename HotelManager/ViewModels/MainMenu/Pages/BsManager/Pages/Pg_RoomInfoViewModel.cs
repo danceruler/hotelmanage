@@ -13,17 +13,17 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
 {
     public class Pg_RoomInfoViewModel
     {
         RoomInfoPage thispage;
-        RoomHelper roomHelper = new RoomHelper();
         string ranktype = "row";
         string rule1 = "0";
         string rule2 = "";
-        string rule3 = "0";
+        string rule3 = "";
         string rule4 = "0";
 
         public Pg_RoomInfoViewModel(RoomInfoPage page)
@@ -36,7 +36,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             thispage.filterule_type.SelectionChanged += filter_type_change;
             thispage.filterule_state.SelectionChanged += filter_state_change;
 
-            roomHelper.LoadRoomInfoByWhat(thispage.roomcardgrid, 0,ranktype, rule1, rule2, rule3);
+            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 0,ranktype, rule1, rule2, rule3);
         }
 
         public BindableCollection<PUComboBoxItemModel> RankRuleItemsList
@@ -94,6 +94,15 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             EditRoomTypeViewModel viewmodel;
             new EditRoomTypeWindow(thispage.fatherpage.fatherwindow, out viewmodel).ShowDialog();
         }
+        public ICommand OpenEditRoomStateWindowCommand
+        {
+            get { return new QueryCommand(OpenEditRoomStateWindow); }
+        }
+        public void OpenEditRoomStateWindow()
+        {
+            EditRoomStateViewModel viewmodel;
+            new EditRoomStateWindow(thispage.fatherpage.fatherwindow, out viewmodel).ShowDialog();
+        }
 
         public ICommand ReFlashRoomInfoCommand
         {
@@ -111,14 +120,16 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
         }
         public void ReFlashRoomInfo()
         {
+            InitPageData();
             rule1 = "0";
             rule2 = "";
-            rule3 = "0";
+            rule3 = "";
             rule4 = "0";
             thispage.filterule_row.SelectedIndex = 0;
             thispage.filterule_type.SelectedIndex = 0;
             thispage.filterule_state.SelectedIndex = 0;
-            roomHelper.LoadRoomInfoByWhat(thispage.roomcardgrid, 0, ranktype, rule1, rule2, rule3);
+            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 0, ranktype, rule1, rule2, rule3);
+            
         }
 
         public void ReFlashEditRoomInfo()
@@ -126,7 +137,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             
             if (thispage.IsEdit.Content.ToString() == "进入编辑模式")
             {
-                roomHelper.LoadRoomInfoByWhat(thispage.roomcardgrid, 1, "row", "0", "", "0");
+                RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 1, "row", "0", "", "");
                
                 foreach (UIElement UIE in thispage.roominfobtgrid.Children)
                 {
@@ -137,7 +148,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             }
             else
             {
-                roomHelper.SaveChanges(thispage.roomcardgrid);
+                RoomHelper.SaveChanges(thispage.roomcardgrid);
                 ReFlashRoomInfo();
                 thispage.IsEdit.Content = "进入编辑模式";
                 foreach (UIElement UIE in thispage.roominfobtgrid.Children)
@@ -150,7 +161,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
 
         public void Filter()
         {
-            roomHelper.LoadRoomInfoByWhat(thispage.roomcardgrid, 0, ranktype, rule1, rule2, rule3);
+            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 0, ranktype, rule1, rule2, rule3);
         }
 
         public void InitPageData()
@@ -180,12 +191,13 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             List<int> rowlist = new List<int>();
             List<string> typelist = new List<string>();
             List<int> statelist = new List<int>();
+            List<RoomStateModel> roomstatelist = new List<RoomStateModel>();
             using (var context = new RetailContext())
             {
                 rowlist = context.Database.SqlQuery<int>("SELECT distinct row FROM rooms order by row").ToList();
                 typelist = context.Database.SqlQuery<string>("SELECT name FROM roomtypes").ToList();
-                //
                 statelist = context.Database.SqlQuery<int>("SELECT distinct roomstate FROM rooms").ToList();
+                roomstatelist = context.RoomStates.ToList();
             }
             List<PUComboBoxItemModel> rowslist = new List<PUComboBoxItemModel>();
             rowslist.Add(new PUComboBoxItemModel()
@@ -241,6 +253,50 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             }
             StatesItemsList = new BindableCollection<PUComboBoxItemModel>(stateslist);
 
+            ShowStatesColors(thispage.StateColors, roomstatelist);
+
+        }
+
+        private void ShowStatesColors(StackPanel stackPanel,List<RoomStateModel> roomStates)
+        {
+            stackPanel.Children.Clear();
+            int row = roomStates.Count()%2 + roomStates.Count()/2;
+            for(int i = 0; i < row; i++)
+            {
+                DockPanel dockPanel = new DockPanel();
+                dockPanel.Width = 160;
+                dockPanel.Height = 60;
+                Label label1 = new Label();
+                label1.Width = 70;
+                label1.Height = 50;
+                label1.Margin = new Thickness(5, 5, 5, 5);
+                label1.Content = roomStates[2 * i].Name;
+                label1.HorizontalContentAlignment = HorizontalAlignment.Center;
+                label1.VerticalContentAlignment = VerticalAlignment.Center;
+                label1.Background = RoomHelper.ColorsConfig[roomStates[2 * i].Color];
+                if (roomStates[2 * i].Color == "黑色" || roomStates[2 * i].Color == "紫色" || roomStates[2 * i].Color == "棕色" || roomStates[2 * i].Color == "蓝色")
+                {
+                    label1.Foreground = Brushes.White;
+                }
+                dockPanel.Children.Add(label1);
+                if(2*i+1< roomStates.Count())
+                {
+                    Label label2 = new Label();
+                    label2.Width = 70;
+                    label2.Height = 50;
+                    label2.Margin = new Thickness(5, 5, 5, 5);
+                    label2.Content = roomStates[2 * i+1].Name;
+                    label2.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    label2.VerticalContentAlignment = VerticalAlignment.Center;
+                    label2.Background = RoomHelper.ColorsConfig[roomStates[2 * i+1].Color];
+                    if (roomStates[2 * i].Color == "黑色" || roomStates[2 * i].Color == "紫色" || roomStates[2 * i].Color == "棕色" || roomStates[2 * i].Color == "蓝色")
+                    {
+                        label2.Foreground = Brushes.White;
+                    }
+                    dockPanel.Children.Add(label2);
+                }
+                stackPanel.Children.Add(dockPanel);
+            }
         }
 
         private void rank_change(object sender, SelectionChangedEventArgs e)
@@ -290,7 +346,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             PUComboBox pucb = sender as PUComboBox;
             if (pucb.SelectedValue.ToString() == "所有房态")
             {
-                rule3 = "0";
+                rule3 = "";
             }
             else
             {
@@ -309,7 +365,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
                 rule4 = pucb.SelectedValue.ToString();
             }
         }
-
+        
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;

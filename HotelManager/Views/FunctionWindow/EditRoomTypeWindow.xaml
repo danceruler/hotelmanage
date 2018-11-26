@@ -35,23 +35,12 @@
                               ItemsSource="{Binding RoomTypes}" IsReadOnly="False"
                                  >
                             <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Header="" Width="30" Binding="{Binding Path=IsChecked}" x:Name="cRUID"></DataGridCheckBoxColumn>
-                                <DataGridTextColumn Binding="{Binding Name}"
-                                                Header="房间类型"
+                                 <DataGridTextColumn Binding="{Binding Name}"
+                                                Header="房间类型名"
                                                 Width="*" />
                                 <DataGridTextColumn Binding="{Binding Cap}"
-                                                Header="标准容量"
+                                                Header="容量"
                                                 Width="*" />
-                                <DataGridComboBoxColumn 
-                                        Header="标签颜色"
-                                        ItemsSource="{x:Static vm:EditRoomTypeViewModel.colors}"
-                                        TextBinding="{Binding Color}"
-                                        Width="*"
-                                        SelectedItemBinding="{Binding Color,UpdateSourceTrigger=PropertyChanged}"
-                                        >
-                                    
-
-                                </DataGridComboBoxColumn>
                                 <!--<DataGridTemplateColumn CellStyle="{StaticResource HoverToShowCell}"
                                                 Header="OPERATE"
                                                 Width="*">

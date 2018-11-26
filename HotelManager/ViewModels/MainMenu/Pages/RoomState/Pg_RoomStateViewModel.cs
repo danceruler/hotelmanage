@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
 using HotelManager.Helper;
 using HotelManager.Models;
-using HotelManager.Views.MainMenu.Pages.RoomState;
+using HotelManager.Views.MainMenu.Pages.RoomState_p;
 using Panuon.UI;
 using System;
 using System.Collections.Generic;
@@ -16,11 +16,10 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
     public class Pg_RoomStateViewModel
     {
         RoomStatePage thispage;
-        RoomHelper roomHelper = new RoomHelper();
         string ranktype = "row";
         string rule1 = "0";
         string rule2 = "";
-        string rule3 = "0";
+        string rule3 = "";
         string rule4 = "0";
         public Pg_RoomStateViewModel(RoomStatePage page)
         {
@@ -31,7 +30,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
             thispage.filterule_type.SelectionChanged += filter_type_change;
             thispage.filterule_state.SelectionChanged += filter_state_change;
             
-            roomHelper.LoadRoomInfoByWhat(thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
         }
         public BindableCollection<PUComboBoxItemModel> RankRuleItemsList
         {
@@ -170,16 +169,16 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
         {
             rule1 = "0";
             rule2 = "";
-            rule3 = "0";
+            rule3 = "";
             rule4 = "0";
             thispage.filterule_row.SelectedIndex = 0;
             thispage.filterule_type.SelectedIndex = 0;
             thispage.filterule_state.SelectedIndex = 0;
-            roomHelper.LoadRoomInfoByWhat(thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
         }
         public void Filter()
         {
-            roomHelper.LoadRoomInfoByWhat(thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
         }
 
         private void rank_change(object sender, SelectionChangedEventArgs e)
@@ -229,7 +228,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
             PUComboBox pucb = sender as PUComboBox;
             if (pucb.SelectedValue.ToString() == "所有房态")
             {
-                rule3 = "0";
+                rule3 = "";
             }
             else
             {

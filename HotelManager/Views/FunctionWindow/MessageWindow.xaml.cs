@@ -18,6 +18,7 @@ namespace HotelManager.Views.FunctionWindow
     /// </summary>
     public partial class MessageWindow : Window
     {
+        private bool isclose;
         public MessageWindow(string message)
         {
             InitializeComponent(); 
@@ -28,6 +29,15 @@ namespace HotelManager.Views.FunctionWindow
             InitializeComponent();
             this.Owner = onwer;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Message.Text = message;
+        }
+
+        public MessageWindow(Window onwer, string message,bool isclose)
+        {
+            InitializeComponent();
+            this.Owner = onwer;
+            this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            this.isclose = isclose;
             Message.Text = message;
         }
         public MessageWindow(Window onwer, string message,string title)
@@ -41,6 +51,10 @@ namespace HotelManager.Views.FunctionWindow
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (isclose!=null&&isclose == true)
+            {
+                this.Owner.Close();
+            }
             this.Close();
         }
     }

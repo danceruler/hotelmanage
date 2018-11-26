@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HotelManager.Helper;
 using System.Text.RegularExpressions;
+using HotelManager.Views.MainMenu.Pages.RoomState_p;
 
 namespace HotelManager.Views.FunctionWindow
 {
@@ -26,14 +27,16 @@ namespace HotelManager.Views.FunctionWindow
     {
         private int isclosetrans;
         private Guid roomid;
-        private Room thisroom;
+        public Room thisroom;
+        public Grid thisgrid;
+        public RoomStatePage fatherpage;
         public OpenRoomWindow()
         {
             InitializeComponent();
             isclosetrans = 0;
         }
 
-        public OpenRoomWindow(Guid roomid,out OpenRoomViewModel viewModel)
+        public OpenRoomWindow(Guid roomid,out OpenRoomViewModel viewModel,Grid grid)
         {
             InitializeComponent();
             //viewmodel = new AddRoomViewModel(this);
@@ -43,6 +46,30 @@ namespace HotelManager.Views.FunctionWindow
             this.normaltype.IsChecked = true;
             viewModel = new OpenRoomViewModel(this);
             this.DataContext = viewModel;
+            this.thisgrid = grid;
+            using (RetailContext context = new RetailContext())
+            {
+                string t = roomid.ConvertGuid();
+                Room room = context.Database.SqlQuery<Room>(string.Format("SELECT * FROM Rooms WHERE UPPER(HEX([roomID]))='{0}'", t)).ToList()[0];
+                this.thisroom = room;
+            }
+            this.roomname.Text = thisroom.roomname;
+            this.roomtype.Content = thisroom.roomtype;
+
+            isclosetrans = 0;
+        }
+
+        public OpenRoomWindow(Guid roomid, out OpenRoomViewModel viewModel, RoomStatePage page)
+        {
+            InitializeComponent();
+            //viewmodel = new AddRoomViewModel(this);
+            //this.DataContext = viewmodel;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.roomid = roomid;
+            this.normaltype.IsChecked = true;
+            viewModel = new OpenRoomViewModel(this);
+            this.DataContext = viewModel;
+            this.fatherpage = page;
             using (RetailContext context = new RetailContext())
             {
                 string t = roomid.ConvertGuid();

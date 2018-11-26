@@ -18,12 +18,13 @@ using HotelManager.Views.FunctionWindow;
 using System.Windows.Media.Imaging;
 using System.Threading.Tasks;
 using HotelManager.ViewModels.Function;
+using HotelManager.Views.MainMenu.Pages.RoomState_p;
 
 namespace HotelManager.Helper
 {
-    public class RoomHelper
+    public static class RoomHelper
     {
-        static Dictionary<string, SolidColorBrush> ColorsConfig = new Dictionary<string, SolidColorBrush>()
+        public static Dictionary<string, SolidColorBrush> ColorsConfig = new Dictionary<string, SolidColorBrush>()
         {
             {"默认(灰色)",Brushes.Gray},
             {"黑色",Brushes.Black},//
@@ -40,20 +41,35 @@ namespace HotelManager.Helper
             {"橘红色",Brushes.OrangeRed},
             {"粉色",Brushes.HotPink},
         };
-        List<Room> rooms = null;
-        List<RoomType> roomtypes = null;
-
-        public RoomHelper()
+        public static Dictionary<int, string> StateConfig = new Dictionary<int, string>()
+        {
+            {0,"ok房" },
+            {1,"在住洁房" },
+            {2,"在住脏房" },
+            {3,"长包房" },
+            {4,"空脏房" },
+            {5,"维修房" },
+            {6,"锁房" },
+            {7,"自用房" },
+        };
+        static List<Room> rooms = null;
+        static List<RoomType> roomtypes = null;
+        static List<RoomStateModel> roomstates = null;
+        static Grid maingrid = null;
+        static Page thispage = null;
+        static RoomHelper()
         {
             rooms = new List<Room>();
             roomtypes = new List<RoomType>();
         }
 
-        public void LoadRoomInfoByWhat(Grid grid, int edittype,string what, string row, string type, string state)
+        public static void LoadRoomInfoByWhat(Page page,Grid grid, int edittype,string what, string row, string type, string state)
         {
             grid.RowDefinitions.Clear();
             grid.ColumnDefinitions.Clear();
             grid.Children.Clear();
+            maingrid = grid;
+            thispage = page;
             using (RetailContext context = new RetailContext())
             {
                 int rows = 0;
@@ -64,13 +80,31 @@ namespace HotelManager.Helper
                 {
                     if (row != "0")
                     {
-                        string sql = string.Format("select * from rooms where roomtype like '%{0}%' and roomstate = {1} and row = {2} order by {3}", type, state, row, what);
-                        rooms = context.Database.SqlQuery<Room>(sql).ToList();
+                        if(state == "")
+                        {
+                            string sql = string.Format("select * from rooms where roomtype like '%{0}%' and row = {2} order by {3}", type, state, row, what);
+                            rooms = context.Database.SqlQuery<Room>(sql).ToList();
+                        }
+                        else
+                        {
+                            string sql = string.Format("select * from rooms where roomtype like '%{0}%' and roomstate = {1} and row = {2} order by {3}", type, state, row, what);
+                            rooms = context.Database.SqlQuery<Room>(sql).ToList();
+                        }
+                        
                     }
                     else
                     {
-                        string sql = string.Format("select * from rooms where roomtype like '%{0}%' and roomstate = {1}  order by {3}", type, state, row, what);
-                        rooms = context.Database.SqlQuery<Room>(sql).ToList();
+                        if(state == "")
+                        {
+                            string sql = string.Format("select * from rooms where roomtype like '%{0}%' order by {3}", type, state, row, what);
+                            rooms = context.Database.SqlQuery<Room>(sql).ToList();
+                        }
+                        else
+                        {
+                            string sql = string.Format("select * from rooms where roomtype like '%{0}%' and roomstate = {1}  order by {3}", type, state, row, what);
+                            rooms = context.Database.SqlQuery<Room>(sql).ToList();
+                        }
+                        
                     }
                 }
                 
@@ -161,9 +195,10 @@ namespace HotelManager.Helper
                     for (int j = 0; j < roomsbywhat[i].Count(); j++)
                     {
                         roomtypes = context.RoomTypes.ToList();
+                        roomstates = context.RoomStates.ToList();
                         if (edittype == 0)
                         {
-                            FrameworkElement roominfogrid = MakeRoomInfoBasicCard(roomsbywhat[i][j], i - 1, j,roomtypes);
+                            FrameworkElement roominfogrid = MakeRoomInfoBasicCard(roomsbywhat[i][j], i - 1, j, roomstates);
                             grid.Children.Add(roominfogrid);
                         }
                         else if(edittype == 1)
@@ -173,7 +208,7 @@ namespace HotelManager.Helper
                             grid.Children.Add(roominfogrid);
                         }else if(edittype == 3)
                         {
-                            FrameworkElement roominfogrid = MakeRoomInfoMainCard(roomsbywhat[i][j], i - 1, j,roomtypes);
+                            FrameworkElement roominfogrid = MakeRoomInfoMainCard(roomsbywhat[i][j], i - 1, j, roomstates);
                             grid.Children.Add(roominfogrid);
                         }
                     }
@@ -191,7 +226,7 @@ namespace HotelManager.Helper
         }
 
 
-        public FrameworkElement MakeRoomInfoMainCard(Room room, int row, int column,List<RoomType> roomTypes)
+        public static FrameworkElement MakeRoomInfoMainCard(Room room, int row, int column, List<RoomStateModel> roomStates)
         {
             Border border = new Border();
             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
@@ -235,17 +270,15 @@ namespace HotelManager.Helper
             roomtypelabel.Content = room.roomtype;
             roomtypelabel.BorderThickness = new Thickness(2);
             string color = "";
-            foreach (RoomType rt in roomTypes)
+            foreach (RoomStateModel rs in roomstates)
             {
-                if (rt.Name == room.roomtype)
+                if (rs.Name == StateConfig[room.roomstate])
                 {
-                    color = rt.Color;
+                    color = rs.Color;
                     break;
                 }
             }
             roomtypelabel.Background = ColorsConfig[color];
-            //roomtypelabel.BorderBrush = ColorsConfig[color];
-            //roomtypelabel.Foreground = ColorsConfig[color];
             if (color == "黑色" || color == "紫色" || color == "棕色" || color == "蓝色")
             {
                 roomtypelabel.Foreground = Brushes.White;
@@ -322,13 +355,18 @@ namespace HotelManager.Helper
                 
 
             }
+            //不为空房
+            if (room.roomstate == 1)
+            {
+
+            }
 
             dockPanel.Children.Add(grid);
             border.Child = dockPanel;
             grid.DataContext = room;
             return border;
         }
-        public FrameworkElement MakeRoomInfoBasicCard(Room room,int row,int column, List<RoomType> roomTypes)
+        public static FrameworkElement MakeRoomInfoBasicCard(Room room,int row,int column, List<RoomStateModel> roomStates)
         {
             Border border = new Border();
             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
@@ -372,11 +410,11 @@ namespace HotelManager.Helper
             roomtypelabel.Content = room.roomtype;
             roomtypelabel.BorderThickness = new Thickness(2);
             string color = "";
-            foreach (RoomType rt in roomTypes)
+            foreach (RoomStateModel rs in roomstates)
             {
-                if (rt.Name == room.roomtype)
+                if (rs.Name == StateConfig[room.roomstate])
                 {
-                    color = rt.Color;
+                    color = rs.Color;
                     break;
                 }
             }
@@ -408,7 +446,7 @@ namespace HotelManager.Helper
             grid.DataContext = room;
             return border;
         }
-        public FrameworkElement MakeRoomInfoEditCard(Room room, int row, int column, List<RoomType> RoomTypes)
+        public static FrameworkElement MakeRoomInfoEditCard(Room room, int row, int column, List<RoomType> RoomTypes)
         {
             Border border = new Border();
             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
@@ -543,33 +581,33 @@ namespace HotelManager.Helper
         }
 
 
-        private void namechange(object sender, TextChangedEventArgs e)
+        private static void namechange(object sender, TextChangedEventArgs e)
         {
             TextBox nmtb = sender as TextBox;
             Grid gd = nmtb.Parent as Grid;
             ((Room)gd.DataContext).roomname = nmtb.Text;
             //new MessageWindow(((Room)gd.DataContext).roomname).Show();
         }
-        private void daypricechange(object sender, TextChangedEventArgs e)
+        private static void daypricechange(object sender, TextChangedEventArgs e)
         {
             TextBox dptb = sender as TextBox;
             Grid gd = dptb.Parent as Grid;
             ((Room)gd.DataContext).roomdayprice = dptb.Text;
             //new MessageWindow(((Room)gd.DataContext).roomname).Show();
         }
-        private void hourpricechange(object sender, TextChangedEventArgs e)
+        private static void hourpricechange(object sender, TextChangedEventArgs e)
         {
             TextBox hptb = sender as TextBox;
             Grid gd = hptb.Parent as Grid;
             ((Room)gd.DataContext).roomhourprice = hptb.Text;
             //new MessageWindow(((Room)gd.DataContext).roomname).Show();
         }
-        private void numbertextbox(object sender, TextCompositionEventArgs e)
+        private static void numbertextbox(object sender, TextCompositionEventArgs e)
         {
             Regex re = new Regex("[^0-9.-]+");
             e.Handled = re.IsMatch(e.Text);
         }
-        private void typechange(object sender, SelectionChangedEventArgs e)
+        private static void typechange(object sender, SelectionChangedEventArgs e)
         {
             
             ComboBox tpcb = sender as ComboBox;
@@ -596,7 +634,7 @@ namespace HotelManager.Helper
             //}
             //new MessageWindow(((Room)gd.DataContext).roomtype).Show();
         }
-        private void CloseThis(object sender, RoutedEventArgs e)
+        private static void CloseThis(object sender, RoutedEventArgs e)
         {
             Image bt = sender as Image;
             Grid gd = bt.Parent as Grid;
@@ -607,14 +645,14 @@ namespace HotelManager.Helper
             e.Handled = true;
             //new MessageWindow((gd.DataContext as Room).roomtype).Show(); 
         }
-        private void ToOpenRoom(object sender, RoutedEventArgs e)
+        private static void ToOpenRoom(object sender, RoutedEventArgs e)
         {
             PUButton pUButton = sender as PUButton;
             Grid gd = pUButton.Parent as Grid;
-            new OpenRoomWindow((gd.DataContext as Room).roomID, out OpenRoomViewModel viewModel).ShowDialog();
+            new OpenRoomWindow((gd.DataContext as Room).roomID, out OpenRoomViewModel viewModel,(thispage as RoomStatePage)).ShowDialog();
         }
 
-        public void SaveChanges(Grid grid)
+        public static void SaveChanges(Grid grid)
         {
             using (RetailContext context = new RetailContext())
             {

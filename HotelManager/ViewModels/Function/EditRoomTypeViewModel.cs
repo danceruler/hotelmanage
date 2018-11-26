@@ -1,4 +1,5 @@
-﻿using HotelManager.Models;
+﻿using HotelManager.Helper;
+using HotelManager.Models;
 using HotelManager.Views.FunctionWindow;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace HotelManager.ViewModels.Function
             set
             {
                 _roomtypes = value;
-                RaisePropertyChanged("RoomTypes");
+                RaisePropertyChanged("RoomStates");
             }
         }
 
@@ -47,23 +48,28 @@ namespace HotelManager.ViewModels.Function
 
         public void AddRow()
         {
-            if (RoomTypes[RoomTypes.Count() - 1].Name == null && RoomTypes[RoomTypes.Count() - 1].Cap == 0 && RoomTypes[RoomTypes.Count() - 1].Color == null)
+            if (RoomTypes.Count() > 0)
             {
-                new MessageWindow(thiswindow, "有空行还未填写").ShowDialog();
+                if (RoomTypes[RoomTypes.Count() - 1].Name == null && RoomTypes[RoomTypes.Count() - 1].Color == null)
+                {
+                    new MessageWindow(thiswindow, "有空行还未填写").ShowDialog();
+                    return;
+                }
+                else if (RoomTypes[RoomTypes.Count() - 1].Name == null)
+                {
+                    new MessageWindow(thiswindow, "房间状态不能为空").ShowDialog();
+                    return;
+                }
+                
             }
-            else if(RoomTypes[RoomTypes.Count() - 1].Name == null)
+            RoomType rt = new RoomType()
             {
-                new MessageWindow(thiswindow, "房间类型不能为空").ShowDialog();
-            }
-            else if (RoomTypes[RoomTypes.Count() - 1].Cap <= 0)
-            {
-                new MessageWindow(thiswindow, "容量不能小于1").ShowDialog();
-            }
-            else
-            {
-                RoomType rt = new RoomType() { Color="默认(灰色)"};
-                RoomTypes.Add(rt);
-            }
+                ID = Guid.NewGuid(),
+                Color = "默认(灰色)"
+            };
+            RoomTypes.Add(rt);
+
+
         }
 
         public void LoadData()
@@ -77,102 +83,52 @@ namespace HotelManager.ViewModels.Function
                     GetRoomTypes.Add(rt);
                 }
             }
-            RoomTypes = GetRoomTypes;
+            if (RoomTypes != null) RoomTypes.Clear();
+            else RoomTypes = new ObservableCollection<RoomType>();
+            foreach(RoomType rs in GetRoomTypes)
+            {
+                RoomTypes.Add(rs);
+            }
+            
         }
 
         public void UpdateData()
         {
-            if (RoomTypes[RoomTypes.Count() - 1].Name == null && RoomTypes[RoomTypes.Count() - 1].Cap == 0 && RoomTypes[RoomTypes.Count() - 1].Color == null)
+            if (RoomTypes[RoomTypes.Count() - 1].Name == null && RoomTypes[RoomTypes.Count() - 1].Cap <= 0)
             {
                 new MessageWindow(thiswindow, "有空行还未填写").ShowDialog();
                 return;
             }
             else if (RoomTypes[RoomTypes.Count() - 1].Name == null)
             {
-                new MessageWindow(thiswindow, "房间类型不能为空").ShowDialog();
+                new MessageWindow(thiswindow, "房间状态不能为空").ShowDialog();
                 return;
             }
-            else if (RoomTypes[RoomTypes.Count() - 1].Cap <= 0)
+            Guid[] names = new Guid[GetRoomTypes.Count()];
+            for(int i = 0; i < GetRoomTypes.Count(); i++)
             {
-                new MessageWindow(thiswindow, "容量不能小于1").ShowDialog();
-                return;
+                names[i] = GetRoomTypes[i].ID;
             }
-
-            bool canupate = true;
-            bool isrepeatname = false;
-            List<RoomType> updates = new List<RoomType>();
-            string[] names = new string[RoomTypes.Count()];
-            int cnd = 0;
-            foreach(RoomType rt in RoomTypes)
-            {
-                names[cnd++] = rt.Name;
-                if (rt.ID == new RoomType().ID)
-                {
-                    updates.Add(rt);
-                }
-                else
-                {
-                    foreach (RoomType rt2 in GetRoomTypes)
-                    {
-                        if (rt.ID == rt2.ID)
-                        {
-                            updates.Add(rt);
-                            if (rt.Name != rt2.Name)
-                            {
-                                canupate = false;
-                            }
-                        }
-                    }
-                }
-
-                
-            }
-            for(int i = 0; i < names.Length; i++)
-            {
-                for(int j = 0; j < names.Length; j++)
-                {
-                    if(i!=j&&names[i] == names[j])
-                    {
-                        isrepeatname = true;
-                    }
-                    if (isrepeatname) break;
-                }
-            }
-            if (isrepeatname)
-            {
-                new MessageWindow(thiswindow, "房间名不能重复").ShowDialog();
-                return;
-            }
-            if (!canupate)
-            {
-                new MessageWindow(thiswindow, "之前已有的房间类型名称无法修改").ShowDialog();
-                return;
-            }
-
             using (RetailContext context = new RetailContext())
             {
-                var list = context.RoomTypes.ToList();
-                foreach(RoomType rt in list)
+                foreach (RoomType rs in RoomTypes)
                 {
-                    context.RoomTypes.Remove(rt);
-                }
-
-                foreach (RoomType rt in updates)
-                {
-                    if (rt.ID != new RoomType().ID)
+                    if (names.Contains(rs.ID))
                     {
-                        context.RoomTypes.Add(rt);
+                        string sql = string.Format("update RoomTypes set Name = '{0}',Cap = {1} where UPPER(HEX([ID]))='{2}'", rs.Name, rs.Cap, rs.ID.ConvertGuid());
+                        context.Database.ExecuteSqlCommand(sql);
                     }
                     else
                     {
-                        rt.ID = Guid.NewGuid();
-                        rt.IsChecked = false;
-                        rt.CanChange = false;
-                        context.RoomTypes.Add(rt);
+                        context.RoomTypes.Add(rs);
                     }
+                    
+                    
                 }
                 context.SaveChanges();
             }
+                
+          
             LoadData();   
             
         }

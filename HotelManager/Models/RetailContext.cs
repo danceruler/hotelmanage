@@ -20,6 +20,7 @@ namespace HotelManager.Models
         public DbSet<Finishtrans> Finishtranses { set; get; }
         public DbSet<Vipinfo> Vipinfos { set; get; }
         public DbSet<RoomType> RoomTypes { set; get; }
+        public DbSet<RoomStateModel> RoomStates { set; get; }
 
     }
 }
