@@ -1,15 +1,17 @@
 ﻿using Caliburn.Micro;
 using HotelManager.Helper;
 using HotelManager.Models;
-using HotelManager.Views.MainMenu.Pages.RoomState_p;
+using HotelManager.Views.MainMenu.Pages.RoomState;
 using Panuon.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
 {
@@ -94,12 +96,13 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
             List<int> rowlist = new List<int>();
             List<string> typelist = new List<string>();
             List<int> statelist = new List<int>();
+            List<RoomStateModel> roomstatelist = new List<RoomStateModel>();
             using (var context = new RetailContext())
             {
                 rowlist = context.Database.SqlQuery<int>("SELECT distinct row FROM rooms order by row").ToList();
                 typelist = context.Database.SqlQuery<string>("SELECT name FROM roomtypes").ToList();
-                //
                 statelist = context.Database.SqlQuery<int>("SELECT distinct roomstate FROM rooms").ToList();
+                roomstatelist = context.RoomStates.ToList();
             }
             List<PUComboBoxItemModel> rowslist = new List<PUComboBoxItemModel>();
             rowslist.Add(new PUComboBoxItemModel()
@@ -154,9 +157,49 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
                 });
             }
             StatesItemsList = new BindableCollection<PUComboBoxItemModel>(stateslist);
-
+            ShowStatesColors(thispage.StateColors, roomstatelist);
         }
-
+        private void ShowStatesColors(StackPanel stackPanel, List<RoomStateModel> roomStates)
+        {
+            stackPanel.Children.Clear();
+            int row = roomStates.Count() % 2 + roomStates.Count() / 2;
+            for (int i = 0; i < row; i++)
+            {
+                DockPanel dockPanel = new DockPanel();
+                dockPanel.Width = 160;
+                dockPanel.Height = 60;
+                Label label1 = new Label();
+                label1.Width = 70;
+                label1.Height = 50;
+                label1.Margin = new Thickness(5, 5, 5, 5);
+                label1.Content = roomStates[2 * i].Name;
+                label1.HorizontalContentAlignment = HorizontalAlignment.Center;
+                label1.VerticalContentAlignment = VerticalAlignment.Center;
+                label1.Background = RoomHelper.ColorsConfig[roomStates[2 * i].Color];
+                if (roomStates[2 * i].Color == "黑色" || roomStates[2 * i].Color == "紫色" || roomStates[2 * i].Color == "棕色" || roomStates[2 * i].Color == "蓝色")
+                {
+                    label1.Foreground = Brushes.White;
+                }
+                dockPanel.Children.Add(label1);
+                if (2 * i + 1 < roomStates.Count())
+                {
+                    Label label2 = new Label();
+                    label2.Width = 70;
+                    label2.Height = 50;
+                    label2.Margin = new Thickness(5, 5, 5, 5);
+                    label2.Content = roomStates[2 * i + 1].Name;
+                    label2.HorizontalContentAlignment = HorizontalAlignment.Center;
+                    label2.VerticalContentAlignment = VerticalAlignment.Center;
+                    label2.Background = RoomHelper.ColorsConfig[roomStates[2 * i + 1].Color];
+                    if (roomStates[2 * i+1].Color == "黑色" || roomStates[2 * i + 1].Color == "紫色" || roomStates[2 * i + 1].Color == "棕色" || roomStates[2 * i + 1].Color == "蓝色")
+                    {
+                        label2.Foreground = Brushes.White;
+                    }
+                    dockPanel.Children.Add(label2);
+                }
+                stackPanel.Children.Add(dockPanel);
+            }
+        }
         public ICommand ReFlashRoomInfoCommand
         {
             get { return new QueryCommand(ReFlashRoomInfo); }

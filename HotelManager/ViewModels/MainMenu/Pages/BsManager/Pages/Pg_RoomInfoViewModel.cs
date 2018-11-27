@@ -278,6 +278,10 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
                 {
                     label1.Foreground = Brushes.White;
                 }
+                else
+                {
+                    label1.Foreground = Brushes.Black;
+                }
                 dockPanel.Children.Add(label1);
                 if(2*i+1< roomStates.Count())
                 {
@@ -289,9 +293,13 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
                     label2.HorizontalContentAlignment = HorizontalAlignment.Center;
                     label2.VerticalContentAlignment = VerticalAlignment.Center;
                     label2.Background = RoomHelper.ColorsConfig[roomStates[2 * i+1].Color];
-                    if (roomStates[2 * i].Color == "黑色" || roomStates[2 * i].Color == "紫色" || roomStates[2 * i].Color == "棕色" || roomStates[2 * i].Color == "蓝色")
+                    if (roomStates[2 * i+1].Color == "黑色" || roomStates[2 * i+1].Color == "紫色" || roomStates[2 * i+1].Color == "棕色" || roomStates[2 * i+1].Color == "蓝色")
                     {
                         label2.Foreground = Brushes.White;
+                    }
+                    else
+                    {
+                        label1.Foreground = Brushes.Black;
                     }
                     dockPanel.Children.Add(label2);
                 }

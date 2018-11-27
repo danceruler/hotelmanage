@@ -5,7 +5,7 @@ using HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages;
 using HotelManager.ViewModels.MainMenu.Pages.RoomState;
 using HotelManager.Views.FunctionWindow;
 using HotelManager.Views.MainMenu.Pages.BsManage.Pages;
-using HotelManager.Views.MainMenu.Pages.RoomState_p;
+using HotelManager.Views.MainMenu.Pages.RoomState;
 using Panuon.UI;
 using System;
 using System.Collections.Generic;
@@ -58,22 +58,30 @@ namespace HotelManager.ViewModels.Function
             {
                 using (RetailContext context = new RetailContext())
                 {
-                    string getcustomer_sql = string.Format("select * from customers where identification in (select customID from finishtranses)");
-                    List<Customer> customers_exists = context.Database.SqlQuery<Customer>(getcustomer_sql).ToList();
-                    bool isexists = false;
-                    foreach(Customer ct in customers_exists)
+                    string getcustomer_sql1 = string.Format("select * from customers where identification in (select customID from finishtranses where IsDoing = true and customID = '{0}') ", this.thiswindow.customIdentify.Text);
+                    List<Customer> customers_exists1 = context.Database.SqlQuery<Customer>(getcustomer_sql1).ToList();
+                    bool isexists1 = false;
+                    if (customers_exists1.Count() > 0)
                     {
-                        if(ct.identification == this.thiswindow.customIdentify.Text)
-                        {
-                            isexists = true;
-                            break;
-                        }
+                        isexists1 = true;
                     }
-                    if(isexists)
+                    if(isexists1)
                     {
                         new MessageWindow(this.thiswindow, "该客户还在本店有未完成订单", true).ShowDialog();
                     }
-                    else
+
+                    string getcustomer_sql2 = string.Format("select * from customers where identification = '{0}'", this.thiswindow.customIdentify.Text);
+                    List<Customer> customers_exists2 = context.Database.SqlQuery<Customer>(getcustomer_sql2).ToList();
+                    bool isexists2 = false;
+                    foreach (Customer ct in customers_exists2)
+                    {
+                        if (ct.identification == this.thiswindow.customIdentify.Text)
+                        {
+                            isexists2 = true;
+                            break;
+                        }
+                    }
+                    if (!isexists2)
                     {
                         Customer customer = new Customer()
                         {
@@ -89,10 +97,10 @@ namespace HotelManager.ViewModels.Function
                     if (thiswindow.morningtype.IsChecked == true) openType = "凌晨房";
                     if (thiswindow.halfdaytype.IsChecked == true) openType = "半天房";
                     string payType = "";
-                    if (thiswindow.alipay.IsChecked == true) openType = "支付宝";
-                    if (thiswindow.wechat.IsChecked == true) openType = "微信";
-                    if (thiswindow.chash.IsChecked == true) openType = "现金";
-                    if (thiswindow.other.IsChecked == true) openType = "其他";
+                    if (thiswindow.alipay.IsChecked == true) payType = "支付宝";
+                    if (thiswindow.wechat.IsChecked == true) payType = "微信";
+                    if (thiswindow.chash.IsChecked == true) payType = "现金";
+                    if (thiswindow.other.IsChecked == true) payType = "其他";
                     Finishtrans finishtrans = new Finishtrans()
                     {
                         transID = Guid.NewGuid(),

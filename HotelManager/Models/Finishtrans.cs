@@ -24,6 +24,7 @@ namespace HotelManager.Models
         public string paytype { get; set; }
         public string opentype { get; set; }
         public string money { get; set; }
+        public string expectendtime { get; set; }
         public bool IsDoing { get; set; }
     }
 }
