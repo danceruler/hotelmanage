@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
         xmlns:local="clr-namespace:HotelManager.Views.MainMenu"
         mc:Ignorable="d"
         Title="MainMenuWindow" 
@@ -171,6 +172,7 @@
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
                             </Grid.RowDefinitions>
                             <Button Name="ToBsManagerButton" Command="{Binding Path=ToBsManagerCommand}" Grid.Row="0" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="后台管理"/>
                             <Button Name="ToRoomState" Command="{Binding Path=ToRoomStateCommand}" Grid.Row="1" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="房态" />
@@ -178,9 +180,10 @@
                             <Button Name="mainmenubutton4" Grid.Row="3" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面四" />
                             <Button Name="mainmenubutton5" Grid.Row="4" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面五" />
                             <Button Name="mainmenubutton6" Grid.Row="5" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面六" />
+                          
                         </Grid>
                         <Grid>
-                            <Frame Name="mainframe" NavigationUIVisibility="Hidden" Background="#EDEDEF" Opacity="0.8" ></Frame>
+                            <Frame Name="mainframe" NavigationUIVisibility="Hidden"  Background="#EDEDEF" Opacity="0.8" ></Frame>
                         </Grid>
                     </DockPanel>
                 </Grid>

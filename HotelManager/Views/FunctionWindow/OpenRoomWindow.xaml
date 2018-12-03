@@ -29,6 +29,7 @@
                     </DockPanel>
                 </Border>
                 <StackPanel Grid.Row="1">
+                    <Label Name="booktip" ></Label>
                     <DockPanel Height="70">
                         <panuon:PUTextBox Name="roomname" Text="testname" BorderCornerRadius="5,5,5,5" IsEnabled="False" Margin="55,0,0,0" Width="120" Height="40" ShadowColor="Brown" Background="Transparent"></panuon:PUTextBox>
                         <panuon:PUBubble Name="roomtype" Content="testtype" AnglePosition="Left" BorderCornerRadius="5,5,5,5" Margin="-50,0,0,0" Width="100" Height="35"></panuon:PUBubble>

@@ -57,3 +57,13 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\RoomState\RoomStatePage.g.cs
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\MainMenu\Pages\RoomState\RoomStatePage.baml
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\HotelManager.csprojAssemblyReference.cache
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\ChangeRoomStateWindow.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\ChangeRoomStateWindow.baml
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\BookRoomWindow.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\FunctionWindow\BookRoomWindow.baml
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\TestableWindow.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\ValueRule_fulldayPage.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\TestableWindow.baml
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\ValueRule_fulldayPage.baml
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\Function\ValueRule_fulldayinfo_Window.g.cs
+F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\Function\ValueRule_fulldayinfo_Window.baml

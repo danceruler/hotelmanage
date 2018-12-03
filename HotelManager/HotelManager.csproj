@@ -27,7 +27,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>26</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -128,9 +128,16 @@
     <Compile Include="Helper\GuidHelper.cs" />
     <Compile Include="Helper\RoomHelper.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
+    <Compile Include="Models\Finishbook.cs" />
+    <Compile Include="Models\RoomPrices.cs" />
     <Compile Include="Models\RoomState.cs" />
     <Compile Include="Models\RoomType.cs" />
+    <Compile Include="Models\ValueRule_fullday.cs" />
+    <Compile Include="Models\ValueRule_hour.cs" />
+    <Compile Include="Models\ValueRule_special.cs" />
+    <Compile Include="Models\Viptype.cs" />
     <Compile Include="ViewModels\Function\AddRoomViewModel.cs" />
+    <Compile Include="ViewModels\Function\BookRoomViewModel.cs" />
     <Compile Include="ViewModels\Function\DataPickerViewModel.cs" />
     <Compile Include="ViewModels\Function\EditRoomStateViewModel.cs" />
     <Compile Include="ViewModels\Function\EditRoomTypeViewModel.cs" />
@@ -141,8 +148,24 @@
     <Compile Include="ViewModels\MainMenu\Pages\BsManager\Pg_BsManagerViewModel.cs" />
     <Compile Include="ViewModels\MainMenu\Pages\RoomState\Pg_RoomStateViewModel.cs" />
     <Compile Include="ViewModels\QueryCommand.cs" />
+    <Compile Include="ViewModels\TablePage\ValueRule_fullday_ViewModel.cs" />
+    <Compile Include="Views\TablePage\Function\ValueRule_fulldayinfo_Window.xaml.cs">
+      <DependentUpon>ValueRule_fulldayinfo_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TablePage\TestableWindow.xaml.cs">
+      <DependentUpon>TestableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TablePage\ValueRule_fulldayPage.xaml.cs">
+      <DependentUpon>ValueRule_fulldayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FunctionWindow\AddRoomWindow.xaml.cs">
       <DependentUpon>AddRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FunctionWindow\BookRoomWindow.xaml.cs">
+      <DependentUpon>BookRoomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FunctionWindow\ChangeRoomStateWindow.xaml.cs">
+      <DependentUpon>ChangeRoomStateWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FunctionWindow\DataPickerWindow.xaml.cs">
       <DependentUpon>DataPickerWindow.xaml</DependentUpon>
@@ -186,7 +209,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\TablePage\Function\ValueRule_fulldayinfo_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TablePage\TestableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TablePage\ValueRule_fulldayPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FunctionWindow\AddRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FunctionWindow\BookRoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FunctionWindow\ChangeRoomStateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,7 +280,6 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\RetailContext.cs" />
     <Compile Include="Models\Room.cs" />
-    <Compile Include="Models\Vipinfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -272,6 +314,8 @@
     <Resource Include="AppData\icon\calender_gray.ico" />
     <Resource Include="AppData\icon\paint_white.ico" />
     <Resource Include="AppData\icon\paint_black.ico" />
+    <Resource Include="AppData\icon\book_black.ico" />
+    <Resource Include="AppData\icon\bookyes_black.ico" />
     <Content Include="dll\System.Windows.Interactivity.dll" />
     <Resource Include="AppData\icon\black_exit_favicon.ico" />
     <Resource Include="AppData\icon\password_favicon.ico" />
@@ -291,6 +335,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppData\Configuration\" />
+    <Folder Include="ViewModels\TablePage\Function\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

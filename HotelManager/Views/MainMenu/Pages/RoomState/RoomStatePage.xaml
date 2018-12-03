@@ -25,6 +25,7 @@
         </ScrollViewer>
         <Grid Name="roominfobtgrid" Grid.Column="1"  Margin="0">
             <StackPanel>
+                <Label Name="CustomerSum" Height="30" Margin="0,20,0,0" HorizontalAlignment="Center"></Label>
                 <panuon:PUButton Command="{Binding Path=ReFlashRoomInfoCommand}"  Content="刷新" Margin="0,40,0,0"   BorderCornerRadius="8" ButtonStyle="General" ClickStyle="Sink" Width="120" Height="30"></panuon:PUButton>
                 <Label  Height="30"  Content="排列规则" Margin="0,30,0,0" HorizontalAlignment="Center"></Label>
                 <panuon:PUComboBox Name="rankrule" BindingItems="{Binding RankRuleItemsList}" Margin="0,20,0,0"  BorderCornerRadius="8" Width="120" Height="30"></panuon:PUComboBox>

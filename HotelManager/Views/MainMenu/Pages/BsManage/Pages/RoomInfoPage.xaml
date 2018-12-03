@@ -23,7 +23,7 @@
             </Grid>
         </ScrollViewer>
         <Grid Name="roominfobtgrid" Grid.Column="1"  Margin="0">
-            <StackPanel>
+            <StackPanel Name="buttonstackpanel">
                 <panuon:PUButton Command="{Binding Path=ReFlashRoomInfoCommand}"  Content="刷新" BorderCornerRadius="8" ButtonStyle="General" ClickStyle="Sink" Width="120" Height="30"></panuon:PUButton>
                 <Label Height="30"  Content="排列规则" HorizontalAlignment="Center"></Label>
                 <panuon:PUComboBox Name="rankrule" BindingItems="{Binding RankRuleItemsList}" BorderCornerRadius="8" Width="120" Height="30"></panuon:PUComboBox>

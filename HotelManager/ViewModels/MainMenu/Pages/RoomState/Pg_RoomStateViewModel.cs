@@ -8,10 +8,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
 {
@@ -31,8 +33,9 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
             thispage.filterule_row.SelectionChanged += filter_row_change;
             thispage.filterule_type.SelectionChanged += filter_type_change;
             thispage.filterule_state.SelectionChanged += filter_state_change;
-            
-            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            //RoomHelper.LoadRoomInfoByWhat(thispage, thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            FlashAllPage();
+            //Task.Factory.StartNew(load);
         }
         public BindableCollection<PUComboBoxItemModel> RankRuleItemsList
         {
@@ -40,7 +43,6 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
             set { _RankRuleItemsList = value; RaisePropertyChanged("RankRuleItemsList"); }
         }
         private BindableCollection<PUComboBoxItemModel> _RankRuleItemsList;
-
 
         public BindableCollection<PUComboBoxItemModel> RowsItemsList
         {
@@ -62,6 +64,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
             set { _StatesItemsList = value; RaisePropertyChanged("StatesItemsList"); }
         }
         private BindableCollection<PUComboBoxItemModel> _StatesItemsList;
+
         public BindableCollection<PUComboBoxItemModel> HourItemsList
         {
             get { return _HourItemsList; }
@@ -69,6 +72,22 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
         }
         private BindableCollection<PUComboBoxItemModel> _HourItemsList;
 
+        //public void load()
+        //{
+        //    PULoading pULoading = new PULoading();
+        //    pULoading.Width = 100;
+        //    pULoading.Height = 100;
+        //    thispage.roominfobtgrid.Children.Add(pULoading);
+        //    Task task = new Task(() => pULoading.IsRunning = true);
+        //    Task task2 = new Task(() => );
+        //    Task task3 = new Task(() => thispage.roominfobtgrid.Children.Remove(pULoading));
+        //    task.Start();
+        //    task.Wait();
+        //    task2.Start();
+        //    task2.Wait();
+        //    task3.Start();
+        //    task3.Wait();
+        //}
         public void InitPageData()
         {
             List<PUComboBoxItemModel> rankrulelist = new List<PUComboBoxItemModel>();
@@ -217,11 +236,22 @@ namespace HotelManager.ViewModels.MainMenu.Pages.RoomState
             thispage.filterule_row.SelectedIndex = 0;
             thispage.filterule_type.SelectedIndex = 0;
             thispage.filterule_state.SelectedIndex = 0;
-            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            FlashAllPage();
+            //RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
         }
         public void Filter()
         {
-            RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            FlashAllPage();
+            //RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+        }
+
+        private void FlashAllPage()
+        {
+            RoomHelper.LoadRoomInfoByWhat(thispage, thispage.roomcardgrid, 3, ranktype, rule1, rule2, rule3);
+            List<Room> transrooms = RoomHelper.GetTransingRoom();
+            List<Room> bookrooms = RoomHelper.GetBookingRoom();
+            string content = string.Format("在住房间数：{0}，预定房间数：{1}", transrooms.Count(), bookrooms.Count());
+            thispage.CustomerSum.Content = content;
         }
 
         private void rank_change(object sender, SelectionChangedEventArgs e)

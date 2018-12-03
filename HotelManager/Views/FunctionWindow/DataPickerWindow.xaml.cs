@@ -1,4 +1,5 @@
 ﻿using HotelManager.ViewModels.Function;
+using Panuon.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,13 +34,13 @@ namespace HotelManager.Views.FunctionWindow
             
         }
 
-        public DataPickerWindow(Window window, TextBox textbox,out DataPickerViewModel viewModel)
+        public DataPickerWindow(Window window, TextBox textbox,out DataPickerViewModel viewModel, DatePickerModes datePickerModes)
         {
             InitializeComponent();
             isclosetrans = 0;
             this.Owner = window;
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            viewModel = new DataPickerViewModel(this);
+            viewModel = new DataPickerViewModel(this, datePickerModes);
             this.DataContext = viewModel;
             this.fathertextbox = textbox;
         }

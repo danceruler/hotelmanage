@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using HotelManager.ViewModels.Function;
 using HotelManager.Views.MainMenu.Pages.RoomState;
 using HotelManager.ViewModels.MainMenu.Pages.RoomState;
+using System.Windows.Controls.Primitives;
 
 namespace HotelManager.Helper
 {
@@ -46,6 +47,28 @@ namespace HotelManager.Helper
             {6,"锁房" },
             {7,"自用房" },
         };
+        public static Dictionary<string, int> StateConfig2 = new Dictionary<string, int>()
+        {
+            { "ok房" ,0},
+            {"在住洁房",1 },
+            {"在住脏房",2 },
+            {"长包房",3 },
+            {"空脏房",4 },
+            {"维修房",5 },
+            {"锁房",6 },
+            {"自用房" ,7},
+        };
+        public static Dictionary<int,List<int>> NowState_AfterState = new Dictionary<int, List<int>>()
+        {
+            {0,new List<int>{ 0,4,5,6,7} },
+            {1,new List<int>{ 1,2,3,5,6} },
+            {2,new List<int>{ 1,2,3,5,6} },
+            {3,new List<int>{ 3,5,6} },
+            {4,new List<int>{ 0,4,5,6,7} },
+            {5,new List<int>{ 0,4,5,6,7} },
+            {6,new List<int>{ 0,4,5,6,7} },
+            {7,new List<int>{ 0,4,5,6,7} }
+        };
         static List<Room> rooms = null;
         static List<RoomType> roomtypes = null;
         static List<RoomStateModel> roomstates = null;
@@ -56,6 +79,10 @@ namespace HotelManager.Helper
             rooms = new List<Room>();
             roomtypes = new List<RoomType>();
         }
+
+        #region 临时使用数据
+        private static Guid BookID;
+        #endregion
 
         public static void LoadRoomInfoByWhat(Page page,Grid grid, int edittype,string what, string row, string type, string state)
         {
@@ -206,7 +233,9 @@ namespace HotelManager.Helper
                         {
                             string getthistrans_sql = string.Format("select * from finishtranses where roomID = '{0}' and IsDoing = true", roomsbywhat[i][j].roomID.ConvertGuid());
                             List<Finishtrans> finishtranses = context.Database.SqlQuery<Finishtrans>(getthistrans_sql).ToList();
-                            FrameworkElement roominfogrid = MakeRoomInfoMainCard(roomsbywhat[i][j], i - 1, j, roomstates, finishtranses);
+                            string getthisbook_sql = string.Format("select * from finishbooks where roomID = '{0}' and IsBook = true", roomsbywhat[i][j].roomID.ConvertGuid());
+                            List<Finishbook> finishbooks = context.Database.SqlQuery<Finishbook>(getthisbook_sql).ToList();
+                            FrameworkElement roominfogrid = MakeRoomInfoMainCard(roomsbywhat[i][j], i - 1, j, roomstates, finishtranses,finishbooks);
                             grid.Children.Add(roominfogrid);
                             
                         }
@@ -225,7 +254,7 @@ namespace HotelManager.Helper
         }
 
 
-        public static FrameworkElement MakeRoomInfoMainCard(Room room, int row, int column, List<RoomStateModel> roomStates, List<Finishtrans> finishtrans)
+        public static FrameworkElement MakeRoomInfoMainCard(Room room, int row, int column, List<RoomStateModel> roomStates, List<Finishtrans> finishtrans,List<Finishbook> finishbooks)
         {
             Border border = new Border();
             border.CornerRadius = new CornerRadius(5, 5, 5, 5);
@@ -292,6 +321,7 @@ namespace HotelManager.Helper
             change_roomstate.SetValue(Grid.RowProperty, 1);
             change_roomstate.Width = 18;
             change_roomstate.Height = 18;
+            change_roomstate.MouseDown += changeRoomstate;
             change_roomstate.HorizontalAlignment = HorizontalAlignment.Right;
             change_roomstate.VerticalAlignment = VerticalAlignment.Center;
             if (color == "黑色" || color == "紫色" || color == "棕色" || color == "蓝色")
@@ -324,8 +354,32 @@ namespace HotelManager.Helper
             //grid.Children.Add(roomstatelabel);
 
             //如果为空房
-            if (room.roomstate == 0|| room.roomstate == 4 || room.roomstate == 5 || room.roomstate == 6)
+            if (room.roomstate == 0|| room.roomstate == 4)
             {
+                if (finishbooks.Count()>0)
+                {
+                    Image bookButton = new Image();
+                    bookButton.SetValue(Grid.RowProperty, 0);
+                    bookButton.HorizontalAlignment = HorizontalAlignment.Right;
+                    bookButton.Width = 20;
+                    bookButton.Height = 20;
+                    bookButton.Source = new BitmapImage(new Uri("/AppData/icon/bookyes_black.ico", UriKind.RelativeOrAbsolute));
+                    bookButton.MouseDown += ShowBookInfo;
+                    bookButton.DataContext = finishbooks[0];
+                    grid.Children.Add(bookButton);
+                }
+                else
+                {
+                    Image bookButton = new Image();
+                    bookButton.SetValue(Grid.RowProperty, 0);
+                    bookButton.HorizontalAlignment = HorizontalAlignment.Right;
+                    bookButton.Width = 20;
+                    bookButton.Height = 20;
+                    bookButton.Source = new BitmapImage(new Uri("/AppData/icon/book_black.ico", UriKind.RelativeOrAbsolute));
+                    bookButton.MouseDown += ToBookRoom;
+                    grid.Children.Add(bookButton);
+                }
+
                 //日房价
                 Label daypricelabel = new Label();
                 daypricelabel.SetValue(Grid.RowProperty, 3);
@@ -362,6 +416,9 @@ namespace HotelManager.Helper
                 hourpricetextbox.HorizontalContentAlignment = HorizontalAlignment.Right;
                 grid.Children.Add(hourpricetextbox);
 
+
+
+
                 PUButton openroombutton = new PUButton();
                 openroombutton.SetValue(Grid.RowProperty, 4);
                 openroombutton.Width = 80;
@@ -378,7 +435,7 @@ namespace HotelManager.Helper
 
             }
             //不为空房
-            if ((room.roomstate == 1|| room.roomstate == 2 || room.roomstate == 3|| room.roomstate == 7)&& finishtrans.Count()>0)
+            if ((room.roomstate == 1|| room.roomstate == 2 || room.roomstate == 3) && finishtrans.Count()>0)
             {
                 Label roomopentype = new Label();
                 roomopentype.SetValue(Grid.RowProperty, 2);
@@ -400,7 +457,6 @@ namespace HotelManager.Helper
                 exitbutton.Click += exitRoomClick;
                 grid.Children.Add(exitbutton);
             }
-
             dockPanel.Children.Add(grid);
             border.Child = dockPanel;
             grid.DataContext = room;
@@ -620,7 +676,7 @@ namespace HotelManager.Helper
             return border;
         }
 
-
+        #region delegate
         private static void namechange(object sender, TextChangedEventArgs e)
         {
             TextBox nmtb = sender as TextBox;
@@ -698,7 +754,55 @@ namespace HotelManager.Helper
             exitRoom((gd.DataContext as Room).roomID);
            // new OpenRoomWindow((gd.DataContext as Room).roomID, out OpenRoomViewModel viewModel, (thispage as RoomStatePage)).ShowDialog();
         }
+        private static void changeRoomstate(object sender, RoutedEventArgs e)
+        {
+            Image pUButton = sender as Image;
+            Grid gd = pUButton.Parent as Grid;
+            new ChangeRoomStateWindow((gd.DataContext as Room), (thispage as RoomStatePage)).ShowDialog();
+        }
+        private static void ToBookRoom(object sender, RoutedEventArgs e)
+        {
+            Image pUButton = sender as Image;
+            Grid gd = pUButton.Parent as Grid;
+            new BookRoomWindow((gd.DataContext as Room).roomID, out BookRoomViewModel viewModel, (thispage as RoomStatePage)).ShowDialog();
+        }
+        private static void ShowBookInfo(object sender, RoutedEventArgs e)
+        {
+            Image ig = sender as Image;
+            Finishbook finishbook = ig.DataContext as Finishbook;
+            Customer customer = finishbook.customID.GetCustomerbyID();
+            string message = string.Format("顾客姓名:{0}\n顾客身份证号:{2}\n预计入住时间:{1}\n定金:{3}", customer.Name, finishbook.expectstartime, customer.identification, finishbook.money);
+            BookID = finishbook.transID;
+            new MessageWindow(message,"预定信息","取消预定",200,250, CancelBook).ShowDialog();
+            
+        }
+        private static void CancelBook(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult dr = MessageBox.Show("确认取消预定吗？", "提示", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (dr == MessageBoxResult.OK)
+            {
+                using (RetailContext context = new RetailContext())
+                {
+                    string sql = string.Format("update finishbooks set IsBook = false where UPPER(HEX([transID])) = '{0}'", BookID.ConvertGuid());
+                    try
+                    {
+                        context.Database.ExecuteSqlCommand(sql);
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    
+                    context.SaveChanges();
+                }
+                ((thispage as RoomStatePage).DataContext as Pg_RoomStateViewModel).ReFlashRoomInfo();
+                MessageBox.Show("修改成功");
+                
+            }
+        }
 
+        #endregion
+
+        #region 内部使用方法
         public static void exitRoom(Guid roomid)
         {
             string changefinishtrans_sql = string.Format("update finishtranses set IsDoing = false where roomid = '{0}'", roomid.ConvertGuid());
@@ -717,6 +821,20 @@ namespace HotelManager.Helper
             }
             
 
+        }
+        //再修改有房客的房间为维修房和锁房时执行的退房操作
+        public static void exitRoom2(Guid roomid,int state)
+        {
+            string changefinishtrans_sql = string.Format("update finishtranses set IsDoing = false where roomid = '{0}'", roomid.ConvertGuid());
+            string changeroom_sql = string.Format("update rooms set roomstate = {1} where  UPPER(HEX([roomID]))='{0}'", roomid.ConvertGuid(),state);
+            using (RetailContext context = new RetailContext())
+            {
+                context.Database.ExecuteSqlCommand(changefinishtrans_sql);
+                context.Database.ExecuteSqlCommand(changeroom_sql);
+                context.SaveChanges();
+            }
+            Pg_RoomStateViewModel infoViewModel = thispage.DataContext as Pg_RoomStateViewModel;
+            infoViewModel.ReFlashRoomInfo();
         }
         public static void SaveChanges(Grid grid)
         {
@@ -737,6 +855,27 @@ namespace HotelManager.Helper
                 context.SaveChanges();
             }
         }
-        
+        #endregion
+
+        #region 公用方法
+        public static List<Room> GetTransingRoom()
+        {
+            using (RetailContext context = new RetailContext())
+            {
+                string sql = string.Format("select * from rooms where UPPER(HEX([roomID])) in (select roomid from finishtranses where IsDoing = true)");
+                return context.Database.SqlQuery<Room>(sql).ToList();
+            }
+        }
+
+        public static List<Room> GetBookingRoom()
+        {
+            using (RetailContext context = new RetailContext())
+            {
+                string sql = string.Format("select * from rooms where UPPER(HEX([roomID])) in (select roomid from finishbooks where IsBook = true)");
+                return context.Database.SqlQuery<Room>(sql).ToList();
+            }
+        }
+        #endregion
+
     }
 }

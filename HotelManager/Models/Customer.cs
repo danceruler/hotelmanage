@@ -20,8 +20,9 @@ namespace HotelManager.Models
         public string vipid { get; set; }
         public string foodcoupon1 { get; set; }
         public string remarks { get; set; }
-
-
+        public string viptypeID { get; set; }
+        public string viptypename { get; set; }
+        public string password { get; set; }
 
     }
 }

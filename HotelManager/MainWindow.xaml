@@ -43,6 +43,6 @@
                 <TextBlock Text="Manager" />
             </ComboBoxItem>
         </ComboBox>
-        <panuon:PUButton Grid.Column="2" Grid.Row="2" Content="Test2" Click="PUButton_Click"></panuon:PUButton>
+        <panuon:PUButton Grid.Column="2" Grid.Row="2" Content="ToTableWindow" Click="ToTableWindow"></panuon:PUButton>
     </Grid>
 </Window>

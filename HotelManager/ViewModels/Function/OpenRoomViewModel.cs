@@ -12,15 +12,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace HotelManager.ViewModels.Function
 {
     public class OpenRoomViewModel
     {
         OpenRoomWindow thiswindow;
-
+        List<Finishbook> Booktrans = new List<Finishbook>();
         public OpenRoomViewModel(OpenRoomWindow window)
         {
             this.thiswindow = window;
@@ -38,6 +40,63 @@ namespace HotelManager.ViewModels.Function
                 Value = "女",
             });
             ComboBoxItemsList = new BindableCollection<PUComboBoxItemModel>(comboList);
+            Booktrans = checkIsBook(thiswindow.thisroom.roomID);
+            using (RetailContext context = new RetailContext())
+            {
+                if (Booktrans.Count() > 0)
+                {
+                    string sql = string.Format("select * from customers where identification = '{0}'", Booktrans[0].customID);
+                    List<Customer> customers = context.Database.SqlQuery<Customer>(sql).ToList();
+                    thiswindow.booktip.Margin = new Thickness(0, 10, 0, 0);
+                    thiswindow.booktip.Content = "该房已被预定,信息如下";
+                    thiswindow.booktip.HorizontalAlignment = HorizontalAlignment.Center;
+                    thiswindow.booktip.Foreground = Brushes.Red;
+                    thiswindow.customname.Text = customers[0].Name;
+                    thiswindow.customname.IsReadOnly = true;
+                    thiswindow.customsex.Text = customers[0].sex;
+                    thiswindow.customsex.IsEnabled = false;
+                    thiswindow.customIdentify.Text = customers[0].identification;
+                    thiswindow.customIdentify.IsReadOnly = true;
+                    switch (Booktrans[0].opentype)
+                    {
+                        case "普通房":
+                            thiswindow.normaltype.IsChecked = true;
+                            break;
+                        case "钟点房":
+                            thiswindow.hourtype.IsChecked = true;
+                            break;
+                        case "凌晨房":
+                            thiswindow.morningtype.IsChecked = true;
+                            break;
+                        case "半天房":
+                            thiswindow.halfdaytype.IsChecked = true;
+                            break;
+                        default:
+                            break;
+                    }
+                    switch (Booktrans[0].paytype)
+                    {
+                        case "支付宝":
+                            thiswindow.alipay.IsChecked = true;
+                            break;
+                        case "微信":
+                            thiswindow.wechat.IsChecked = true;
+                            break;
+                        case "现金":
+                            thiswindow.chash.IsChecked = true;
+                            break;
+                        case "其他":
+                            thiswindow.other.IsChecked = true;
+                            break;
+                        default:
+                            break;
+                    }
+                    thiswindow.InTime.Text = Booktrans[0].expectstartime;
+                    thiswindow.OutTime.Text = Booktrans[0].expectendtime;
+                    thiswindow.money.Text = Booktrans[0].money;
+                }
+            }
+            
         }
         public BindableCollection<PUComboBoxItemModel> ComboBoxItemsList
         {
@@ -53,6 +112,7 @@ namespace HotelManager.ViewModels.Function
 
         public void OpenRoom()
         {
+           
             var check = checkedout();
             if(check == "ok")
             {
@@ -103,25 +163,36 @@ namespace HotelManager.ViewModels.Function
                     if (thiswindow.other.IsChecked == true) payType = "其他";
                     Finishtrans finishtrans = new Finishtrans()
                     {
+
                         transID = Guid.NewGuid(),
                         roomID = thiswindow.thisroom.roomID.ConvertGuid(),
                         customID = thiswindow.customIdentify.Text,
                         opentype = openType,
                         balance = thiswindow.money.Text,
                         startime = thiswindow.InTime.Text,
-                        endtime = thiswindow.OutTime.Text,
+                        expectendtime = thiswindow.OutTime.Text,
                         transtime = DateTime.Now.ToString("yy-MM-dd HH:mm:ss"),
                         money = thiswindow.money.Text,
                         paytype = payType,
                         IsDoing = true,
                     };
+                    if (Booktrans.Count() > 0)
+                    {
+                        finishtrans.bookID = Booktrans[0].transID.ConvertGuid();
+                        string changebooksql = "update finishbooks set IsBook = false,formalID = '"+finishtrans.transID.ConvertGuid()+"' where UPPER(HEX([transID]))='" + Booktrans[0].transID.ConvertGuid() + "'";
+                        context.Database.ExecuteSqlCommand(changebooksql);
+                    }
                     context.Finishtranses.Add(finishtrans);
-                    string sql = string.Format("update Rooms  set roomstate = {1} where UPPER(HEX([roomID]))='{0}' ",thiswindow.thisroom.roomID.ConvertGuid(), "1");
+                    string sql = string.Format("update Rooms  set roomstate = {1} where UPPER(HEX([roomID]))='{0}' ", thiswindow.thisroom.roomID.ConvertGuid(), "1");
                     context.Database.ExecuteSqlCommand(sql);
+
                     context.SaveChanges();
+                    
+                    
                 }
                 Pg_RoomStateViewModel infoViewModel = thiswindow.fatherpage.DataContext as Pg_RoomStateViewModel;
                 infoViewModel.ReFlashRoomInfo();
+                
                 new MessageWindow(this.thiswindow, "开房成功",true).ShowDialog();
                 
             }
@@ -163,7 +234,15 @@ namespace HotelManager.ViewModels.Function
             }
             return "ok";
         }
-
+        public List<Finishbook> checkIsBook(Guid roomid)
+        {
+            using (RetailContext context = new RetailContext())
+            {
+                string sql = string.Format("select * from finishbooks where IsBook = true and roomid = '{0}'", roomid.ConvertGuid());
+                List<Finishbook> finishbooks = context.Database.SqlQuery<Finishbook>(sql).ToList();
+                return finishbooks;
+            }
+        }
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;

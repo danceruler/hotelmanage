@@ -23,6 +23,21 @@ namespace HotelManager.Views.FunctionWindow
         {
             InitializeComponent(); 
             Message.Text = message;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        }
+        public MessageWindow(string message, string title,string buttoncontent,int height,int width,RoutedEventHandler routedEvent)
+        {
+            
+            InitializeComponent();
+            Message.Text = message;
+            this.Title = title;
+            this.Width = width;
+            this.Height = height;
+            this.Button.Click -= Button_Click;
+            this.Button.Click += routedEvent;
+            this.Button.Click += Button_Click;
+            this.Button.Content = buttoncontent;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         public MessageWindow(Window onwer,string message)
         {
@@ -31,7 +46,7 @@ namespace HotelManager.Views.FunctionWindow
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             Message.Text = message;
         }
-
+        
         public MessageWindow(Window onwer, string message,bool isclose)
         {
             InitializeComponent();

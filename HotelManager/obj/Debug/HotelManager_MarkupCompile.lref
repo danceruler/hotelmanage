@@ -2,6 +2,8 @@
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\App.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\MainWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\AddRoomWindow.xaml;;
+FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\BookRoomWindow.xaml;;
+FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\ChangeRoomStateWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\DataPickerWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\EditRoomStateWindow.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\FunctionWindow\EditRoomTypeWindow.xaml;;
@@ -12,4 +14,7 @@ FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\MainMenuWindow.
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\Pages\BsManage\BsManagerPage.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.xaml;;
 FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\MainMenu\Pages\RoomState\RoomStatePage.xaml;;
+FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\TablePage\TestableWindow.xaml;;
+FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\TablePage\ValueRule_fulldayPage.xaml;;
+FF:\demo\HotelManage\HotelManageDemo\HotelManager\Views\TablePage\Function\ValueRule_fulldayinfo_Window.xaml;;
 

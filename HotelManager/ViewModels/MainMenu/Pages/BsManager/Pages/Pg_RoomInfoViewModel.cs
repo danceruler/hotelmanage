@@ -139,7 +139,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
             {
                 RoomHelper.LoadRoomInfoByWhat(thispage,thispage.roomcardgrid, 1, "row", "0", "", "");
                
-                foreach (UIElement UIE in thispage.roominfobtgrid.Children)
+                foreach (UIElement UIE in thispage.buttonstackpanel.Children)
                 {
                     UIE.Visibility = Visibility.Hidden;
                 }
@@ -151,7 +151,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
                 RoomHelper.SaveChanges(thispage.roomcardgrid);
                 ReFlashRoomInfo();
                 thispage.IsEdit.Content = "进入编辑模式";
-                foreach (UIElement UIE in thispage.roominfobtgrid.Children)
+                foreach (UIElement UIE in thispage.buttonstackpanel.Children)
                 {
                     UIE.Visibility = Visibility.Visible;
                 }

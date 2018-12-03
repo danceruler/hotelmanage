@@ -1,0 +1,53 @@
+﻿<Window x:Class="HotelManager.Views.TablePage.Function.ValueRule_fulldayinfo_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelManager.Views.TablePage.Function"
+        xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+        mc:Ignorable="d"
+        Title="ValueRule_fulldayinfo_Window" Height="450" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition Height="110" />
+            <RowDefinition Height="230" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Height="30" Width="500" HorizontalAlignment="Center" Content="------------------------------------------基础信息---------------------------------------------"></Label>
+            <StackPanel Orientation="Horizontal" Height="30" Width="500">
+                <Label Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0">名称：</Label>
+                <panuon:PUTextBox Name="name" Height="30" Width="100" BorderCornerRadius="2" VerticalAlignment="Center" HorizontalAlignment="Center" ></panuon:PUTextBox>
+                <Label Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" >*</Label>
+            </StackPanel>
+            <StackPanel Height="30" Width="500" Orientation="Horizontal">
+                <Label Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0">描述：</Label>
+                <panuon:PUTextBox Name="describe" Height="30" Width="400" BorderCornerRadius="2" VerticalAlignment="Center" HorizontalAlignment="Center" ></panuon:PUTextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Height="30" Width="500" HorizontalAlignment="Center" Content="------------------------------------------退房标准---------------------------------------------"></Label>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <panuon:PURadioButton Margin="20,0,0,0"  RadioButtonStyle="Classic" Content="固定时间退房模式，退房时间：" Checked="PURadioButton_Checked"></panuon:PURadioButton>
+                    <panuon:PURadioButton Margin="20,10,0,0"  RadioButtonStyle="Classic" Content="24小时退房模式" ></panuon:PURadioButton>
+                    <panuon:PURadioButton Margin="20,10,0,0"  RadioButtonStyle="Classic" Content="24小时轮转计费退房模式" Checked="PURadioButton_Checked_1"></panuon:PURadioButton>
+                </StackPanel>
+                <ComboBox Height="20" Width="50" VerticalAlignment="Top" FontSize="9" Text="100"></ComboBox>
+                <Label Height="20" Width="20" VerticalAlignment="Top" VerticalContentAlignment="Center" Content="时" FontSize="9"></Label>
+                <ComboBox Height="20" Width="50" VerticalAlignment="Top" FontSize="9" Text="100"></ComboBox>
+                <Label Height="20" Width="20" VerticalAlignment="Top" VerticalContentAlignment="Center" Content="分" FontSize="9"></Label>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Name="valuerulepanel" Grid.Row="2">
+            <Label Height="30" Width="500" HorizontalAlignment="Center" Content="------------------------------------------计费标准---------------------------------------------"></Label>
+            <StackPanel Name="valuerule1" Visibility="Hidden">
+                <Label Name="test1" Content="test1"></Label>
+            </StackPanel>
+            <StackPanel Name="valuerule2" Visibility="Hidden">
+                <Label>test2</Label>
+            </StackPanel>
+        </StackPanel>
+        
+    </Grid>
+</Window>

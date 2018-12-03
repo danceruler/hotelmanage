@@ -67,8 +67,7 @@ namespace HotelManager.Views.FunctionWindow
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.roomid = roomid;
             this.normaltype.IsChecked = true;
-            viewModel = new OpenRoomViewModel(this);
-            this.DataContext = viewModel;
+            
             this.fatherpage = page;
             using (RetailContext context = new RetailContext())
             {
@@ -78,7 +77,8 @@ namespace HotelManager.Views.FunctionWindow
             }
             this.roomname.Text = thisroom.roomname;
             this.roomtype.Content = thisroom.roomtype;
-
+            viewModel = new OpenRoomViewModel(this);
+            this.DataContext = viewModel;
             isclosetrans = 0;
         }
 
@@ -166,12 +166,26 @@ namespace HotelManager.Views.FunctionWindow
         
         private void SetInTime(object sender, RoutedEventArgs e)
         {
-            new DataPickerWindow(this, this.InTime, out DataPickerViewModel viewmodel).ShowDialog();
+            if (this.normaltype.IsChecked == true)
+            {
+                new DataPickerWindow(this, this.InTime, out DataPickerViewModel viewmodel, DatePickerModes.DateOnly).ShowDialog();
+            }
+            else if (this.hourtype.IsChecked == true || this.halfdaytype.IsChecked == true || this.morningtype.IsChecked == true)
+            {
+                new DataPickerWindow(this, this.InTime, out DataPickerViewModel viewmodel, DatePickerModes.DateTime).ShowDialog();
+            }
         }
 
         private void SetOutTime(object sender, RoutedEventArgs e)
         {
-            new DataPickerWindow(this, this.OutTime, out DataPickerViewModel viewmodel).ShowDialog();
+            if (this.normaltype.IsChecked == true)
+            {
+                new DataPickerWindow(this, this.OutTime, out DataPickerViewModel viewmodel, DatePickerModes.DateOnly).ShowDialog();
+            }
+            else if (this.hourtype.IsChecked == true || this.halfdaytype.IsChecked == true || this.morningtype.IsChecked == true)
+            {
+                new DataPickerWindow(this, this.OutTime, out DataPickerViewModel viewmodel, DatePickerModes.DateTime).ShowDialog();
+            }
         }
 
         private void numbertextbox(object sender, TextCompositionEventArgs e)

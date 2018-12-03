@@ -26,5 +26,6 @@ namespace HotelManager.Models
         public string money { get; set; }
         public string expectendtime { get; set; }
         public bool IsDoing { get; set; }
+        public string bookID { get; set; }
     }
 }

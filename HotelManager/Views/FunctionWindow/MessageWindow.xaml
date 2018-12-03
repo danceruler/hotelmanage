@@ -8,7 +8,7 @@
         Title="提示" Height="150" Width="220"
         ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="60"/>
@@ -17,10 +17,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Label   Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Name="Message" TextWrapping="Wrap"  FontSize="12" />
-        </Label>
-        <Button Grid.ColumnSpan="3" Grid.Row="2" Content="确认" Width="100" Height="30" Click="Button_Click"></Button>
+        </Grid.ColumnDefinitions>-->
+        <StackPanel>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0">
+                <TextBlock Name="Message" TextWrapping="Wrap"  FontSize="12" />
+            </Label>
+            <Button Name="Button" Content="确认" Margin="0,20,0,0" Width="100" Height="30" Click="Button_Click"></Button>
+        </StackPanel>
+        
     </Grid>
 </Window>
