@@ -1,4 +1,5 @@
 ﻿using HotelManager.ViewModels.TablePage;
+using HotelManager.Views.TablePage.Function;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,13 @@ namespace HotelManager.Views.TablePage
             this.thisframe = frame;
             this.Height = frame.Height;
             this.Width = frame.Width;
+        }
+
+        private void Change(object sender, MouseButtonEventArgs e)
+        {
+            Label label = sender as Label;
+            //MessageBox.Show(label.Tag.GetType().ToString());
+            new ValueRule_fulldayinfo_Window(this, (Guid)label.Tag).ShowDialog();
         }
     }
 }

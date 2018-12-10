@@ -6,15 +6,21 @@
         xmlns:local="clr-namespace:HotelManager.Views.TablePage.Function"
         xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
         mc:Ignorable="d"
-        Title="ValueRule_fulldayinfo_Window" Height="450" Width="500">
+        Title="ValueRule_fulldayinfo_Window" Height="460" Width="500"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90" />
             <RowDefinition Height="110" />
             <RowDefinition Height="230" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <Label Height="30" Width="500" HorizontalAlignment="Center" Content="------------------------------------------基础信息---------------------------------------------"></Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="480" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Height="30" Width="480" HorizontalAlignment="Center" Content="------------------------------------------基础信息---------------------------------------------"></Label>
             <StackPanel Orientation="Horizontal" Height="30" Width="500">
                 <Label Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0">名称：</Label>
                 <panuon:PUTextBox Name="name" Height="30" Width="100" BorderCornerRadius="2" VerticalAlignment="Center" HorizontalAlignment="Center" ></panuon:PUTextBox>
@@ -25,27 +31,113 @@
                 <panuon:PUTextBox Name="describe" Height="30" Width="400" BorderCornerRadius="2" VerticalAlignment="Center" HorizontalAlignment="Center" ></panuon:PUTextBox>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Label Height="30" Width="500" HorizontalAlignment="Center" Content="------------------------------------------退房标准---------------------------------------------"></Label>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Height="30" Width="480" HorizontalAlignment="Center" Content="------------------------------------------退房标准---------------------------------------------"></Label>
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <panuon:PURadioButton Margin="20,0,0,0"  RadioButtonStyle="Classic" Content="固定时间退房模式，退房时间：" Checked="PURadioButton_Checked"></panuon:PURadioButton>
-                    <panuon:PURadioButton Margin="20,10,0,0"  RadioButtonStyle="Classic" Content="24小时退房模式" ></panuon:PURadioButton>
-                    <panuon:PURadioButton Margin="20,10,0,0"  RadioButtonStyle="Classic" Content="24小时轮转计费退房模式" Checked="PURadioButton_Checked_1"></panuon:PURadioButton>
+                    <panuon:PURadioButton Name="radiobutton1" Margin="20,0,0,0"  RadioButtonStyle="Classic" Content="固定时间退房模式，退房时间：" Checked="PURadioButton_Checked"></panuon:PURadioButton>
+                    <panuon:PURadioButton Name="radiobutton2" Margin="20,10,0,0"  RadioButtonStyle="Classic" Content="24小时退房模式" Checked="PURadioButton_Checked2"></panuon:PURadioButton>
+                    <panuon:PURadioButton Name="radiobutton3" Margin="20,10,0,0"  RadioButtonStyle="Classic" Content="24小时轮转计费退房模式" Checked="PURadioButton_Checked_1"></panuon:PURadioButton>
                 </StackPanel>
-                <ComboBox Height="20" Width="50" VerticalAlignment="Top" FontSize="9" Text="100"></ComboBox>
+                <ComboBox Name="exitroom_time_hour" Height="20" Width="50" VerticalAlignment="Top" FontSize="12" Text="100"></ComboBox>
                 <Label Height="20" Width="20" VerticalAlignment="Top" VerticalContentAlignment="Center" Content="时" FontSize="9"></Label>
-                <ComboBox Height="20" Width="50" VerticalAlignment="Top" FontSize="9" Text="100"></ComboBox>
+                <ComboBox Name="exitroom_time_minute" Height="20" Width="50" VerticalAlignment="Top" FontSize="12" Text="100"></ComboBox>
                 <Label Height="20" Width="20" VerticalAlignment="Top" VerticalContentAlignment="Center" Content="分" FontSize="9"></Label>
             </StackPanel>
         </StackPanel>
-        <StackPanel Name="valuerulepanel" Grid.Row="2">
-            <Label Height="30" Width="500" HorizontalAlignment="Center" Content="------------------------------------------计费标准---------------------------------------------"></Label>
-            <StackPanel Name="valuerule1" Visibility="Hidden">
-                <Label Name="test1" Content="test1"></Label>
+        <StackPanel Name="valuerulepanel" Grid.Row="2" Grid.Column="1">
+            <Label Height="30" Width="480" HorizontalAlignment="Center" Content="------------------------------------------计费标准---------------------------------------------"></Label>
+            <StackPanel Name="valuerule1" Height="160" Visibility="Visible">
+                <StackPanel Orientation="Horizontal" Height="30">
+                    <Label Content="入住起步收费" Margin="25,0,0,0"></Label>
+                    <panuon:PUTextBox Name="starthalfprice_time_tb" BorderCornerRadius="2" Width="80" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False"></panuon:PUTextBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <Label Content="分钟收起步房费"></Label>
+                    <panuon:PUTextBox Name="startprice_time_tb" BorderCornerRadius="2" Width="80" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False"></panuon:PUTextBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <Label Content="分钟收全部房费"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="30">
+                    <Label Content="确定全日房费时间" Margin="0,0,0,0"></Label>
+                    <ComboBox Name="confirm_fulldayprice_time_type_cb" Width="80" Height="22" VerticalAlignment="Center"></ComboBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <StackPanel Name="son_stackpanel_101" Orientation="Horizontal" Width="130">
+                        <panuon:PUTextBox Name="confirm_fulldayprice_time_tb" BorderCornerRadius="2" Width="80" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False"></panuon:PUTextBox>
+                        <Label Content="*" Foreground="Red"></Label>
+                        <Label Content="分钟"></Label>
+                    </StackPanel>
+                    <StackPanel Name="son_stackpanel_102" Orientation="Horizontal" Width="0">
+                        <ComboBox Name="confirm_fulldayprice_time_hour_cb" Width="50" Height="22" VerticalAlignment="Center"></ComboBox>
+                        <Label Content="时"></Label>
+                        <ComboBox Name="confirm_fulldayprice_time_minute_cb" Width="50" Height="22" VerticalAlignment="Center"></ComboBox>
+                        <Label Content="分"></Label>
+                    </StackPanel>
+                </StackPanel>
+                <Label Height="1" Background="Black"></Label>
+                <StackPanel Orientation="Horizontal" Height="30">
+                    <Label Content="退房超时收费:超过" Margin="0,0,0,0" FontSize="11.5"></Label>
+                    <panuon:PUTextBox Name="after_exitroom_charge_time_tb" BorderCornerRadius="2" Width="70" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False"></panuon:PUTextBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <Label Content="分钟开始加收。按" FontSize="11.5"></Label>
+                    <ComboBox Name="after_exitroom_charge_type_cb" Width="70" Height="22" VerticalAlignment="Center"></ComboBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <Label Content="加收" FontSize="11.5"></Label>
+                    <CheckBox Name="IsSeal_ckb" VerticalAlignment="Center" Content="加收封顶" FontSize="11" Visibility="Hidden"></CheckBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="30">
+                    <Label Content="加收全日租时间" Margin="15,0,0,0" FontSize="11.5"></Label>
+                    <ComboBox Name="addprice_fullday_type_cb" Width="100" Height="22" VerticalAlignment="Center"></ComboBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <StackPanel Name="son_stackpanel_201" Orientation="Horizontal" Width="130">
+                        <panuon:PUTextBox Name="add_fullday_time_tb" BorderCornerRadius="2" Width="70" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False"></panuon:PUTextBox>
+                        <Label Content="*" Foreground="Red"></Label>
+                        <Label Content="分钟" FontSize="11.5"></Label>
+                    </StackPanel>
+                    <StackPanel Name="son_stackpanel_202" Orientation="Horizontal" Width="0">
+                        <ComboBox Name="add_fullday_time_hour_cb" Width="50" Height="22" VerticalAlignment="Center"></ComboBox>
+                        <Label Content="时"></Label>
+                        <ComboBox Name="add_fullday_time_minute_cb" Width="50" Height="22" VerticalAlignment="Center"></ComboBox>
+                        <Label Content="分"></Label>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="30">
+                    <Label Content="确定加收全日租房费时间" Margin="0,0,0,0" FontSize="11.5"></Label>
+                    <ComboBox Name="confirm_addprice_fullday_type_cb" Width="100" Height="22" VerticalAlignment="Center"></ComboBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <StackPanel Name="son_stackpanel_301" Orientation="Horizontal" Width="130">
+                        <panuon:PUTextBox Name="confirm_add_fullday_time_tb" BorderCornerRadius="2" Width="70" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False"></panuon:PUTextBox>
+                        <Label Content="*" Foreground="Red"></Label>
+                        <Label Content="分钟" FontSize="11.5"></Label>
+                    </StackPanel>
+                    <StackPanel Name="son_stackpanel_302" Orientation="Horizontal" Width="0">
+                        <ComboBox Name="confirm_add_fullday_time_hour_cb" Width="50" Height="22" VerticalAlignment="Center"></ComboBox>
+                        <Label Content="时"></Label>
+                        <ComboBox Name="confirm_add_fullday_time_minute_cb" Width="50" Height="22" VerticalAlignment="Center"></ComboBox>
+                        <Label Content="分"></Label>
+                    </StackPanel>
+                    
+                </StackPanel>
             </StackPanel>
-            <StackPanel Name="valuerule2" Visibility="Hidden">
-                <Label>test2</Label>
+            <StackPanel Name="valuerule2" Visibility="Visible" Height="0">
+                <StackPanel Orientation="Horizontal" Height="40">
+                    <Label Content="起步房费有效时长：" Margin="30,0,0,0" FontSize="12"></Label>
+                    <panuon:PUTextBox Name="_24rotate_startprice_validtime_tb" BorderCornerRadius="2" Width="70" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False" ></panuon:PUTextBox>
+                    <Label Content="*" Foreground="Red"></Label>
+                    <Label Content="分钟" FontSize="12"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="40">
+                    <Label Content="超时按小时收费：" Margin="30,0,0,0" FontSize="12"></Label>
+                    <CheckBox Name="IsSeal_ckb2" VerticalAlignment="Center" Content="是否加收封顶"></CheckBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="40">
+                    <panuon:PUTextBox Name="_24rorate_fullprice_time_tb" BorderCornerRadius="2" Margin="30,0,0,0" Width="70" Height="25" PreviewTextInput="number_textbox" InputMethod.IsInputMethodEnabled="False"></panuon:PUTextBox>
+                    <Label Content="*" Foreground="Red" VerticalAlignment="Center"></Label>
+                    <Label Content="分钟,记全价房费" FontSize="12" VerticalAlignment="Center"></Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <panuon:PUButton Content="确认" BorderCornerRadius="2" Margin="310,0,0,0" Width="70" Height="25" Click="Confirm"></panuon:PUButton>
+                <panuon:PUButton Content="取消" BorderCornerRadius="2" Margin="20,0,0,0" Width="70" Height="25" Click="Cancel"></panuon:PUButton>
             </StackPanel>
         </StackPanel>
         

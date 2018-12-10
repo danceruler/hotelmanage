@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace HotelManager.ViewModels.TablePage
@@ -24,6 +25,11 @@ namespace HotelManager.ViewModels.TablePage
         public ValueRule_fullday_ViewModel(ValueRule_fulldayPage page)
         {
             thispage = page;
+            ReFlashTable();
+        }
+
+        public void ReFlashTable()
+        {
             pagenumber = 1;
             using (RetailContext context = new RetailContext())
             {
@@ -34,6 +40,7 @@ namespace HotelManager.ViewModels.TablePage
                 string sql = string.Format("select * from ValueRule_fulldays");
                 var needlist = context.Database.SqlQuery<ValueRule_fullday>(sql).ToList();
                 ItemsList = new ObservableCollection<ValueRule_fullday>(needlist);
+                thispage.datagrid.ItemsSource = ItemsList;
             }
         }
 
@@ -52,11 +59,12 @@ namespace HotelManager.ViewModels.TablePage
         {
             get { return new QueryCommand(ToValueRule_fulldayWindow); }
         }
-
+    
         public void ToValueRule_fulldayWindow()
         {
-            new ValueRule_fulldayinfo_Window(thispage.thisframe.Parent as Window).ShowDialog();
+            new ValueRule_fulldayinfo_Window(thispage).ShowDialog();
         }
+        
         #endregion
 
         #region INotifyPropertyChanged Members

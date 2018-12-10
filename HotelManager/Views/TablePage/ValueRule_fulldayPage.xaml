@@ -14,8 +14,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <panuon:PUButton Grid.Row="0" Width="100" Height="30" Command="{Binding Path=ToValueRulefulldayWindowCommand}"></panuon:PUButton>
-        <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding ItemsList}" Background="White">
+        <panuon:PUButton Content="添加" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,0" Grid.Row="0" Width="80" Height="25" Command="{Binding Path=ToValueRulefulldayWindowCommand}"></panuon:PUButton>
+        <DataGrid Name="datagrid" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding Path=ItemsList}" Background="White">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding name}"
                                                 Header="名称"
@@ -48,7 +48,7 @@
                 <DataGridTextColumn Binding="{Binding describe}"
                                                 Header="描述"
                                                 Width="*" />
-                <!--<DataGridTemplateColumn CellStyle="{StaticResource HoverToShowCell}"
+                <DataGridTemplateColumn CellStyle="{StaticResource HoverToShowCell}"
                                                 Header="OPERATE"
                                                 Width="*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -58,12 +58,13 @@
                                                    Margin="0,0,0,0"
                                                    Cursor="Hand"
                                                    Tag="{Binding ID}"
-                                                   cm:Message.Attach="[Event MouseLeftButtonDown]=[Action Delete($this.Tag)]">删除</Label>
+                                                   MouseDown="Change"
+                                                   >删除</Label>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
-                </DataGridTemplateColumn>-->
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal">
