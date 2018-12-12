@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManager", "HotelManager\HotelManager.csproj", "{8F6FBA21-6C74-424E-BC0C-D95C46E03291}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{5233F36F-1369-4706-90F8-73EC74C847C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8F6FBA21-6C74-424E-BC0C-D95C46E03291}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F6FBA21-6C74-424E-BC0C-D95C46E03291}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F6FBA21-6C74-424E-BC0C-D95C46E03291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5233F36F-1369-4706-90F8-73EC74C847C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5233F36F-1369-4706-90F8-73EC74C847C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5233F36F-1369-4706-90F8-73EC74C847C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5233F36F-1369-4706-90F8-73EC74C847C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

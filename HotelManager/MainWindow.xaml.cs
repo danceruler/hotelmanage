@@ -21,6 +21,7 @@ using HotelManager.Views.FunctionWindow;
 using HotelManager.ViewModels.Function;
 using HotelManager.Helper;
 using HotelManager.Views.TablePage;
+using Newtonsoft.Json;
 
 namespace HotelManager
 {
@@ -39,6 +40,7 @@ namespace HotelManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ToServerDataHelper.SynchronizeTransInfo();
             //string path = AppDomain.CurrentDomain.BaseDirectory;
             //string rootpath = path.Substring(0, path.LastIndexOf("bin"));
             //rootpath += "AppData\\xml\\XMLFile1.xml";
@@ -46,28 +48,28 @@ namespace HotelManager
             //xmlHelper.SelectAttribute(rootpath);
             //double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
             //double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
-            RetailContext context = new RetailContext();
-            //List<Room> list = context.Rooms.ToList();
-            //Guid test = list[0].roomID;
-            //string t = ConvertGuid(test);
-            //Room room = context.Database.SqlQuery<Room>(string.Format("SELECT * FROM Rooms WHERE UPPER(HEX([roomID]))='{0}'", "D606C4B8AA28DF4BA6D45E48750853A9")).ToList()[0];
-            //MessageBox.Show(room.roomname);
-            //string sql = string.Format("update Rooms  set roomstate = {1} where UPPER(HEX([roomID]))='{0}' ", "D606C4B8AA28DF4BA6D45E48750853A9", "1");
-            //context.Database.ExecuteSqlCommand(sql);
+            //RetailContext context = new RetailContext();
+            ////List<Room> list = context.Rooms.ToList();
+            ////Guid test = list[0].roomID;
+            ////string t = ConvertGuid(test);
+            ////Room room = context.Database.SqlQuery<Room>(string.Format("SELECT * FROM Rooms WHERE UPPER(HEX([roomID]))='{0}'", "D606C4B8AA28DF4BA6D45E48750853A9")).ToList()[0];
+            ////MessageBox.Show(room.roomname);
+            ////string sql = string.Format("update Rooms  set roomstate = {1} where UPPER(HEX([roomID]))='{0}' ", "D606C4B8AA28DF4BA6D45E48750853A9", "1");
+            ////context.Database.ExecuteSqlCommand(sql);
+            ////context.SaveChanges();
+            //for(int i = 2; i < 100; i++)
+            //{
+            //    ValueRule_fullday valueRule_Fullday = new ValueRule_fullday()
+            //    {
+            //        ID = Guid.NewGuid(),
+            //        name = "test"+i,
+            //        starthalfprice_time = i.ToString(),
+            //        startprice_time = i.ToString(),
+            //    };
+            //    context.ValueRule_fulldays.Add(valueRule_Fullday);
+            //}
+
             //context.SaveChanges();
-            for(int i = 2; i < 100; i++)
-            {
-                ValueRule_fullday valueRule_Fullday = new ValueRule_fullday()
-                {
-                    ID = Guid.NewGuid(),
-                    name = "test"+i,
-                    starthalfprice_time = i.ToString(),
-                    startprice_time = i.ToString(),
-                };
-                context.ValueRule_fulldays.Add(valueRule_Fullday);
-            }
-            
-            context.SaveChanges();
 
 
             //context.RoomTypes.Add(new RoomType() { Cap = 1, Name = "单人间",ID=Guid.NewGuid(), CanChange=false, IsChecked=false });

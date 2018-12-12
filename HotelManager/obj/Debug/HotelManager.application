@@ -8,14 +8,14 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="HotelManager.exe.manifest" size="13452">
+    <dependentAssembly dependencyType="install" codebase="HotelManager.exe.manifest" size="14730">
       <assemblyIdentity name="HotelManager.exe" version="1.0.0.26" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>fvFmhK9SOHus1hqW0VlHrk/NteE=</dsig:DigestValue>
+        <dsig:DigestValue>XHhr5+Df2o6tCUdlyinh1fo5apQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

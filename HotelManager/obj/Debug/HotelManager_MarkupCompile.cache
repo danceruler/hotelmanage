@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\
 HotelManager
 none
 false
 DEBUG;TRACE
-F:\demo\HotelManage\HotelManageDemo\HotelManager\App.xaml
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\App.xaml
 17628287381
 7-1433581389
-51-1294924927
-241135564667
+541683280177
+26-1630051570
 MainWindow.xaml;Views\TablePage\Function\ValueRule_fulldayinfo_Window.xaml;Views\TablePage\TestableWindow.xaml;Views\TablePage\ValueRule_fulldayPage.xaml;Views\FunctionWindow\AddRoomWindow.xaml;Views\FunctionWindow\BookRoomWindow.xaml;Views\FunctionWindow\ChangeRoomStateWindow.xaml;Views\FunctionWindow\DataPickerWindow.xaml;Views\FunctionWindow\EditRoomStateWindow.xaml;Views\FunctionWindow\EditRoomTypeWindow.xaml;Views\FunctionWindow\MessageWindow.xaml;Views\FunctionWindow\OpenRoomWindow.xaml;Views\Login\LoginWindow.xaml;Views\MainMenu\MainMenuWindow.xaml;Views\MainMenu\Pages\BsManage\BsManagerPage.xaml;Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.xaml;Views\MainMenu\Pages\RoomState\RoomStatePage.xaml;
 
 False
