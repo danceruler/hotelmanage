@@ -15,6 +15,7 @@ namespace HotelManager.Models
         {
         }
         public DbSet<Person> Persons { set; get; }
+        public DbSet<PersonType> PersonTypes { set; get; }
         public DbSet<Customer> Customers { set; get; }
         public DbSet<Room> Rooms { set; get; }
         public DbSet<Finishtrans> Finishtranses { set; get; }

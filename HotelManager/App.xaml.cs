@@ -13,6 +13,17 @@ namespace HotelManager
     /// </summary>
     public partial class App : Application
     {
-        
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            // 定义应用程序启动时要处理的内容 
+            if (FileHelper.IsExistFile(XmlHelper.PersonXmlPath))
+            {
+                FileHelper.ClearFile(XmlHelper.PersonXmlPath);
+            }
+            else
+            {
+                FileHelper.CreateFileContent(XmlHelper.PersonXmlPath, "");
+            }
+        }
     }
 }

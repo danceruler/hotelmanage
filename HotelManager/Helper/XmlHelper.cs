@@ -1,16 +1,40 @@
-﻿using System;
+﻿using HotelManager.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace HotelManager.Helper
 {
-    public class XmlHelper
+    public static class XmlHelper
     {
-        public void CreatXmlTree(string xmlPath)
+        public static string OPath = System.AppDomain.CurrentDomain.BaseDirectory;
+        public static string PersonXmlPath = OPath + "person.xml";
+
+        public static void WriteNowPerson(Person person)
+        {
+            
+            XmlSerializer serializer = new XmlSerializer(person.GetType());
+            TextWriter writer = new StreamWriter("person.xml");
+            serializer.Serialize(writer, person);
+            writer.Close();
+        }
+
+        public static void SelectNowPerson()
+        {
+            Person p = new Person();
+            XmlSerializer serializer = new XmlSerializer(p.GetType());
+            FileStream stream = new FileStream(PersonXmlPath, FileMode.Open);
+            Person person = (Person)serializer.Deserialize(stream);
+            stream.Close();
+        }
+
+        public static void CreatXmlTree(string xmlPath)
         {
             XElement xElement = new XElement(
                 new XElement("Colors",
@@ -39,8 +63,7 @@ namespace HotelManager.Helper
             xw.Flush();
             xw.Close();
         }
-
-        public void SelectAttribute(string xmlPath)
+        public static void SelectAttribute(string xmlPath)
         {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlPath);

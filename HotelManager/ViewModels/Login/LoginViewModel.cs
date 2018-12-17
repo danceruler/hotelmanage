@@ -9,6 +9,9 @@ using System.Windows;
 using System.Windows.Input;
 using HotelManager.Models;
 using HotelManager.Views.FunctionWindow;
+using HotelManager.Views.MainMenu;
+using HotelManager.ViewModels.MainMenu;
+using HotelManager.Helper;
 
 namespace HotelManager.ViewModels.Login
 {
@@ -36,7 +39,16 @@ namespace HotelManager.ViewModels.Login
                 if (list.Count() > 0)
                 {
                     Person p = list[0];
-                    new MessageWindow(thiswindow, "登陆成功").ShowDialog();
+                    //new MessageWindow(thiswindow, "登陆成功").ShowDialog();
+                    XmlHelper.WriteNowPerson(p);
+                    thiswindow.ShowInTaskbar = false;
+                    thiswindow.Hide();
+                    MainMenuViewModel viewmodel;
+                    MainMenuWindow window = new MainMenuWindow(this.thiswindow, out viewmodel);
+                    window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    window.ShowDialog();
+                    thiswindow.Close();
+                    
                 }
                 else
                 {

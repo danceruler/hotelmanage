@@ -4,6 +4,7 @@ using HotelManager.Views.MainMenu.Pages.BsManage;
 using HotelManager.Views.MainMenu.Pages.RoomState;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -32,6 +33,8 @@ namespace HotelManager.Views.MainMenu
 
         public List<Button> mmbuttons = new List<Button>();
         public List<Page> sonpages = new List<Page>();
+
+
         public MainMenuWindow()
         {
             InitializeComponent(); isclosetrans = 0;
@@ -50,8 +53,21 @@ namespace HotelManager.Views.MainMenu
             this.DataContext = viewmodel;
             mmbuttons.Add(ToBsManagerButton);
             mmbuttons.Add(ToRoomState);
+            int cnd = 0;
+            for(int i = 0; i < mmbuttons.Count(); i++)
+            {
+                if(i == 0)
+                {
+                    mmbuttons[i].Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    mmbuttons[i].SetValue(Grid.RowProperty, cnd++);
+                }
+            }
             double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
             double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
+            //this.ShowInTaskbar = false;
             this.Height = y;
             this.Width = x;
 
@@ -80,7 +96,6 @@ namespace HotelManager.Views.MainMenu
                     if (positionToCloseIcon.X >= 0 && positionToCloseIcon.X < closeicon.ActualWidth && positionToCloseIcon.Y >= 0 && positionToCloseIcon.Y < closeicon.ActualHeight)
                     {
                         this.Close();
-                        fatherwindow.Show();
                     }
                 }
                 else
@@ -136,5 +151,6 @@ namespace HotelManager.Views.MainMenu
             }
         }
 
+       
     }
 }

@@ -40,7 +40,22 @@ namespace HotelManager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ToServerDataHelper.SynchronizeTransInfo();
+            using (RetailContext context = new RetailContext())
+            {
+                //List<Person> people = conetxt.Persons.ToList();
+                //XmlHelper.WriteNowPerson(people[0]);
+                PersonType personType = new PersonType()
+                {
+                    ID = Guid.NewGuid(),
+                    Name = "超级管理员",
+                    Domains = "all",
+                };
+                context.PersonTypes.Add(personType);
+                context.SaveChanges();
+            }
+            //XmlHelper.SelectNowPerson();
+
+            //ToServerDataHelper.SynchronizeRoomInfo();
             //string path = AppDomain.CurrentDomain.BaseDirectory;
             //string rootpath = path.Substring(0, path.LastIndexOf("bin"));
             //rootpath += "AppData\\xml\\XMLFile1.xml";
@@ -172,5 +187,7 @@ namespace HotelManager
         {
             new TestableWindow().ShowDialog();
         }
+
+        
     }
 }

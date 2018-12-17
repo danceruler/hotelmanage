@@ -9,6 +9,7 @@ namespace HotelManager.Helper
 {
     public static class ToServerDataHelper
     {
+        private static string ApiPath = "http://mzhdemo.xyz:1996/api";
         /// <summary>
         /// 同步房间信息
         /// </summary>
@@ -18,7 +19,7 @@ namespace HotelManager.Helper
             {
                 Room[] rooms = context.Rooms.ToArray();
                 string data = JsonConvert.SerializeObject(rooms);
-                string result = httpRequestHelper.PostRequest("http://47.107.69.129:1996/api/ClientToServer/SynchronizeRoomInfo", data, "application/json");
+                string result = httpRequestHelper.PostRequest(ApiPath +"/ClientToServer/SynchronizeRoomInfo", data, "application/json");
                 //当房间信息同步失败时的操作
                 if (result != "ok")
                 {
@@ -36,7 +37,7 @@ namespace HotelManager.Helper
             {
                 RoomStateModel[] roomStateModels = context.RoomStates.ToArray();
                 string data = JsonConvert.SerializeObject(roomStateModels);
-                string result = httpRequestHelper.PostRequest("http://47.107.69.129:1996/api/ClientToServer/SynchronizeRoomStateInfo", data, "application/json");
+                string result = httpRequestHelper.PostRequest(ApiPath + "/ClientToServer/SynchronizeRoomStateInfo", data, "application/json");
                 //当房间信息同步失败时的操作
                 if (result != "ok")
                 {
@@ -54,7 +55,7 @@ namespace HotelManager.Helper
             {
                 RoomType[] roomTypes = context.RoomTypes.ToArray();
                 string data = JsonConvert.SerializeObject(roomTypes);
-                string result = httpRequestHelper.PostRequest("http://47.107.69.129:1996/api/ClientToServer/SynchronizeRoomTypeInfo", data, "application/json");
+                string result = httpRequestHelper.PostRequest(ApiPath + "/ClientToServer/SynchronizeRoomTypeInfo", data, "application/json");
                 //当房间信息同步失败时的操作
                 if (result != "ok")
                 {
@@ -72,7 +73,7 @@ namespace HotelManager.Helper
             {
                 Person[] people = context.Persons.ToArray();
                 string data = JsonConvert.SerializeObject(people);
-                string result = httpRequestHelper.PostRequest("http://47.107.69.129:1996/api/ClientToServer/SynchronizePersonInfo", data, "application/json");
+                string result = httpRequestHelper.PostRequest(ApiPath + "/ClientToServer/SynchronizePersonInfo", data, "application/json");
                 //当房间信息同步失败时的操作
                 if (result != "ok")
                 {
@@ -90,7 +91,7 @@ namespace HotelManager.Helper
             {
                 Finishtrans[] finishtrans = context.Finishtranses.ToArray();
                 string data = JsonConvert.SerializeObject(finishtrans);
-                string result = httpRequestHelper.PostRequest("http://47.107.69.129:1996/api/ClientToServer/SynchronizeTransInfo", data, "application/json");
+                string result = httpRequestHelper.PostRequest(ApiPath + "/ClientToServer/SynchronizeTransInfo", data, "application/json");
                 //当房间信息同步失败时的操作
                 if (result != "ok")
                 {

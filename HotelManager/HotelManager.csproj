@@ -136,6 +136,7 @@
     <Compile Include="Helper\ToServerDataHelper.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
     <Compile Include="Models\Finishbook.cs" />
+    <Compile Include="Models\PersonType.cs" />
     <Compile Include="Models\RoomPrices.cs" />
     <Compile Include="Models\RoomState.cs" />
     <Compile Include="Models\RoomType.cs" />
