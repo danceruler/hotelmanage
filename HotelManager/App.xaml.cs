@@ -1,4 +1,5 @@
-﻿using HotelManager.Helper;
+﻿using Helper;
+using HotelManager.Helper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,13 +17,13 @@ namespace HotelManager
         protected override void OnStartup(StartupEventArgs e)
         {
             // 定义应用程序启动时要处理的内容 
-            if (FileHelper.IsExistFile(XmlHelper.PersonXmlPath))
+            if (MyFileHelper.IsExistFile(XmlHelper.PersonXmlPath))
             {
-                FileHelper.ClearFile(XmlHelper.PersonXmlPath);
+                MyFileHelper.ClearFile(XmlHelper.PersonXmlPath);
             }
             else
             {
-                FileHelper.CreateFileContent(XmlHelper.PersonXmlPath, "");
+                MyFileHelper.CreateFileContent(XmlHelper.PersonXmlPath, "");
             }
         }
     }

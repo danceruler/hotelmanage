@@ -33,7 +33,7 @@ namespace HotelManager.Views.MainMenu
 
         public List<Button> mmbuttons = new List<Button>();
         public List<Page> sonpages = new List<Page>();
-
+		public List<DockPanel> DomainTitleDocPanels = new List<DockPanel>();
 
         public MainMenuWindow()
         {
@@ -53,19 +53,22 @@ namespace HotelManager.Views.MainMenu
             this.DataContext = viewmodel;
             mmbuttons.Add(ToBsManagerButton);
             mmbuttons.Add(ToRoomState);
-            int cnd = 0;
-            for(int i = 0; i < mmbuttons.Count(); i++)
-            {
-                if(i == 0)
-                {
-                    mmbuttons[i].Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    mmbuttons[i].SetValue(Grid.RowProperty, cnd++);
-                }
-            }
-            double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
+
+			DomainTitleDocPanels.Add(BsManagerMenu);
+			DomainTitleDocPanels.Add(RoomStateMenu);
+			//int cnd = 0;
+			//for(int i = 0; i < mmbuttons.Count(); i++)
+			//{
+			//    if(i == 0)
+			//    {
+			//        mmbuttons[i].Visibility = Visibility.Hidden;
+			//    }
+			//    else
+			//    {
+			//        mmbuttons[i].SetValue(Grid.RowProperty, cnd++);
+			//    }
+			//}
+			double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
             double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
             //this.ShowInTaskbar = false;
             this.Height = y;

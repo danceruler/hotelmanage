@@ -326,6 +326,7 @@
     <Resource Include="AppData\icon\paint_black.ico" />
     <Resource Include="AppData\icon\book_black.ico" />
     <Resource Include="AppData\icon\bookyes_black.ico" />
+    <Resource Include="AppData\icon\round_favicon.ico" />
     <Content Include="dll\System.Windows.Interactivity.dll" />
     <Resource Include="AppData\icon\black_exit_favicon.ico" />
     <Resource Include="AppData\icon\password_favicon.ico" />

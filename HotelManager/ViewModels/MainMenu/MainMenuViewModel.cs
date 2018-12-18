@@ -55,7 +55,20 @@ namespace HotelManager.ViewModels.MainMenu
                     thiswindow.mmbuttons[i].Background = Brushes.Transparent;
                 }
             }
-        }
+
+			for (int i = 0; i < thiswindow.DomainTitleDocPanels.Count(); i++)
+			{
+				if (i == 0)
+				{
+					thiswindow.DomainTitleDocPanels[i].Width = double.NaN;
+					thiswindow.DomainTitleDocPanels[i].Visibility = System.Windows.Visibility.Visible;
+				}
+				else
+				{
+					thiswindow.DomainTitleDocPanels[i].Width = 0;
+				}
+			}
+		}
 
         public ICommand ToRoomStateCommand
         {
@@ -81,7 +94,21 @@ namespace HotelManager.ViewModels.MainMenu
                     thiswindow.mmbuttons[i].Background = Brushes.Transparent;
                 }
             }
-        }
+			
+			for(int i = 0; i < thiswindow.DomainTitleDocPanels.Count(); i++)
+			{
+				if(i == 1)
+				{
+					thiswindow.DomainTitleDocPanels[i].Width = double.NaN;
+					thiswindow.DomainTitleDocPanels[i].Visibility = System.Windows.Visibility.Visible;
+				}
+				else
+				{
+					thiswindow.DomainTitleDocPanels[i].Width = 0;
+				}
+			}
+
+		}
 
         #region INotifyPropertyChanged Members
 

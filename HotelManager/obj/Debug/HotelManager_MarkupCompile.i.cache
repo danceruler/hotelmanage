@@ -16,5 +16,5 @@ C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\App.xaml
 26-1630051570
 MainWindow.xaml;Views\TablePage\Function\ValueRule_fulldayinfo_Window.xaml;Views\TablePage\TestableWindow.xaml;Views\TablePage\ValueRule_fulldayPage.xaml;Views\FunctionWindow\AddRoomWindow.xaml;Views\FunctionWindow\BookRoomWindow.xaml;Views\FunctionWindow\ChangeRoomStateWindow.xaml;Views\FunctionWindow\DataPickerWindow.xaml;Views\FunctionWindow\EditRoomStateWindow.xaml;Views\FunctionWindow\EditRoomTypeWindow.xaml;Views\FunctionWindow\MessageWindow.xaml;Views\FunctionWindow\OpenRoomWindow.xaml;Views\Login\LoginWindow.xaml;Views\MainMenu\MainMenuWindow.xaml;Views\MainMenu\Pages\BsManage\BsManagerPage.xaml;Views\MainMenu\Pages\BsManage\Pages\RoomInfoPage.xaml;Views\MainMenu\Pages\RoomState\RoomStatePage.xaml;
 
-True
+False
 

@@ -139,9 +139,91 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="MyMenuItemStyle" TargetType="{x:Type MenuItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Grid ToolTip="{TemplateBinding Header}" Height="35" Background="#FBFBFD" Width="{TemplateBinding Width}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" MinWidth="60"/>
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Border Background="#FBFBFD"/>
+                            <Border x:Name="_border"   Grid.ColumnSpan="3"/>
+                            <Image x:Name="_imgicon" Width="12" Height="12" Stretch="Uniform" Source="/AppData/icon/round_favicon.ico" />
+                            <TextBlock Foreground="#2D2D30" Grid.Column="1" Margin="10 0 10 0"  VerticalAlignment="Center" x:Name="_txt" Text="{Binding Header,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Path  Visibility="Collapsed" x:Name="_path" Grid.Column="2" HorizontalAlignment="Right"  Margin="5 13 5 0"   Data="M0,4 4,0 0,-4 z" Fill="#7E8A92"/>
+                            <Popup  Placement="Right" x:Name="SubMenuPopup" AllowsTransparency="True"   Focusable="False" IsOpen="{TemplateBinding IsSubmenuOpen}" >
+                                <ScrollViewer   ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                    <Border Background="#ffc787" Name="SubmenuBorder" BorderBrush="LightGray" BorderThickness="1"  SnapsToDevicePixels="True"    >
+                                        <StackPanel   IsItemsHost="True"   KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                    </Border>
+                                </ScrollViewer>
+                            </Popup>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="true">
+                                <Setter TargetName="_path" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="_border" Property="Background" Value="#C0C0C0"/>
+                                <Setter TargetName="_txt" Property="Foreground" Value="White"/>
+                                <Setter TargetName="_path" Property="Fill" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="_txt" Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MyMenuItemStyle2" TargetType="{x:Type MenuItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Grid  ToolTip="{TemplateBinding Header}" Height="40" Background="#FBFBFD" Width="{TemplateBinding Width}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" MinWidth="60"/>
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Border Background="#FBFBFD"/>
+                            <Border x:Name="_border"   Grid.ColumnSpan="3"/>
+                            <Image  Margin="5,0,0,0" x:Name="_imgicon"  Width="12" Height="12" Stretch="Uniform" Source="/AppData/icon/round_favicon.ico" />
+                            <TextBlock Foreground="#2D2D30" Grid.Column="1" Margin="10 0 10 0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="_txt" Text="{Binding Header,RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Path  Visibility="Collapsed" Grid.Column="2" x:Name="_path"  HorizontalAlignment="Right"  Margin="5 18 5 0"   Data="M-4,0 4,0 0,4 z" Fill="#7E8A92"/>
+                            <Popup  Placement="Bottom" x:Name="SubMenuPopup" AllowsTransparency="True"   Focusable="False" IsOpen="{TemplateBinding IsSubmenuOpen}" >
+                                <ScrollViewer   ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                    <Border Background="#ffc787" Name="SubmenuBorder" BorderBrush="LightGray" BorderThickness="1"  SnapsToDevicePixels="True"    >
+                                        <StackPanel   IsItemsHost="True"   KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                    </Border>
+                                </ScrollViewer>
+                            </Popup>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="true">
+                                <Setter TargetName="_path" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="_border" Property="Background" Value="#C0C0C0"/>
+                                <Setter TargetName="_txt" Property="Foreground" Value="White"/>
+                                <Setter TargetName="_path" Property="Fill" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="_txt" Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid>
-        <Border  CornerRadius="15,15,15,15">
+        <Border  CornerRadius="0">
             <Border.Background>
                 <ImageBrush ImageSource="pack://application:,,,/AppData/testbg6.jpg" Opacity="0.99"/>
             </Border.Background>
@@ -149,14 +231,70 @@
                 <Grid>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Border  CornerRadius="15,15,0,0"  Background="Transparent" Width="auto" Height="auto" Grid.Row="0" Name="titlebar" >
                         <DockPanel>
-                            <Label  Name="TitleText" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="30,0,0,0" Content="管理系统" Width="auto" ></Label>
-                            <Grid Name="closeicongrid" HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Height="70">
+                            <Label  Name="TitleText" HorizontalAlignment="Left"  VerticalAlignment="Center"  Content="管理系统" Width="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                            <DockPanel Name="BsManagerMenu" Visibility="Hidden" Width="auto"  Background="#EBEBED" >
+                                <Menu Margin="0,0,0,0" Height="40" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="auto">
+                                    <MenuItem Height="40" Width="auto" HorizontalAlignment="Center"  Header="房间信息管理" Style="{StaticResource MyMenuItemStyle2}">
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间设置">
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="添加房间"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间信息表"/>
+                                        </MenuItem>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间类型表"/>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间状态表"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房价配置表"/>
+                                        </MenuItem>
+                                    <MenuItem Header="人员信息管理" Style="{StaticResource MyMenuItemStyle2}">
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员设置">
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="添加人员"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员信息表"/>
+                                        </MenuItem>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员类型表"/>
+                                    </MenuItem>
+                                    <MenuItem Header="入住标准和会员" Style="{StaticResource MyMenuItemStyle2}">
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="入住标准">
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="全天房入住标准表"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="钟点房入住标准表"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="特殊房入住标准表"/>
+                                        </MenuItem>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员类型表"/>
+                                    </MenuItem>
+                                    
+                                    <MenuItem Header="帮助" Style="{StaticResource MyMenuItemStyle2}"/>
+                                    <MenuItem Header="关于" Style="{StaticResource MyMenuItemStyle2}"/>
+                                </Menu>
+                            </DockPanel>
+                            <DockPanel Name="RoomStateMenu" Visibility="Hidden" Width="auto"  Background="#EBEBED" >
+                                <Menu Margin="0,0,0,0" Height="40" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="auto">
+                                    <MenuItem Height="40" Width="auto" HorizontalAlignment="Center"  Header="房间信息管理" Style="{StaticResource MyMenuItemStyle2}">
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间设置">
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="添加房间"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间信息表"/>
+                                        </MenuItem>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间类型表"/>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房间状态表"/>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="房价配置表"/>
+                                    </MenuItem>
+                                    <MenuItem Header="入住标准和会员" Style="{StaticResource MyMenuItemStyle2}">
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="入住标准">
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="全天房入住标准表"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="钟点房入住标准表"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="特殊房入住标准表"/>
+                                        </MenuItem>
+                                        <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员类型表"/>
+                                    </MenuItem>
+
+                                    <MenuItem Header="帮助" Style="{StaticResource MyMenuItemStyle2}"/>
+                                    <MenuItem Header="关于" Style="{StaticResource MyMenuItemStyle2}"/>
+                                </Menu>
+                            </DockPanel>
+
+                            <Grid Name="closeicongrid" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Height="50">
                                 <Image Name="closeicon" Source="/AppData/icon/black_exit_favicon.ico" Height="35" Width="35" RenderTransformOrigin="0.5,0.5"></Image>
                             </Grid>
                         </DockPanel>
@@ -164,22 +302,22 @@
 
 
                     <DockPanel Width="auto" Height="auto" Grid.Row="1" Background="Transparent" >
-                        <Grid Background="Transparent"  Width="100" >
+                        <Grid Background="Transparent"  Width="80" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="80"/>
-                                <RowDefinition Height="80"/>
-                                <RowDefinition Height="80"/>
-                                <RowDefinition Height="80"/>
-                                <RowDefinition Height="80"/>
-                                <RowDefinition Height="80"/>
-                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="60"/>
                             </Grid.RowDefinitions>
-                            <Button Name="ToBsManagerButton" Command="{Binding Path=ToBsManagerCommand}" Grid.Row="0" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="后台管理"/>
-                            <Button Name="ToRoomState" Command="{Binding Path=ToRoomStateCommand}" Grid.Row="1" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="房态" />
-                            <Button Name="mainmenubutton3" Grid.Row="2" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面三" />
-                            <Button Name="mainmenubutton4" Grid.Row="3" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面四" />
-                            <Button Name="mainmenubutton5" Grid.Row="4" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面五" />
-                            <Button Name="mainmenubutton6" Grid.Row="5" Margin="0" Height="80" Width="100" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面六" />
+                            <Button Name="ToBsManagerButton" Command="{Binding Path=ToBsManagerCommand}" Grid.Row="0" Margin="0" Height="60" Width="80" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="后台管理"/>
+                            <Button Name="ToRoomState" Command="{Binding Path=ToRoomStateCommand}" Grid.Row="1" Margin="0" Height="60" Width="80" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="房态" />
+                            <Button Name="mainmenubutton3" Grid.Row="2" Margin="0" Height="60" Width="80" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面三" />
+                            <Button Name="mainmenubutton4" Grid.Row="3" Margin="0" Height="60" Width="80" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面四" />
+                            <Button Name="mainmenubutton5" Grid.Row="4" Margin="0" Height="60" Width="80" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面五" />
+                            <Button Name="mainmenubutton6" Grid.Row="5" Margin="0" Height="60" Width="80" Background="Transparent" Style="{StaticResource MainMenuButtonStyle}" Content="页面六" />
                           
                         </Grid>
                         <Grid>
