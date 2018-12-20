@@ -48,7 +48,6 @@ namespace HotelManager.ViewModels.Login
                     window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     window.ShowDialog();
                     thiswindow.Close();
-                    
                 }
                 else
                 {

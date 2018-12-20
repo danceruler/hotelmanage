@@ -25,13 +25,14 @@ namespace HotelManager.Helper
             writer.Close();
         }
 
-        public static void SelectNowPerson()
+        public static Person SelectNowPerson()
         {
             Person p = new Person();
             XmlSerializer serializer = new XmlSerializer(p.GetType());
             FileStream stream = new FileStream(PersonXmlPath, FileMode.Open);
             Person person = (Person)serializer.Deserialize(stream);
             stream.Close();
+			return person;
         }
 
         public static void CreatXmlTree(string xmlPath)

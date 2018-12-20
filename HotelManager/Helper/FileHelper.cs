@@ -11,18 +11,29 @@ namespace HotelManager.Helper
 {
     public static class FileHelper
     {
-        public static Dictionary<int, string> DomainConfig = new Dictionary<int, string>()
+        public static Dictionary<string, string> DomainConfig = new Dictionary<string, string>()
         {
-            { 1,"后台管理"},
-            { 2,"房态管理"},
-            { 3,"3"},
-            { 4,"4"},
-            { 5,"5"},
-            { 6,"6"},
+			{ "all","全部"},
+            { "1","后台管理"},
+            { "2","房态管理"},
+            { "3","3"},
+            { "4","4"},
+            { "5","5"},
+            { "6","6"},
         };
 
-        //将本地sqlite数据库文件上传到服务器
-        public static void UploadLocalDB()
+		public static Dictionary<string,string> DomainConfig2 = new Dictionary<string,string>()
+		{
+			{ "全部","all"},
+			{ "后台管理","1"},
+			{ "房态管理","2"},
+			{ "3","3"},
+			{ "4","4"},
+			{ "5","5"},
+			{ "6","6"},
+		};
+		//将本地sqlite数据库文件上传到服务器
+		public static void UploadLocalDB()
         {
             string testdbPath = "C:\\db\\test.db";
             byte[] byte_testdb = MyFileHelper.File2Bytes(testdbPath);

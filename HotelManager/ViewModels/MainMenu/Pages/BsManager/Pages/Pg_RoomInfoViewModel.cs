@@ -82,7 +82,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
         public void OpenAddRoomWindow()
         {
             AddRoomViewModel viewmodel;
-            new AddRoomWindow(thispage.fatherpage.fatherwindow, out viewmodel).ShowDialog();
+            new AddRoomWindow(thispage.fatherwindow, out viewmodel).ShowDialog();
         }
 
         public ICommand OpenEditRoomTypeWindowCommand
@@ -92,7 +92,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
         public void OpenEditRoomTypeWindow()
         {
             EditRoomTypeViewModel viewmodel;
-            new EditRoomTypeWindow(thispage.fatherpage.fatherwindow, out viewmodel).ShowDialog();
+            new EditRoomTypeWindow(thispage.fatherwindow, out viewmodel).ShowDialog();
         }
         public ICommand OpenEditRoomStateWindowCommand
         {
@@ -101,7 +101,7 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages
         public void OpenEditRoomStateWindow()
         {
             EditRoomStateViewModel viewmodel;
-            new EditRoomStateWindow(thispage.fatherpage.fatherwindow, out viewmodel).ShowDialog();
+            new EditRoomStateWindow(thispage.fatherwindow, out viewmodel).ShowDialog();
         }
 
         public ICommand ReFlashRoomInfoCommand

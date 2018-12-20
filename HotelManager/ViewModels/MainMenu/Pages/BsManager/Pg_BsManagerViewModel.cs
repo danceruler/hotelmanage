@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace HotelManager.ViewModels.MainMenu.Pages.BsManager
 {
@@ -27,11 +28,25 @@ namespace HotelManager.ViewModels.MainMenu.Pages.BsManager
         public Pg_BsManagerViewModel(BsManagerPage page)
         {
             thispage = page;
-           
             thisputabitems = new BindableCollection<PUTabItemModel>(thispage.bsmanageritems);
         }
 
 
+		public ICommand addCommand
+		{
+			get { return new QueryCommand(addItems); }
+		}
+
+		public void addItems()
+		{
+			thisputabitems.Add(new PUTabItemModel()
+			{
+				Header = "2",
+				Content = "2",
+				CanDelete = false,
+				Icon = null,
+			});
+		}
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;

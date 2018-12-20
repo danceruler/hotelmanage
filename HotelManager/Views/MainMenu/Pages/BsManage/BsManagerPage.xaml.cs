@@ -16,6 +16,8 @@ using Caliburn.Micro;
 using Panuon.UI;
 using HotelManager.Views.MainMenu.Pages.BsManage.Pages;
 using HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages;
+using HotelManager.ViewModels.TablePage;
+using HotelManager.Views.TablePage;
 
 namespace HotelManager.Views.MainMenu.Pages.BsManage
 {
@@ -25,11 +27,8 @@ namespace HotelManager.Views.MainMenu.Pages.BsManage
     public partial class BsManagerPage : Page
     {
         public Window fatherwindow;
-        public Page sonpage;
-
-        public Frame RoomInfoFrame = new Frame();
-        
-        public List<PUTabItemModel> bsmanageritems = new List<PUTabItemModel>();
+		public Page sonpage;
+		public List<PUTabItemModel> bsmanageritems = new List<PUTabItemModel>();
         
         public BsManagerPage()
         {
@@ -40,26 +39,31 @@ namespace HotelManager.Views.MainMenu.Pages.BsManage
         {
             InitializeComponent();
             fatherwindow = window;
-            RoomInfoFrame.Height = fatherwindow.Height-60;
-            RoomInfoFrame.Width = fatherwindow.Width-100;
-            RoomInfoFrame.Content = new RoomInfoPage(this,out Pg_RoomInfoViewModel vm);
-            bsmanageritems.Add(new PUTabItemModel()
+			bsmanageritems.Add(new PUTabItemModel()
             {
                 Header = "房间信息",
                 Icon = null,
                 CanDelete = false,
-                Content = RoomInfoFrame,
+                Content = "1",
             });
-            bsmanageritems.Add(new PUTabItemModel()
-            {
-                Header = "房客信息",
-                Icon = null,
-                CanDelete = true,
-                Content = "2",
-            });
-            viewmodel = new Pg_BsManagerViewModel(this);
+			viewmodel = new Pg_BsManagerViewModel(this);
             this.DataContext = viewmodel;
         }
-        
-    }
+
+		public BsManagerPage(Window window, out Pg_BsManagerViewModel viewmodel,Frame frame)
+		{
+			InitializeComponent();
+			fatherwindow = window;
+			bsmanageritems.Add(new PUTabItemModel()
+			{
+				Header = "房间信息",
+				Icon = null,
+				CanDelete = false,
+				Content = frame,
+			});
+			viewmodel = new Pg_BsManagerViewModel(this);
+			this.DataContext = viewmodel;
+		}
+
+	}
 }

@@ -21,26 +21,37 @@ namespace HotelManager.Views.MainMenu.Pages.BsManage.Pages
     public partial class RoomInfoPage : Page
     {
         public BsManagerPage fatherpage;
-
+		public Window fatherwindow;
         public RoomInfoPage()
         {
             InitializeComponent();
         }
 
-        public RoomInfoPage(BsManagerPage page,out Pg_RoomInfoViewModel viewmodel)
-        {
-            InitializeComponent();
-            fatherpage = page;
+        //public RoomInfoPage(BsManagerPage page,out Pg_RoomInfoViewModel viewmodel)
+        //{
+        //    InitializeComponent();
+        //    fatherpage = page;
             
-            scrollview.Width = fatherpage.RoomInfoFrame.Width - 200;
-            scrollview.Height = fatherpage.RoomInfoFrame.Height - 30;
-            viewmodel = new Pg_RoomInfoViewModel(this);
-            var t = this.Height;
-            this.DataContext = viewmodel;
-        }
+        //    scrollview.Width = fatherpage.RoomInfoFrame.Width - 200;
+        //    scrollview.Height = fatherpage.RoomInfoFrame.Height - 30;
+        //    viewmodel = new Pg_RoomInfoViewModel(this);
+        //    var t = this.Height;
+        //    this.DataContext = viewmodel;
+        //}
 
+		public RoomInfoPage(Window window, out Pg_RoomInfoViewModel viewmodel)
+		{
+			InitializeComponent();
+			fatherwindow = window;
 
-        protected override void OnMouseMove(MouseEventArgs e)
+			scrollview.Width = fatherwindow.Width - 280;
+			scrollview.Height = fatherwindow.Height - 70;
+			viewmodel = new Pg_RoomInfoViewModel(this);
+			var t = this.Height;
+			this.DataContext = viewmodel;
+		}
+
+		protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
             Point positionToRoomCard = e.GetPosition(scrollview);

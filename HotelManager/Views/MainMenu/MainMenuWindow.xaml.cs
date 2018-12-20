@@ -1,7 +1,14 @@
-﻿using HotelManager.ViewModels.MainMenu;
+﻿using Caliburn.Micro;
+using HotelManager.Helper;
+using HotelManager.Models;
+using HotelManager.ViewModels.MainMenu;
+using HotelManager.ViewModels.TablePage;
 using HotelManager.ViewModels.MainMenu.Pages.BsManager;
+using HotelManager.ViewModels.MainMenu.Pages.BsManager.Pages;
 using HotelManager.Views.MainMenu.Pages.BsManage;
+using HotelManager.Views.MainMenu.Pages.BsManage.Pages;
 using HotelManager.Views.MainMenu.Pages.RoomState;
+using Panuon.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +23,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HotelManager.Views.TablePage;
 
 namespace HotelManager.Views.MainMenu
 {
@@ -26,8 +34,7 @@ namespace HotelManager.Views.MainMenu
     {
         public Window fatherwindow;
         public Window sonwindow;
-        public BsManagerPage sonpage1;
-        public RoomStatePage sonpage2;
+        
 
         private int isclosetrans;
 
@@ -35,7 +42,13 @@ namespace HotelManager.Views.MainMenu
         public List<Page> sonpages = new List<Page>();
 		public List<DockPanel> DomainTitleDocPanels = new List<DockPanel>();
 
-        public MainMenuWindow()
+
+		public BsManagerPage containerpage;
+		public Page sonpage;
+		//各个报表或信息页面,用来放在PUTabController里
+		public Frame fatherframe = new Frame();
+
+		public MainMenuWindow()
         {
             InitializeComponent(); isclosetrans = 0;
             mmbuttons.Add(ToBsManagerButton);
@@ -49,32 +62,59 @@ namespace HotelManager.Views.MainMenu
             InitializeComponent();
             isclosetrans = 0;
             this.fatherwindow = window;
-            viewmodel = new MainMenuViewModel(this);
-            this.DataContext = viewmodel;
+           
             mmbuttons.Add(ToBsManagerButton);
             mmbuttons.Add(ToRoomState);
-
 			DomainTitleDocPanels.Add(BsManagerMenu);
 			DomainTitleDocPanels.Add(RoomStateMenu);
-			//int cnd = 0;
-			//for(int i = 0; i < mmbuttons.Count(); i++)
-			//{
-			//    if(i == 0)
-			//    {
-			//        mmbuttons[i].Visibility = Visibility.Hidden;
-			//    }
-			//    else
-			//    {
-			//        mmbuttons[i].SetValue(Grid.RowProperty, cnd++);
-			//    }
-			//}
+
 			double x = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
             double y = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
             //this.ShowInTaskbar = false;
             this.Height = y;
-            this.Width = x;
+			this.Width = x;
 
-        }
+			//获取当前用户并分配权限
+			Person nowPerson = XmlHelper.SelectNowPerson();
+			string domains_string = "";
+			using (RetailContext context = new RetailContext())
+			{
+				domains_string = context.PersonTypes.Where(t => t.Name == nowPerson.Type).SingleOrDefault().Domains;
+			}
+			string[] domains_strings = domains_string.Split(',');
+			int cnd = 1;
+			if(domains_string == "all")
+			{
+				for (int i = 0; i < mmbuttons.Count(); i++)
+				{
+					mmbuttons[i].Visibility = Visibility.Visible;
+					mmbuttons[i].SetValue(Grid.RowProperty, cnd++);
+				}
+			}
+			else
+			{
+				for (int i = 0; i < mmbuttons.Count(); i++)
+				{
+					if (domains_strings.Contains((i+1).ToString()))
+					{
+						mmbuttons[i].Visibility = Visibility.Visible;
+						mmbuttons[i].SetValue(Grid.RowProperty, cnd++);
+					}
+					else
+					{
+						mmbuttons[i].Visibility = Visibility.Hidden;
+					}
+					
+				}
+			}
+
+			//设置存在containerpage中的tancontroller的frame
+			fatherframe.Width = x - 80;
+			fatherframe.Height = y - 70;
+
+			viewmodel = new MainMenuViewModel(this);
+			this.DataContext = viewmodel;
+		}
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
@@ -154,6 +194,10 @@ namespace HotelManager.Views.MainMenu
             }
         }
 
-       
-    }
+		private void BsManagerMenuToPerInfoTable(object sender, RoutedEventArgs e)
+		{
+		
+			
+		}
+	}
 }

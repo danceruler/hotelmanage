@@ -4,14 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HotelManager.Views.MainMenu.Pages.BsManage"
-       xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+      xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
       mc:Ignorable="d" 
       Title="BsManagerPage"
       >
 
     <Grid>
-        <panuon:PUTabControl TabControlStyle="Classic" 
-                        BindingItems="{Binding Path=thisputabitems,Mode=TwoWay}">
+        <panuon:PUTabControl TabControlStyle="Classic" Name="TabController"  BindingItems="{Binding Path=thisputabitems,Mode=TwoWay}">
         </panuon:PUTabControl>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" Command="{Binding Path=addCommand}"></Button>
     </Grid>
 </Page>
