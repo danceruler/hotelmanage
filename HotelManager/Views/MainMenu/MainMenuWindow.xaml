@@ -252,7 +252,7 @@
                                     <MenuItem Header="人员信息管理" Style="{StaticResource MyMenuItemStyle2}">
                                         <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员设置">
                                             <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="添加人员"/>
-                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员信息表"/>
+                                            <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员信息表" Command="{Binding Path=ToPersonInfoCommand}"/>
                                         </MenuItem>
                                         <MenuItem Style="{StaticResource MyMenuItemStyle}" Header="人员类型表"/>
                                     </MenuItem>

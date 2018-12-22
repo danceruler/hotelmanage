@@ -111,6 +111,21 @@ namespace HotelManager.ViewModels.MainMenu
 			new EditRoomStateWindow(thiswindow, out EditRoomStateViewModel viewmodel).ShowDialog();
 		}
 
+		public  ICommand ToPersonInfoCommand
+		{
+			get { return new QueryCommand(ToPersonInfo); }
+		}
+		public void ToPersonInfo()
+		{
+			thiswindow.fatherframe = new Frame();
+			thiswindow.fatherframe.Width = thiswindow.Width - 80;
+			thiswindow.fatherframe.Height = thiswindow.Height - 70;
+			thiswindow.fatherframe.Content = new PersonInfoTablePage(thiswindow.fatherframe, out PersonInfoTable_ViewModel viewmodel);
+			thiswindow.containerpage = new BsManagerPage(thiswindow, out Pg_BsManagerViewModel sonviewmodel1, thiswindow.fatherframe);
+			thiswindow.mainframe.Content = thiswindow.containerpage;
+			
+		}
+
 		public ICommand BsManagerMenuToVR_FulldayCommand
 		{
 			get { return new QueryCommand(BsManagerMenuToVR_Fullday); }

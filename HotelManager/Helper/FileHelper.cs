@@ -11,7 +11,11 @@ namespace HotelManager.Helper
 {
     public static class FileHelper
     {
-        public static Dictionary<string, string> DomainConfig = new Dictionary<string, string>()
+		public static string dbfilepath = "C:\\db";
+		public static string dbpath = "C:\\db\\test.db";
+		public static string sourcedbpath = System.AppDomain.CurrentDomain.BaseDirectory+"test.db";
+
+		public static Dictionary<string, string> DomainConfig = new Dictionary<string, string>()
         {
 			{ "all","全部"},
             { "1","后台管理"},

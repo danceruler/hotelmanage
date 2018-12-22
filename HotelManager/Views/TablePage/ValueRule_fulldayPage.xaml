@@ -59,7 +59,7 @@
                                                    Cursor="Hand"
                                                    Tag="{Binding ID}"
                                                    MouseDown="Change"
-                                                   >删除</Label>
+                                                   >修改</Label>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -67,8 +67,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal">
-            
-        </StackPanel>
+        
     </Grid>
 </Page>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="HotelManager.Views.TablePage.Function.AddPersonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:panuon="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+        xmlns:local="clr-namespace:HotelManager.Views.TablePage.Function"
+        mc:Ignorable="d"
+        Title="添加用户" Height="480" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label  Margin="0,20,0,0" Width="100" Height="30" HorizontalContentAlignment="Center">姓名</Label>
+            <panuon:PUTextBox Name="NameTB" Width="200" Height="30" Watermark="姓名"></panuon:PUTextBox>
+            <Label  Margin="0,20,0,0" Width="100" Height="30" HorizontalContentAlignment="Center">密码</Label>
+            <panuon:PUPasswordBox Name="PswTB" Width="200" Height="30" Watermark="密码" ></panuon:PUPasswordBox>
+            <panuon:PUPasswordBox Name="PswTB2" Margin="0,10,0,0" Width="200" Height="30" Watermark="确认密码"></panuon:PUPasswordBox>
+            <Label  Margin="0,20,0,0" Width="100" Height="30" HorizontalContentAlignment="Center">性别</Label>
+            <panuon:PUComboBox Name="SexCB" Width="200" Height="30" SelectedIndex="0">
+                <panuon:PUComboBoxItem Content="男"/>
+                <panuon:PUComboBoxItem Content="女" />
+            </panuon:PUComboBox>
+            <Label  Margin="0,20,0,0" Width="100" Height="30" HorizontalContentAlignment="Center">用户类型</Label>
+            <panuon:PUComboBox Name="UserTypeCB" Width="200" Height="30">
+            </panuon:PUComboBox>
+            <panuon:PUButton Margin="0,20,0,0" Width="100" Height="30" Content="确认"></panuon:PUButton>
+        </StackPanel>
+    </Grid>
+</Window>

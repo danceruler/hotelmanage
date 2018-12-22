@@ -68,8 +68,6 @@ F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\Value
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\Function\ValueRule_fulldayinfo_Window.g.cs
 F:\demo\HotelManage\HotelManageDemo\HotelManager\obj\Debug\Views\TablePage\Function\ValueRule_fulldayinfo_Window.baml
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\HotelManager.exe.config
-C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\HotelManager.exe.manifest
-C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\HotelManager.application
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\HotelManager.exe
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\HotelManager.pdb
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\Caliburn.Micro.dll
@@ -128,8 +126,6 @@ C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelMan
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.Properties.Resources.resources
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.csproj.GenerateResource.cache
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.csproj.CoreCompileInputs.cache
-C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.exe.manifest
-C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.application
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.csproj.CopyComplete
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.exe
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.pdb
@@ -138,3 +134,12 @@ C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\Newtonso
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\Newtonsoft.Json.xml
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\Helper.dll
 C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\Helper.pdb
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\Views\TablePage\PersonInfoTablePage.g.cs
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\Views\TablePage\PersonInfoTablePage.baml
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\Views\TablePage\Function\AddPersonWindow.g.cs
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\Views\TablePage\Function\AddPersonWindow.baml
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.TrustInfo.xml
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.exe.manifest
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\HotelManager.exe.manifest
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\bin\Debug\HotelManager.application
+C:\Users\mzh\source\repos\danceruler\hotelmanage\HotelManager\obj\Debug\HotelManager.application

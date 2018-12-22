@@ -17,6 +17,7 @@ namespace HotelManager
     {
 		protected override void OnStartup(StartupEventArgs e)
 		{
+
 			// 定义应用程序启动时要处理的内容 
 			if (MyFileHelper.IsExistFile(XmlHelper.PersonXmlPath))
 			{
@@ -25,6 +26,15 @@ namespace HotelManager
 			else
 			{
 				MyFileHelper.CreateFileContent(XmlHelper.PersonXmlPath, "");
+			}
+
+			if (!MyFileHelper.IsExistFile(FileHelper.dbpath))
+			{
+				if (!MyFileHelper.IsExistDirectory(FileHelper.dbfilepath))
+				{
+					MyFileHelper.CreateDirectory(FileHelper.dbfilepath);
+				}
+				bool result = MyFileHelper.CopyFile(FileHelper.sourcedbpath, FileHelper.dbpath);
 			}
 		}
 		private static DispatcherOperationCallback exitFrameCallback = new DispatcherOperationCallback(ExitFrame);

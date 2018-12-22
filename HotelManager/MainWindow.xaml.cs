@@ -22,6 +22,7 @@ using HotelManager.ViewModels.Function;
 using HotelManager.Helper;
 using HotelManager.Views.TablePage;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace HotelManager
 {
@@ -33,12 +34,34 @@ namespace HotelManager
         public MainWindow()
         {
             InitializeComponent();
-            //Configs.InitConnection();
-            //Version ver = System.Environment.OSVersion.Version;
+			//Configs.InitConnection();
+			//Version ver = System.Environment.OSVersion.Version;
+			//关掉已运行的进程实例
+			Process ps = GetRunningInstance();
+			if (ps != null) this.Close();
+		}
 
-        }
+		//获取已运行的进程实例
+		public static Process GetRunningInstance()
+		{
+			Process currentProcess = Process.GetCurrentProcess(); //获取当前进程 
+																  //获取当前运行程序完全限定名 
+			string currentFileName = currentProcess.MainModule.FileName;
+			//获取进程名为ProcessName的Process数组。 
+			Process[] processes = Process.GetProcessesByName(currentProcess.ProcessName);
+			//遍历有相同进程名称正在运行的进程 
+			foreach (Process process in processes)
+			{
+				if (process.MainModule.FileName == currentFileName)
+				{
+					if (process.Id != currentProcess.Id) //根据进程ID排除当前进程 
+						return process;//返回已运行的进程实例 
+				}
+			}
+			return null;
+		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+		private void Button_Click(object sender, RoutedEventArgs e)
         {
             using (RetailContext context = new RetailContext())
             {

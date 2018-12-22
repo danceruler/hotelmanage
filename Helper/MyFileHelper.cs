@@ -10,13 +10,53 @@ namespace Helper
 {
     public class MyFileHelper
     {
-        #region 将文件转换为byte数组
-        /// <summary>
-        /// 将文件转换为byte数组
-        /// </summary>
-        /// <param name="filepath">文件路径</param>
-        /// <returns></returns>
-        public static byte[] File2Bytes(string filepath)
+		/// <summary>
+		/// 大文件多次复制文件  true：复制成功   false：复制失败
+		/// </summary>
+		/// <param name="soucrePath">原始文件路径</param>
+		/// <param name="targetPath">复制目标文件路径</param>
+		/// <returns></returns>
+		public static bool CopyFile(string soucrePath, string targetPath)
+		{
+			try
+			{
+				//读取复制文件流
+				using (FileStream fsRead = new FileStream(soucrePath, FileMode.Open, FileAccess.Read))
+				{
+					//写入文件复制流
+					using (FileStream fsWrite = new FileStream(targetPath, FileMode.OpenOrCreate, FileAccess.Write))
+					{
+						byte[] buffer = new byte[1024 * 1024 * 2]; //每次读取2M
+																   //可能文件比较大，要循环读取，每次读取2M
+						while (true)
+						{
+							//每次读取的数据    n：是每次读取到的实际数据大小
+							int n = fsRead.Read(buffer, 0, buffer.Count());
+							//如果n=0说明读取的数据为空，已经读取到最后了，跳出循环
+							if (n == 0)
+							{
+								break;
+							}
+							//写入每次读取的实际数据大小
+							fsWrite.Write(buffer, 0, n);
+						}
+					}
+				}
+				return true;
+			}
+			catch (System.Exception ex)
+			{
+				return false;
+			}
+		}
+
+		#region 将文件转换为byte数组
+		/// <summary>
+		/// 将文件转换为byte数组
+		/// </summary>
+		/// <param name="filepath">文件路径</param>
+		/// <returns></returns>
+		public static byte[] File2Bytes(string filepath)
         {
             if (!System.IO.File.Exists(filepath))
             {
@@ -366,23 +406,6 @@ namespace Helper
         }
         #endregion
 
-        #region 复制文件
-        /// <summary>
-        /// 复制文件
-        /// </summary>
-        /// <param name="dir1">要复制的文件的路径已经全名(包括后缀)</param>
-        /// <param name="dir2">目标位置,并指定新的文件名</param>
-        public static void CopyFile(string dir1, string dir2)
-        {
-            throw new Exception("未实现");
-            dir1 = dir1.Replace("/", "\\");
-            dir2 = dir2.Replace("/", "\\");
-            //if (File.Exists(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1))
-            //{
-            //    File.Copy(System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir1, System.Web.HttpContext.Current.Request.PhysicalApplicationPath + "\\" + dir2, true);
-            //}
-        }
-        #endregion
 
         #region 根据时间得到目录名 / 格式:yyyyMMdd 或者 HHmmssff
         /// <summary>
