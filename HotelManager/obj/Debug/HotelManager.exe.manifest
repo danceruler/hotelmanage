@@ -96,19 +96,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>2khWm/9s1gXRuZf1+RsVIFJcDKM=</dsig:DigestValue>
+        <dsig:DigestValue>FuWhJgI7xQOcitdq+rgcJFfiv2g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HotelManager.exe" size="22695856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HotelManager.exe" size="22695344">
       <assemblyIdentity name="HotelManager" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>pRcxtkCW2DCv/6AsmOV4eSa3Tyc=</dsig:DigestValue>
+        <dsig:DigestValue>9QgekwhHZvCLLxt38m+Go9mTloQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
