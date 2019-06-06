@@ -50,7 +50,7 @@ namespace NewHM.Help
             db.Insert(tablepower);
         }
 
-        public static void CreateLevelPowers(int level, List<string> menupowerids)
+        public static void CreateLevelPowers(int level, List<string> menupowerids,List<string> tablepowerids)
         {
             var db = new MongoDbHelper<HotelUserLevelPowers>();
         }
