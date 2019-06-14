@@ -1,4 +1,5 @@
 ﻿using NewHM.Help;
+using NewHM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,5 +15,12 @@ namespace NewHM
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            VM_WindowMain vm = new VM_WindowMain();
+            Application.Current.MainWindow = vm.UIElement as Window;
+            vm.Show();
+            base.OnStartup(e);
+        }
     }
 }

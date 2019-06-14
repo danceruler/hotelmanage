@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ColorHelper.cs" />
     <Compile Include="MyByteStringHelper.cs" />
     <Compile Include="MyFileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

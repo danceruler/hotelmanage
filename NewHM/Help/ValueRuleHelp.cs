@@ -8,5 +8,6 @@ namespace NewHM.Help
 {
     class ValueRuleHelp
     {
+        
     }
 }

@@ -1,0 +1,18 @@
+﻿<Page x:Class="NewHM.View.PageTest2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      Title="PageTest2">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Green"></StackPanel>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Red"></StackPanel>
+    </Grid>
+</Page>

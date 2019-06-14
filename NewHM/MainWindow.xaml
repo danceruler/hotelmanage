@@ -3,10 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mash="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:NewHM"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Background="Gray">
+            <StackPanel Width="150" Height="150"></StackPanel>
+            <StackPanel Name="MenuPanel" Margin="0,20,0,0" Width="150" Height="auto">
+            </StackPanel>
+        </StackPanel>
         
+
+
     </Grid>
 </Window>

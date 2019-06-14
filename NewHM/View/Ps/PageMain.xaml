@@ -1,0 +1,21 @@
+﻿<Page x:Class="NewHM.View.PageMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      Title="PageMain">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Orientation="Vertical">
+            <StackPanel Name="MainPage_MenuPanel" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="30,150,0,0" Width="600" Height="auto" >
+                
+            </StackPanel>
+            <StackPanel Name="MainPage_MenuPanel2"  HorizontalAlignment="Left" Orientation="Horizontal" Margin="30,0,0,0" Width="600" Height="auto" >
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

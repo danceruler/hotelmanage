@@ -7,31 +7,10 @@ using System.Threading.Tasks;
 
 namespace NewHM.ParamModel
 {
-    /// <summary>
-    /// 创建房间类型模型类
-    /// </summary>
-    public class CreateRoomTypeModel
-    {
-        public string Name { get; set; }
-        public int Cap { get; set; }
-        public decimal DayPrice { get; set; }
-        public int BreakfastVoucher { get; set; }
-        public string Other { get; set; }
-    }
 
     /// <summary>
-    /// 创建房间模型类
+    /// 新增工作人员
     /// </summary>
-    public class CreateRoomModel
-    {
-        public string Name { get; set; }
-        public int CanUse { get; set; }
-        public int Floor { get; set; }
-        public int Column { get; set; }
-        public RoomType Type { get; set; }
-        public HMBlock block { get; set; }
-    }
-
     public class CreateHotelUserModel
     {
         public string UserName { get; set; }
@@ -39,4 +18,32 @@ namespace NewHM.ParamModel
         public int Sex { get; set; }
         public int Level { get; set; }
     }
+
+    /// <summary>
+    /// 入住信息模型
+    /// </summary>
+    public class MoveInModel
+    {
+        //1.全天房 2.钟点房 3.特殊房
+        public int OpenType { get; set; }
+        //使用的会员信息
+        public int CustomerId { get; set; }
+        public int ValueRuelId { get; set; }
+        public RoomPrice RoomPrice { get; set; }
+    }
+
+    /// <summary>
+    /// 创建订单模型
+    /// </summary>
+    public class CreateOrderModel
+    {
+        public int RoomId { get; set; }
+        public string CustomerIds { get; set; }
+        //是否有为一起入住的多间房之一 1，主房 2.次房 0.单开
+        public int IsCon { get; set; }
+        
+
+    }
+
+
 }

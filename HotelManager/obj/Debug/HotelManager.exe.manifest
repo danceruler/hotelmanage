@@ -96,7 +96,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>FuWhJgI7xQOcitdq+rgcJFfiv2g=</dsig:DigestValue>
+        <dsig:DigestValue>x73BWwt62iGTgl91CPVBqt9oGzk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -108,7 +108,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>9QgekwhHZvCLLxt38m+Go9mTloQ=</dsig:DigestValue>
+        <dsig:DigestValue>1dYmN3erLe7uoedoYgW83luL/zg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -271,13 +271,13 @@
       <dsig:DigestValue>2rtOz/0MQiqO6/9dTsgRam6Q1+c=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="HotelManager.exe.config" size="2180">
+  <file name="HotelManager.exe.config" size="2184">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>PVuMacNYrs9iaE/xJqm/hFmGH+8=</dsig:DigestValue>
+      <dsig:DigestValue>ULlDS7400NJfca16ZfxlvtIFSqw=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
