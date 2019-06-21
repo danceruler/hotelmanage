@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LevelMenuButtonGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPageMenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,6 +80,9 @@
     <Compile Include="LevelMenuButton.xaml.cs">
       <DependentUpon>LevelMenuButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LevelMenuButtonGroup.xaml.cs">
+      <DependentUpon>LevelMenuButtonGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPageMenuButton.xaml.cs">
       <DependentUpon>MainPageMenuButton.xaml</DependentUpon>
     </Compile>
@@ -87,6 +94,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,6 +106,9 @@
   <ItemGroup>
     <Compile Include="MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyTabControl.xaml.cs">
+      <DependentUpon>MyTabControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -132,6 +146,40 @@
       <Project>{5233f36f-1369-4706-90f8-73ec74c847c1}</Project>
       <Name>Helper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Ico\white_setting1.png" />
+    <Resource Include="images\Ico\white_setting2.png" />
+    <Resource Include="images\Ico\white_table2.png" />
+    <Resource Include="images\Ico\white_table3.png" />
+    <Resource Include="images\Ico\white_table4.png" />
+    <Resource Include="images\Ico\white_user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Ico\arraw\箭头3_上%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_上%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_上%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_上.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Ico\减.png" />
+    <Resource Include="images\Ico\加.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Ico\Rec\md-square-outline.png" />
+    <Resource Include="images\Ico\Rec\md-square.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,17 +7,16 @@
              mc:Ignorable="d" 
              >
     <Grid >
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Name="Panel" HorizontalAlignment="Left">
+        <StackPanel Name="MainPanel">
+            <Button  Name="Button" Height="40" Width="150" Background="white" FontSize="16px" Content="测试" BorderBrush="SlateGray" BorderThickness="1.2,1.2,1.2,1.2">
+            </Button>
+            <Image Name="Arrow"  Width="25" Height="25" HorizontalAlignment="Right" Margin="0,-40,5,0"/>
+        </StackPanel>
+        
+        <Popup  Name="SonPopup" IsOpen="False">
+            <StackPanel  Name="SonPanel">
                 
             </StackPanel>
-            <StackPanel>
-                <Popup Name="SonPopup" IsOpen="False">
-                    <StackPanel  Name="SonPanel">
-
-                    </StackPanel>
-                </Popup>
-            </StackPanel>
-        </StackPanel>
+        </Popup>
     </Grid>
 </UserControl>

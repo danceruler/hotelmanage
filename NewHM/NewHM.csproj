@@ -204,7 +204,6 @@
   <ItemGroup>
     <Resource Include="images\white_exit_favicon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="images\Ico\white_setting1.png" />
     <Resource Include="images\Ico\white_setting2.png" />
@@ -212,6 +211,32 @@
     <Resource Include="images\Ico\white_table3.png" />
     <Resource Include="images\Ico\white_table4.png" />
     <Resource Include="images\Ico\white_user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Ico\arraw\箭头3_上%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_上%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_上%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_上.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_下.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_右.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左%281%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左%282%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左%283%29.png" />
+    <Resource Include="images\Ico\arraw\箭头3_左.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Ico\减.png" />
+    <Resource Include="images\Ico\加.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Ico\Rec\md-square-outline.png" />
+    <Resource Include="images\Ico\Rec\md-square.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" />

@@ -6,17 +6,17 @@
       mc:Ignorable="d" 
       Title="PageTest">
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Name="MenuPanel" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Red">
-            
-        </StackPanel>
+        <StackPanel Grid.Row="0" Name="MenuPanel" Background="Red">
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Green">
-            
         </StackPanel>
+        <Frame Grid.Row="1" Name="PageFrame" Background="Green">
+            
+        </Frame>
+
     </Grid>
 </Page>
