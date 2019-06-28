@@ -200,7 +200,7 @@ namespace NewHM.ViewModel.Base
         //        action();
         //    }), DispatcherPriority.Normal);
         //}
-        //#endregion  
+//#endregion
 
         protected void OnPropertyChanged([CallerMemberName]string propertyName = "")
         {

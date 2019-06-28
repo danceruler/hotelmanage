@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mash="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:mycontrol="clr-namespace:MyControl;assembly=MyControl"
         mc:Ignorable="d"
         Title="WindowMain" Height="700" Width="1000">
     <Grid>

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace NewHM.ViewModel
 {
@@ -24,6 +25,7 @@ namespace NewHM.ViewModel
         public VM_WindowMain()
         {
             mainPage = new VM_PageMain(this);
+      
             CreateMenu("首页", (mainPage.UIElement as Page), false);
             //VM_PageTest vM_PageTest = new VM_PageTest();
             //CreateMenu("首页", (vM_PageTest.UIElement as Page), true);
@@ -34,7 +36,6 @@ namespace NewHM.ViewModel
         #region createfunc
         public void CreateMenu(string title,Page page,bool canClose)
         {
-            FocusButton(title);
             if (menuPages.Keys.Contains(title))
             {
                 (UIElement as WindowMain).PageFrame.Content = menuPages[title];
@@ -45,6 +46,7 @@ namespace NewHM.ViewModel
                 MenuButton button = new MenuButton();
                 button.CanClose = canClose;
                 button.Text = title;
+                button.ButtonStyle = MenuButtonStyle.GrayWhite;
                 button.Close((s, e) => {
                     menuPages.Remove(title);
                     menuButtons.Remove(title);
@@ -58,12 +60,14 @@ namespace NewHM.ViewModel
                     (UIElement as WindowMain).PageFrame.Content = page;
                     FocusButton(title);
                 });
-                var bs2 = ColorHelp.GetARGByStr(MyColors.MainWindow_Blue);
-                button.Background = new SolidColorBrush(Color.FromArgb(bs2[0], bs2[1], bs2[2], bs2[3]));
+                button.Background = Brushes.Black;
+                //var bs2 = ColorHelp.GetARGByStr(MyColors.MainWindow_Blue);
+                //button.Background = new SolidColorBrush(Color.FromArgb(bs2[0], bs2[1], bs2[2], bs2[3]));
                 (UIElement as WindowMain).MenuPanel.Children.Add(button);
                 menuPages.Add(title, page);
                 menuButtons.Add(title, button);
             }
+            //FocusButton(title);
         }
 
         public void FocusButton(string title)

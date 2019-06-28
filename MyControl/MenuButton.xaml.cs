@@ -26,10 +26,49 @@ namespace MyControl
         public MenuButton()
         {
             InitializeComponent();
+            _newHeight = 40;
+            _newWidth = 150;
+            
+        }
+        public MenuButtonStyle ButtonStyle
+        {
+            set
+            {
+                Style sty = FindResource(value.ToString()) as Style;
+                Button.Style = sty;
+            }
         }
 
         public string Text { set { this.Button.Content = value; } }
         public bool CanClose { set { if (value == false) { this.Image.Visibility = Visibility.Hidden; } else { this.Image.Visibility = Visibility.Visible; } } }
+
+        public double _newHeight { get; set; }
+        public double _newWidth { get; set; }
+
+        public double NewHeight {
+            set
+            {
+                MainHeight.Height = new GridLength(value);
+                MainPanel.Height = value;
+                Button.Height = value;
+                Image.Margin = new Thickness(_newWidth-30, -value, 0, 0);
+                _newHeight = value;
+            }
+        }
+        
+        public double NewWidth
+        {
+            set
+            {
+                MainWidth.Width = new GridLength(value);
+                MainPanel.Width = value;
+                Button.Width = value;
+                Image.Margin = new Thickness(value - 30, -_newHeight, 0, 0);
+                _newWidth = value;
+            }
+        }
+        
+        public Brush backColor = Brushes.HotPink;
 
         public void Click(RoutedEventHandler e)
         {
@@ -65,5 +104,11 @@ namespace MyControl
             this.Button.Dispatcher.Invoke(action);
             Thread.Sleep(20);
         }
+    }
+
+    public enum MenuButtonStyle
+    {
+        DGrayBlue,
+        GrayWhite
     }
 }

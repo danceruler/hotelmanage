@@ -8,7 +8,28 @@
              >
     <Grid >
         <StackPanel Name="MainPanel">
-            <Button  Name="Button" Height="40" Width="150" Background="white" FontSize="16px" Content="测试" BorderBrush="SlateGray" BorderThickness="1.2,1.2,1.2,1.2">
+            <Button  Name="Button" Height="40" Width="150" Background="White" FontSize="16px" Content="测试" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Setters>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border x:Name="MyBackgroundElement"  BorderThickness="0" Background="White">
+                                            <ContentPresenter x:Name="ButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="MyBackgroundElement" Property="Background" Value="#CBCBCB"/>
+                                                <Setter TargetName="MyBackgroundElement" Property="Opacity" Value="1"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </Button.Style>
             </Button>
             <Image Name="Arrow"  Width="25" Height="25" HorizontalAlignment="Right" Margin="0,-40,5,0"/>
         </StackPanel>
