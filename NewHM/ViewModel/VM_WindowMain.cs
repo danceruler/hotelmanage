@@ -46,7 +46,7 @@ namespace NewHM.ViewModel
                 MenuButton button = new MenuButton();
                 button.CanClose = canClose;
                 button.Text = title;
-                button.ButtonStyle = MenuButtonStyle.GrayWhite;
+                button.ButtonStyle = MenuButtonStyle.DGrayBlue;
                 button.Close((s, e) => {
                     menuPages.Remove(title);
                     menuButtons.Remove(title);
@@ -60,9 +60,6 @@ namespace NewHM.ViewModel
                     (UIElement as WindowMain).PageFrame.Content = page;
                     FocusButton(title);
                 });
-                button.Background = Brushes.Black;
-                //var bs2 = ColorHelp.GetARGByStr(MyColors.MainWindow_Blue);
-                //button.Background = new SolidColorBrush(Color.FromArgb(bs2[0], bs2[1], bs2[2], bs2[3]));
                 (UIElement as WindowMain).MenuPanel.Children.Add(button);
                 menuPages.Add(title, page);
                 menuButtons.Add(title, button);

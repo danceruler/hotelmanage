@@ -30,8 +30,8 @@
         </Style>
         <Style x:Key="GrayWhite" TargetType="Button">
             <Style.Setters>
-                <Setter Property="Background" Value="#000000"/>
-                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="Background" Value="#FFFFFF"/>
+                <Setter Property="Foreground" Value="#000000"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
